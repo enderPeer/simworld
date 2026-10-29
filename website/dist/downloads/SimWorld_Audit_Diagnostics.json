@@ -1,0 +1,124 @@
+{
+  "audit_time_utc": "2026-10-29T08:45:29.705829+00:00",
+  "environment": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "executable": "python",
+    "numpy": "2.4.6",
+    "pytest": "9.1.1",
+    "platform": "Windows-10-10.0.26300-SP0"
+  },
+  "command": "python tmp/whitepaper/audit_diagnostics.py",
+  "nuclear_reverse_diagnostic": {
+    "initial": "100 nuclei (Z=1,A=2), zero protons/neutrons",
+    "temperature_mev": 10.0,
+    "p_n_capture_channel_is_open": true,
+    "enumerated_p_n_reverse_channel": false,
+    "events_all_channels_over_100_ticks": 106,
+    "remaining_deuterons": 0,
+    "produced_protons": 0,
+    "produced_neutrons": 0,
+    "meaning": "Pure product cannot dissociate through absent forward reactants; other channels may fire."
+  },
+  "atomic_absorbing_diagnostic": {
+    "initial": "100 neutral hydrogen nuclei, 100 captured electrons",
+    "temperature_mev": 3.4014302245197806e-05,
+    "ticks": 1000,
+    "events": 0,
+    "final_free_electrons": 0,
+    "model_saha_x_e": 0.10815099085831036,
+    "meaning": "Fully captured species are excluded, so neutral state is absorbing despite positive modeled Saha ionization."
+  },
+  "rng_reuse_diagnostic": {
+    "first_n": 10,
+    "second_n": 16,
+    "distinct_payloads": true,
+    "identical_prefix": true,
+    "meaning": "Repeated same tick/kind/cell/sub calls restart stream regardless of payload; species calls share prefixes."
+  },
+  "runs": [
+    {
+      "command": [
+        "<USER_HOME>\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-m",
+        "sim.demo",
+        "--seed",
+        "42",
+        "--ticks",
+        "3400",
+        "--cells",
+        "8",
+        "--probe-cells",
+        "2,3",
+        "--out",
+        "<SOURCE_ROOT>\\tmp\\whitepaper\\fresh_m4"
+      ],
+      "seconds": 5.550373300000501,
+      "returncode": 0,
+      "stdout": "final_hash: fe8e094a9753b27c89fc0dffd1905f8de4be45263158d5712618ddd5f6ded1a0\nt_end_s: 4879209738.9007\nT_end_mev: 4.527153877786918e-06\ncreated: 734725\ncollapsed_theta: 168\ncollapsed_probe: 183680\njumps: 6\nn_p_freeze: 0.12988985947588302\nT_freeze_mev: 1.0808736483646606\nfreeze_out_tick: 910\nnucleons: 1318\nneutrons: 161\nprotons: 1157\nflips: 947387\nreactions: 247\nY_p: 0.2276176024279211\nX_H: 0.7473444613050075\nD_H: 0.0\nLi_H: 0.0\nX_neutral: 0.996542783059637\ne_free: 4\ncapture_first_tick: 2958\nn_atoms_H: 981\nn_atoms_He: 75\nwritten: <SOURCE_ROOT>\\tmp\\whitepaper\\fresh_m4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "<USER_HOME>\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-m",
+        "sim.replay",
+        "<SOURCE_ROOT>\\tmp\\whitepaper\\fresh_m4"
+      ],
+      "seconds": 5.5473454000020865,
+      "returncode": 0,
+      "stdout": "REPLAY PASS: 34 hashes, final fe8e094a9753b27c89fc0dffd1905f8de4be45263158d5712618ddd5f6ded1a0\n",
+      "stderr": ""
+    }
+  ],
+  "snapshot_comparison": {
+    "summary_identical": true,
+    "summary_differences": {},
+    "fresh_uncompressed_log_sha256": "15e50cd6adbc6cc0f01360ebd6fc4a8a97a706e0cb459f0fd218abeafba777f3",
+    "snapshot_uncompressed_log_sha256": "15e50cd6adbc6cc0f01360ebd6fc4a8a97a706e0cb459f0fd218abeafba777f3",
+    "hashes_identical": true,
+    "summary": {
+      "seed": 42,
+      "ticks": 3400,
+      "cells": 8,
+      "physics_build": "0.1",
+      "t_end_s": 4879209738.9007,
+      "T_end_mev": 4.527153877786918e-06,
+      "final_hash": "fe8e094a9753b27c89fc0dffd1905f8de4be45263158d5712618ddd5f6ded1a0",
+      "n_superposed": 3,
+      "n_collapsed": 8,
+      "created": 734725,
+      "annihilated": 730760,
+      "collapsed_theta": 168,
+      "collapsed_probe": 183680,
+      "jumps": 6,
+      "ticks_skipped": 6000,
+      "pop_max_rel_err": 0.01694915254237288,
+      "pop_max_rel_err_tick": 384,
+      "probe_cells": [
+        2,
+        3
+      ],
+      "jump": true,
+      "n_p_freeze": 0.12988985947588302,
+      "T_freeze_mev": 1.0808736483646606,
+      "freeze_out_tick": 910,
+      "recomb_events": 3075,
+      "capture_first_tick": 2958,
+      "nucleons": 1318,
+      "neutrons": 161,
+      "protons": 1157,
+      "flips": 947387,
+      "reactions": 247,
+      "Y_p": 0.2276176024279211,
+      "X_H": 0.7473444613050075,
+      "D_H": 0.0,
+      "Li_H": 0.0,
+      "X_e": 0.003457216940363008,
+      "X_neutral": 0.996542783059637,
+      "e_free": 4,
+      "n_atoms_H": 981,
+      "n_atoms_He": 75,
+      "n_atoms_Li": 0
+    }
+  }
+}

@@ -1,0 +1,814 @@
+{
+  "name": "SimWorld",
+  "tagline": "A world built from consequences.",
+  "description": "A research project exploring how physical processes, life, learning and institutions might connect through one reproducible simulated history.",
+  "snapshotDate": "2026-10-29",
+  "physicsBuild": "0.1",
+  "status": "Research prototype",
+  "repositoryURL": "https://github.com/enderPeer/simworld",
+  "websiteURL": "https://enderpeer.github.io/simworld/",
+  "statusDescription": "The current build is a reduced stochastic physics model. The wider world remains a research program.",
+  "paper": {
+    "title": "SimWorld Research White Paper",
+    "url": "/downloads/SimWorld_Research_White_Paper.pdf",
+    "pages": 20,
+    "date": "2026-10-29",
+    "snapshotNote": "The white paper preserves its dated audit snapshot with detailed plans through Phase 12. Current documentation includes later plans; their presence is not evidence of implemented capability."
+  },
+  "metrics": {
+    "testsPassed": 65,
+    "testSeconds": 123.64,
+    "replayHashes": 34,
+    "seed": 42,
+    "cells": 8,
+    "ticks": 3400,
+    "phaseCount": 17,
+    "detailedPhasePlans": 16,
+    "documents": 23,
+    "references": 10,
+    "openSeams": 21,
+    "totalSeams": 24,
+    "Yp": 0.2276176024279211,
+    "Xe": 0.003457216940363008,
+    "nucleons": 1318,
+    "reactions": 247,
+    "finalHash": "fe8e094a9753b27c89fc0dffd1905f8de4be45263158d5712618ddd5f6ded1a0"
+  },
+  "principles": [
+    {
+      "title": "Computed consequences",
+      "text": "Properties should follow from explicit models and interactions, with fitted assumptions and missing mechanisms disclosed."
+    },
+    {
+      "title": "A traceable history",
+      "text": "Seeded events, recorded causes and state hashes make each experiment inspectable and repeatable."
+    },
+    {
+      "title": "Evidence before scale",
+      "text": "The roadmap expands through tested interfaces, independent benchmarks and measured approximation errors."
+    }
+  ],
+  "implemented": [
+    {
+      "title": "Cooling micro-seed",
+      "text": "Eight-cell thermal populations with prescribed expansion, effective nucleon formation, nuclear reactions and electron capture."
+    },
+    {
+      "title": "Deterministic replay",
+      "text": "A fresh seed-42 run reproduced the archived result and all 34 hashes in the audited environment."
+    },
+    {
+      "title": "Inspectable experiments",
+      "text": "The Python implementation, 65-test suite, prototype reports and full-precision audit evidence are downloadable."
+    }
+  ],
+  "findings": [
+    {
+      "title": "Repeatable does not mean physically validated",
+      "text": "The green suite verifies existing regression criteria. Broad fitted bands do not establish precision cosmology."
+    },
+    {
+      "title": "Reverse kinetics need further work",
+      "text": "Diagnostics found missing nuclear reverse-path reachability and an absorbing fully neutral atomic state."
+    },
+    {
+      "title": "Random-stream identity needs refinement",
+      "text": "Repeated calls at the same stream coordinates reuse prefixes, even when their payloads differ."
+    },
+    {
+      "title": "Prototype speed is not engine speed",
+      "text": "The array microbenchmark and the dictionary-backed main engine use different storage. Their throughput cannot be equated."
+    }
+  ],
+  "researchQuestions": [
+    "Can reversible kernels reach the same equilibrium from both directions?",
+    "What information must survive compression for later predictions to remain reliable?",
+    "Can independent physical mechanisms be coupled without losing conservation or provenance?",
+    "Which higher-level patterns survive changes in seeds, parameters and environments?"
+  ],
+  "provenance": {
+    "note": "All reported implementation results refer to the 29 October 2026 audit of physics_build 0.1. Future-phase gates and scale targets are proposals, not achieved capabilities.",
+    "currentDocumentation": "Detailed phase plans cover 0–15. Phase 16 is a roadmap outline.",
+    "snapshotDifference": "The paper archive preserves its earlier source snapshot. Current planning records contain additional phase plans and seams.",
+    "publicDistribution": "Public download archives remove workstation identifiers and include manifests for the distributed bytes."
+  },
+  "phases": [
+    {
+      "id": 0,
+      "title": "World rules",
+      "group": "Foundations",
+      "status": "implemented-baseline",
+      "statusLabel": "Reduced baseline built",
+      "summary": "Define the primitive records, effective fields, initial state, time and observation contracts.",
+      "mechanisms": [
+        "Sampled quant records and field metadata",
+        "Deterministic events and state hashes",
+        "Restricted quiet-cell jumps"
+      ],
+      "criteria": [
+        "A reproducible cooling-seed demonstration",
+        "Explicit state and event invariants",
+        "Measured cost and declared approximation limits"
+      ],
+      "document": "/docs/PHASE0.md",
+      "documentAvailable": true,
+      "implementationNote": "A reduced Phase 0 micro-seed exists; this does not establish all world-rule ambitions."
+    },
+    {
+      "id": 1,
+      "title": "Quantum layer",
+      "group": "Foundations",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Develop field dynamics, quantum observables and observation interfaces beyond the reduced seed.",
+      "mechanisms": [
+        "Array-based state and field kernels",
+        "Interference and entanglement representations",
+        "Tiered scheduling and observation maps"
+      ],
+      "criteria": [
+        "Interference and non-signalling controls",
+        "Spectral and stochastic benchmarks",
+        "Reproducibility across supported environments"
+      ],
+      "document": "/docs/PHASE1.md",
+      "documentAvailable": true,
+      "implementationNote": "The baseline contains a simplified precursor; this full phase is not implemented."
+    },
+    {
+      "id": 2,
+      "title": "Nuclear layer",
+      "group": "Matter",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Compute nuclear structure, reactions, decay and energy deposition from effective physical models.",
+      "mechanisms": [
+        "Residual-force and Coulomb kernels",
+        "Fusion, fission and decay channels",
+        "Recomputable nuclide registry"
+      ],
+      "criteria": [
+        "Held-out binding and yield comparisons",
+        "Conservation across reaction events",
+        "Closed decay pathways and validated rates"
+      ],
+      "document": "/docs/PHASE2.md",
+      "documentAvailable": true,
+      "implementationNote": "The baseline contains a simplified precursor; this full phase is not implemented."
+    },
+    {
+      "id": 3,
+      "title": "Atomic layer",
+      "group": "Matter",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Derive electronic properties and spectra rather than enumerate element behavior.",
+      "mechanisms": [
+        "Radial self-consistent-field solver",
+        "Ionization, affinity and spectra",
+        "Cached atomic calculations with provenance"
+      ],
+      "criteria": [
+        "Numerical refinement convergence",
+        "Independent atomic benchmarks",
+        "Atomic approximations suitable for chemistry"
+      ],
+      "document": "/docs/PHASE3.md",
+      "documentAvailable": true,
+      "implementationNote": "The baseline contains a simplified precursor; this full phase is not implemented."
+    },
+    {
+      "id": 4,
+      "title": "Chemistry",
+      "group": "Matter",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Build molecular structure and reaction discovery from atomic models.",
+      "mechanisms": [
+        "Bond-energy and geometry calculations",
+        "Reaction-channel and barrier search",
+        "Surface, polymer and catalytic chemistry"
+      ],
+      "criteria": [
+        "Molecular energetics and geometry",
+        "Reversible kinetics and equilibrium checks",
+        "Conserved material in controlled reactors"
+      ],
+      "document": "/docs/PHASE4.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 5,
+      "title": "Materials and substances",
+      "group": "Matter",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Connect composition and processing history to bulk properties.",
+      "mechanisms": [
+        "Microstructure and bounded history records",
+        "Mechanical and transport properties",
+        "Phase-change and constitutive models"
+      ],
+      "criteria": [
+        "Material-property and hysteresis benchmarks",
+        "Process-dependent behavior",
+        "Measured reconstruction and closure error"
+      ],
+      "document": "/docs/PHASE5.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 6,
+      "title": "Continuum physics",
+      "group": "World",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Couple mechanics, heat, fluids, radiation and electromagnetism.",
+      "mechanisms": [
+        "Conservative transport and gravity",
+        "Stress, fracture and heat transfer",
+        "Radiation and electromagnetic operators"
+      ],
+      "criteria": [
+        "Convergence and conservation tests",
+        "Orbit, convection and wave benchmarks",
+        "Energy and entropy accounting in devices"
+      ],
+      "document": "/docs/PHASE6.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 7,
+      "title": "Planet and space",
+      "group": "World",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Model planetary environments, stellar inputs and geological change.",
+      "mechanisms": [
+        "Accretion and differentiation",
+        "Climate, water and reservoir cycles",
+        "Stellar summaries and spatial refinement"
+      ],
+      "criteria": [
+        "Closed planetary resource budgets",
+        "Long-time numerical stability",
+        "Detailed-versus-compressed comparisons"
+      ],
+      "document": "/docs/PHASE7.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 8,
+      "title": "Life and ecosystems",
+      "group": "Life",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Explore whether chemistry supports persistent, heritable and evolving systems.",
+      "mechanisms": [
+        "Templating and catalytic networks",
+        "Compartments and metabolism",
+        "Genotype populations and ecological feedback"
+      ],
+      "criteria": [
+        "Persistence with resource controls",
+        "Heritable variation and competition",
+        "Energy closure and population agreement"
+      ],
+      "document": "/docs/PHASE8.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 9,
+      "title": "Agency and civilization",
+      "group": "Life",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Connect learned behavior and physical bodies to tools and cumulative culture.",
+      "mechanisms": [
+        "Sensory and learned action policies",
+        "Articulated bodies and tool use",
+        "Culture and demographic summaries"
+      ],
+      "criteria": [
+        "Novel-resource and tool tasks",
+        "Energetic viability",
+        "Controlled tests of cumulative learning"
+      ],
+      "document": "/docs/PHASE9.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 10,
+      "title": "Technology and knowledge",
+      "group": "Society",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Let agents experiment, communicate and assemble physical technologies.",
+      "mechanisms": [
+        "Claims, experiments and replication",
+        "Machines, grids and communication",
+        "Computation and nested simulation contracts"
+      ],
+      "criteria": [
+        "Physical energy and signal tests",
+        "Recorded endogenous discovery",
+        "Reproducible computation and nested histories"
+      ],
+      "document": "/docs/PHASE10.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 11,
+      "title": "People and society",
+      "group": "Society",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Study communication, institutions, education and collective behavior.",
+      "mechanisms": [
+        "Sanction and coalition networks",
+        "Language, learning and knowledge transmission",
+        "Social and cultural summaries"
+      ],
+      "criteria": [
+        "Matched interventions across communities",
+        "Distributional outcomes across seeds",
+        "Measured social-compression error"
+      ],
+      "document": "/docs/PHASE11.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 12,
+      "title": "Money and politics",
+      "group": "Society",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Represent ownership, obligations, exchange and governance over physical resources.",
+      "mechanisms": [
+        "Ownership and transfer events",
+        "Credit, repayment and enforcement",
+        "Information diffusion and political coordination"
+      ],
+      "criteria": [
+        "Holdings survive compression",
+        "Real and nominal accounting remain distinct",
+        "Conditional institutional tests without fixed outcomes"
+      ],
+      "document": "/docs/PHASE12.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 13,
+      "title": "Infrastructure and externalities",
+      "group": "Society",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Connect owned infrastructure, industrial flows, exposure and responsibility.",
+      "mechanisms": [
+        "Terrain-aware networks and maintenance histories",
+        "Producer-attributed emissions and local tracers",
+        "Supply, recycling, hazards and liability records"
+      ],
+      "criteria": [
+        "Material-flow and attribution closure",
+        "Maintenance-dependent failure comparisons",
+        "Recovery retains physical transport delays"
+      ],
+      "document": "/docs/PHASE13.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 14,
+      "title": "Perception and detail",
+      "group": "Integration",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Make observation, memory and simulation resolution explicit, reproducible contracts.",
+      "mechanisms": [
+        "Agent-derived gaze and observation maps",
+        "Memory and testimony with provenance",
+        "Deterministic frame budgets and resolution governor"
+      ],
+      "criteria": [
+        "Probe-fixture equivalence where maps agree",
+        "Consistent physical and knowledge records",
+        "Measured cost reduction at declared epistemic parity"
+      ],
+      "document": "/docs/PHASE14.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 15,
+      "title": "Runtime and scalability",
+      "group": "Integration",
+      "status": "detailed-proposal",
+      "statusLabel": "Detailed research plan",
+      "summary": "Measure and optimize the full hierarchy across hardware and time scales.",
+      "mechanisms": [
+        "Data-oriented storage",
+        "Heterogeneous tick rates and CPU/GPU work",
+        "Measured memory, logging and reconstruction cost"
+      ],
+      "criteria": [
+        "Workload scaling at declared fidelity",
+        "Reproducible scheduling policy",
+        "Fidelity-versus-cost curves"
+      ],
+      "document": "/docs/PHASE15.md",
+      "documentAvailable": true,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    },
+    {
+      "id": 16,
+      "title": "The integrated emergent loop",
+      "group": "Integration",
+      "status": "roadmap-only",
+      "statusLabel": "Roadmap vision",
+      "summary": "Test a persistent history with endogenous innovation across the hierarchy.",
+      "mechanisms": [
+        "Continuous causal provenance",
+        "Audited transfers between scales",
+        "Playable exploration and observation"
+      ],
+      "criteria": [
+        "Disclose every seed and approximation",
+        "Document both successful and failed emergence",
+        "Verify each interface before end-to-end claims"
+      ],
+      "document": "/docs/ROADMAP.md",
+      "documentAvailable": false,
+      "implementationNote": "Proposed research; not implemented in the current sim package."
+    }
+  ],
+  "documents": [
+    {
+      "id": "ROADMAP.md",
+      "title": "SimWorld — Roadmap",
+      "category": "Roadmap",
+      "url": "/docs/ROADMAP.md",
+      "bytes": 11840,
+      "sha256": "19602a87c78827f2b02cfebb55513aff19c8782db003c3b74ff6d0a8aa5d0a36"
+    },
+    {
+      "id": "BUILD0.md",
+      "title": "Build Spec 0 — the Micro-Seed (first buildable slice)",
+      "category": "Build specification",
+      "url": "/docs/BUILD0.md",
+      "bytes": 22379,
+      "sha256": "7274f1ab42ce85851bee498b99ac86740385dd442736a121ba995cbe80531543"
+    },
+    {
+      "id": "PHASE0.md",
+      "title": "Phase 0 — World Rules",
+      "category": "Phase plan",
+      "url": "/docs/PHASE0.md",
+      "bytes": 10551,
+      "sha256": "5b1e0d76567d5d976e5985404938a508545a61a4290afe0be77742a71d48e286"
+    },
+    {
+      "id": "PHASE1.md",
+      "title": "Phase 1 — Quantum Layer",
+      "category": "Phase plan",
+      "url": "/docs/PHASE1.md",
+      "bytes": 7907,
+      "sha256": "e74b7398ca3e5d14e9184c014feed9205b7f42c8e5ea6acfeb60b916326e53f5"
+    },
+    {
+      "id": "PHASE2.md",
+      "title": "Phase 2 — Nuclear Layer",
+      "category": "Phase plan",
+      "url": "/docs/PHASE2.md",
+      "bytes": 9305,
+      "sha256": "6c63fd8d5ef3ee5e2809883747abd1083814fcb214c6b2efc239b11b532bd30b"
+    },
+    {
+      "id": "PHASE3.md",
+      "title": "Phase 3 — Atomic Layer",
+      "category": "Phase plan",
+      "url": "/docs/PHASE3.md",
+      "bytes": 9862,
+      "sha256": "a02265ac96e2c4808a691897fb74f8150170db746542d66d7901d875ce9d092f"
+    },
+    {
+      "id": "PHASE4.md",
+      "title": "Phase 4 — Chemistry Layer",
+      "category": "Phase plan",
+      "url": "/docs/PHASE4.md",
+      "bytes": 10564,
+      "sha256": "f56c293e7c8619255b9383e47a1e605d0feba778ee4f97564a96e2fa4a2cad97"
+    },
+    {
+      "id": "PHASE5.md",
+      "title": "Phase 5 — Materials & Substances",
+      "category": "Phase plan",
+      "url": "/docs/PHASE5.md",
+      "bytes": 11528,
+      "sha256": "7c9b9ac4b1f203a222c7787d7ebdfd678c232cfe6c4fd2c601fb941b505af554"
+    },
+    {
+      "id": "PHASE6.md",
+      "title": "Phase 6 — Physics Layer",
+      "category": "Phase plan",
+      "url": "/docs/PHASE6.md",
+      "bytes": 14486,
+      "sha256": "ddfb76ed7a99bf5cef5d26372a4f85301d66d5a063d1e2c97c5f6c8efa1e2560"
+    },
+    {
+      "id": "PHASE7.md",
+      "title": "Phase 7 — Planet & Space",
+      "category": "Phase plan",
+      "url": "/docs/PHASE7.md",
+      "bytes": 19852,
+      "sha256": "951418845cd06b621e00c210ce509e75dc97f8d6e50b1f3ede6d1b993695304b"
+    },
+    {
+      "id": "PHASE8.md",
+      "title": "Phase 8 — Life: Abiogenesis → Ecosystems",
+      "category": "Phase plan",
+      "url": "/docs/PHASE8.md",
+      "bytes": 20408,
+      "sha256": "e16dbe5715878749d7d5160aa60b8ed6f4235fdfec0c3bb3791a8f6d28a09f29"
+    },
+    {
+      "id": "PHASE9.md",
+      "title": "Phase 9 — First Humans & Epochs of Civilization",
+      "category": "Phase plan",
+      "url": "/docs/PHASE9.md",
+      "bytes": 19266,
+      "sha256": "f45a0ba6128ff93c538221c71445883307b08a0b4af7b188ef99f03b39977efb"
+    },
+    {
+      "id": "PHASE10.md",
+      "title": "Phase 10 — Technology Tree (emergent, research-driven)",
+      "category": "Phase plan",
+      "url": "/docs/PHASE10.md",
+      "bytes": 19977,
+      "sha256": "765aae1fb34a050241f1689431de4eb1900442362b83b164173ff34a3f1c7a6f"
+    },
+    {
+      "id": "PHASE11.md",
+      "title": "Phase 11 — People & Society",
+      "category": "Phase plan",
+      "url": "/docs/PHASE11.md",
+      "bytes": 20604,
+      "sha256": "dc78a4dc89b399238054a6592e5e42eacfe395b85508737fe2e36f8d1042889b"
+    },
+    {
+      "id": "PHASE12.md",
+      "title": "Phase 12 — Money, Power, Politics",
+      "category": "Phase plan",
+      "url": "/docs/PHASE12.md",
+      "bytes": 20521,
+      "sha256": "10e57634896fc8f94ad5783569dc2e3bd4faaeb6dbcbb65edbd1c2c1fe0bb583"
+    },
+    {
+      "id": "PHASE13.md",
+      "title": "Phase 13 — Infrastructure, Industry, Externalities",
+      "category": "Phase plan",
+      "url": "/docs/PHASE13.md",
+      "bytes": 22106,
+      "sha256": "287afcfc47106d9a595f11ab32bdeed2906b91a272b8f6ebf0aed94f85007d40"
+    },
+    {
+      "id": "PHASE14.md",
+      "title": "Phase 14 — Perception, LOD & Existence (the render/sim contract)",
+      "category": "Phase plan",
+      "url": "/docs/PHASE14.md",
+      "bytes": 21141,
+      "sha256": "0675c6bc86bc0f7f621aaf07462a787376b10db1fdaaea762da20dcce8840be1"
+    },
+    {
+      "id": "PHASE15.md",
+      "title": "Phase 15 — Hyperoptimized Runtime",
+      "category": "Phase plan",
+      "url": "/docs/PHASE15.md",
+      "bytes": 20691,
+      "sha256": "820c3af4dd5b5ac74edc78cb35ce7f46cb90218dccf1c2450747896422e7095c"
+    },
+    {
+      "id": "spec/constants.md",
+      "title": "Constants — physics_build 0.1 (frozen 2026-10-28)",
+      "category": "Specifications",
+      "url": "/docs/spec/constants.md",
+      "bytes": 5210,
+      "sha256": "b8740656052e310e2bdbbd8fd5b0e7acbe9876e6b337b47848b35cd7e6cea0a6"
+    },
+    {
+      "id": "spec/decisions.md",
+      "title": "Decisions D1–D5 — CLOSED at physics_build 0.1 (frozen 2026-10-28)",
+      "category": "Specifications",
+      "url": "/docs/spec/decisions.md",
+      "bytes": 4128,
+      "sha256": "d96d77022cc27f652ae9818becf1b73ccfa249644240182bcd1562c7e676796b"
+    },
+    {
+      "id": "spec/interfaces.md",
+      "title": "Interfaces — frozen at physics_build 0.1 (2026-10-28)",
+      "category": "Specifications",
+      "url": "/docs/spec/interfaces.md",
+      "bytes": 3216,
+      "sha256": "3d120a57e24d6f0297bc0f59f73a40cbe82ec64d0f7be926856069f70f2ad9da"
+    },
+    {
+      "id": "spec/seams.md",
+      "title": "Seams — cross-phase logic errors and unclean dependencies",
+      "category": "Specifications",
+      "url": "/docs/spec/seams.md",
+      "bytes": 14765,
+      "sha256": "60fc7f70303fa91df425c895cd750681ed5d5f292bb20d1745267b37401f4bdb"
+    },
+    {
+      "id": "spec/surprises.md",
+      "title": "Surprises ledger",
+      "category": "Specifications",
+      "url": "/docs/spec/surprises.md",
+      "bytes": 3318,
+      "sha256": "0d048ff8d662660025ecff903d9d63cd8fcc362a86f5e4a23db19d5a4bb4df0f"
+    }
+  ],
+  "downloads": [
+    {
+      "id": "whitepaper",
+      "title": "Research white paper",
+      "description": "20 pages covering the architecture, implementation evidence, limitations, references and validation agenda.",
+      "filename": "SimWorld_Research_White_Paper.pdf",
+      "url": "/downloads/SimWorld_Research_White_Paper.pdf",
+      "format": "PDF",
+      "bytes": 231333,
+      "sha256": "b9fdc7fabbad8c7849ede84e5aaff60aa89849702b199138ffd60fb77225793f"
+    },
+    {
+      "id": "research",
+      "title": "Research materials",
+      "description": "Dated white-paper source snapshot, editable manuscript, test evidence and portable diagnostics. Workstation identifiers are redacted.",
+      "filename": "SimWorld_Research_Materials_Public.zip",
+      "url": "/downloads/SimWorld_Research_Materials_Public.zip",
+      "format": "ZIP",
+      "bytes": 849241,
+      "sha256": "4a30890fe97ddc86f069028f4016956041764f0413ea3572e4739ad38915996e"
+    },
+    {
+      "id": "source",
+      "title": "Current engine source",
+      "description": "Python engine, tests, prototypes, contributor documentation and all currently available phase plans.",
+      "filename": "SimWorld_Current_Source.zip",
+      "url": "/downloads/SimWorld_Current_Source.zip",
+      "format": "ZIP",
+      "bytes": 203124,
+      "sha256": "eb8b540c27b82b435f612547257e33f3f58339d0960565b228d2b29b4f23de11"
+    },
+    {
+      "id": "documentation",
+      "title": "Complete documentation",
+      "description": "Roadmap, first-build contract, all available phase plans and specification records.",
+      "filename": "SimWorld_Documentation.zip",
+      "url": "/downloads/SimWorld_Documentation.zip",
+      "format": "ZIP",
+      "bytes": 138128,
+      "sha256": "612b37c5e27ef993afd930821d55d8e4be7b71e09e0b5b3f679edac82e3dc03b"
+    },
+    {
+      "id": "run",
+      "title": "Verified run data",
+      "description": "Full-precision summary of the reproduced seed-42, eight-cell, 3,400-tick realization.",
+      "filename": "SimWorld_Verified_Run.json",
+      "url": "/downloads/SimWorld_Verified_Run.json",
+      "format": "JSON",
+      "bytes": 1012,
+      "sha256": "46458970afd5980b5f265346d7a0a235351467784ddbec3d7bc1f98d67020c6b"
+    },
+    {
+      "id": "tests",
+      "title": "Full test report",
+      "description": "JUnit results for the 65-test audit suite. Host identifiers removed.",
+      "filename": "SimWorld_Test_Report.xml",
+      "url": "/downloads/SimWorld_Test_Report.xml",
+      "format": "XML",
+      "bytes": 6556,
+      "sha256": "27fbbd17d6a31b17e97075ce27d0457d87550acf192857a57ae6a1a40dd2664a"
+    },
+    {
+      "id": "diagnostics",
+      "title": "Audit diagnostics",
+      "description": "Reproduction results and targeted checks of reverse pathways, neutral-state behavior and RNG stream reuse.",
+      "filename": "SimWorld_Audit_Diagnostics.json",
+      "url": "/downloads/SimWorld_Audit_Diagnostics.json",
+      "format": "JSON",
+      "bytes": 4476,
+      "sha256": "4d9c8340a1ecddc07035bc0cc6186fd146ea32d94128e8fe40cf8f518e598bbb"
+    }
+  ],
+  "references": [
+    {
+      "id": "L1",
+      "title": "Precision big bang nucleosynthesis with improved Helium-4 predictions",
+      "authors": "Cyril Pitrou; Alain Coc; Jean-Philippe Uzan; Elisabeth Vangioni",
+      "year": 2018,
+      "venue": "Physics Reports",
+      "url": "https://doi.org/10.1016/j.physrep.2018.04.005",
+      "topic": "Place SimWorld's broad H/He bands in context; explain why acceptance tests are not a precision cosmology validation."
+    },
+    {
+      "id": "L2",
+      "title": "One percent determination of the primordial deuterium abundance",
+      "authors": "Ryan Cooke; Max Pettini; Charles C. Steidel",
+      "year": 2018,
+      "venue": "The Astrophysical Journal",
+      "url": "https://doi.org/10.3847/1538-4357/aaab53",
+      "topic": "An explicit external reference benchmark for deuterium, which cannot be scientifically validated by accepting an exact zero in a small-particle realization."
+    },
+    {
+      "id": "L3",
+      "title": "Ultrafast effective multi-level atom method for primordial hydrogen recombination",
+      "authors": "Yacine Ali-Haïmoud; Christopher M. Hirata",
+      "year": 2010,
+      "venue": "Physical Review D 82, 063521",
+      "url": "https://doi.org/10.1103/PhysRevD.82.063521",
+      "topic": "A concrete example of scientifically justified precomputation and coarse-graining compatible with derived physics. A hydrogenic binding scale alone does not establish an accurate recombination history."
+    },
+    {
+      "id": "L4",
+      "title": "Decoherence, einselection, and the quantum origins of the classical",
+      "authors": "Wojciech H. Zurek",
+      "year": 2003,
+      "venue": "Reviews of Modern Physics 75, 715",
+      "url": "https://doi.org/10.1103/RevModPhys.75.715",
+      "topic": "Distinguish physical decoherence from observer-driven rendering and from SimWorld's threshold-based materialization rule."
+    },
+    {
+      "id": "L5",
+      "title": "Models of wave-function collapse, underlying theories, and experimental tests",
+      "authors": "Angelo Bassi; Kinjalk Lochan; Seema Satin; Tejinder P. Singh; Hendrik Ulbricht",
+      "year": 2013,
+      "venue": "Reviews of Modern Physics 85, 471–527",
+      "url": "https://doi.org/10.1103/RevModPhys.85.471",
+      "topic": "Explain why a software collapse event should be described as an effective modeling operation unless tied to an explicit, falsifiable physical model."
+    },
+    {
+      "id": "L6",
+      "title": "Heterogeneous multiscale method: A general methodology for multiscale modeling",
+      "authors": "Weinan E; Bjorn Engquist; Zhongyi Huang",
+      "year": 2003,
+      "venue": "Physical Review B 67, 092101",
+      "url": "https://doi.org/10.1103/PhysRevB.67.092101",
+      "topic": "Frame the roadmap as a hierarchy of closure models with tested interfaces, not a promise that every microscopic degree of freedom can be explicitly simulated across all epochs."
+    },
+    {
+      "id": "L7",
+      "title": "The ODD Protocol for Describing Agent-Based and Other Simulation Models: A Second Update to Improve Clarity, Replication, and Structural Realism",
+      "authors": "Volker Grimm et al.",
+      "year": 2020,
+      "venue": "Journal of Artificial Societies and Social Simulation 23(2), 7",
+      "url": "https://doi.org/10.18564/jasss.4259",
+      "topic": "Recommend per-phase and nested ODD descriptions, explicit evaluation patterns, initialization, stochasticity, scheduling, and submodel documentation for reproducible later-stage agents."
+    },
+    {
+      "id": "L8",
+      "title": "Exact stochastic simulation of coupled chemical reactions",
+      "authors": "Daniel T. Gillespie",
+      "year": 1977,
+      "venue": "The Journal of Physical Chemistry 81(25), 2340–2361",
+      "url": "https://doi.org/10.1021/j100540a008",
+      "topic": "A reference method for validating stochastic reaction stepping and for separating sampling error from rate-model error."
+    },
+    {
+      "id": "L9",
+      "title": "Required Levels of Catalysis for Emergence of Autocatalytic Sets in Models of Chemical Reaction Systems",
+      "authors": "Wim Hordijk; Stuart A. Kauffman; Mike Steel",
+      "year": 2011,
+      "venue": "International Journal of Molecular Sciences 12(5), 3085–3101",
+      "url": "https://doi.org/10.3390/ijms12053085",
+      "topic": "Define intermediate Phase 8 tests: catalytic closure and persistence are distinct from heredity, selection, compartmentalization, and open-ended evolution."
+    },
+    {
+      "id": "L10",
+      "title": "The evolutionary origin of complex features",
+      "authors": "Richard E. Lenski; Charles Ofria; Robert T. Pennock; Christoph Adami",
+      "year": 2003,
+      "venue": "Nature 423, 139–144",
+      "url": "https://doi.org/10.1038/nature01568",
+      "topic": "Show that emergent complexity can be studied by controlled computational experiments with explicit rules and recorded evolutionary trajectories."
+    }
+  ],
+  "reproduce": {
+    "commands": [
+      "python -m pip install -r requirements.txt",
+      "python -m pytest -q",
+      "python -m sim.demo --seed 42 --ticks 3400 --cells 8 --probe-cells 2,3 --out run_demo",
+      "python -m sim.replay run_demo"
+    ],
+    "environment": "Python 3.11.9 · NumPy 2.4.6 · pytest 9.1.1",
+    "scope": "Exact reproduction is established for the audited machine and source environment; cross-platform equivalence requires separate testing."
+  }
+}

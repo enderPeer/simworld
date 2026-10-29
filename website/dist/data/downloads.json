@@ -1,0 +1,72 @@
+[
+  {
+    "id": "whitepaper",
+    "title": "Research white paper",
+    "description": "20 pages covering the architecture, implementation evidence, limitations, references and validation agenda.",
+    "filename": "SimWorld_Research_White_Paper.pdf",
+    "url": "/downloads/SimWorld_Research_White_Paper.pdf",
+    "format": "PDF",
+    "bytes": 231333,
+    "sha256": "b9fdc7fabbad8c7849ede84e5aaff60aa89849702b199138ffd60fb77225793f"
+  },
+  {
+    "id": "research",
+    "title": "Research materials",
+    "description": "Dated white-paper source snapshot, editable manuscript, test evidence and portable diagnostics. Workstation identifiers are redacted.",
+    "filename": "SimWorld_Research_Materials_Public.zip",
+    "url": "/downloads/SimWorld_Research_Materials_Public.zip",
+    "format": "ZIP",
+    "bytes": 849241,
+    "sha256": "4a30890fe97ddc86f069028f4016956041764f0413ea3572e4739ad38915996e"
+  },
+  {
+    "id": "source",
+    "title": "Current engine source",
+    "description": "Python engine, tests, prototypes, contributor documentation and all currently available phase plans.",
+    "filename": "SimWorld_Current_Source.zip",
+    "url": "/downloads/SimWorld_Current_Source.zip",
+    "format": "ZIP",
+    "bytes": 203124,
+    "sha256": "eb8b540c27b82b435f612547257e33f3f58339d0960565b228d2b29b4f23de11"
+  },
+  {
+    "id": "documentation",
+    "title": "Complete documentation",
+    "description": "Roadmap, first-build contract, all available phase plans and specification records.",
+    "filename": "SimWorld_Documentation.zip",
+    "url": "/downloads/SimWorld_Documentation.zip",
+    "format": "ZIP",
+    "bytes": 138128,
+    "sha256": "612b37c5e27ef993afd930821d55d8e4be7b71e09e0b5b3f679edac82e3dc03b"
+  },
+  {
+    "id": "run",
+    "title": "Verified run data",
+    "description": "Full-precision summary of the reproduced seed-42, eight-cell, 3,400-tick realization.",
+    "filename": "SimWorld_Verified_Run.json",
+    "url": "/downloads/SimWorld_Verified_Run.json",
+    "format": "JSON",
+    "bytes": 1012,
+    "sha256": "46458970afd5980b5f265346d7a0a235351467784ddbec3d7bc1f98d67020c6b"
+  },
+  {
+    "id": "tests",
+    "title": "Full test report",
+    "description": "JUnit results for the 65-test audit suite. Host identifiers removed.",
+    "filename": "SimWorld_Test_Report.xml",
+    "url": "/downloads/SimWorld_Test_Report.xml",
+    "format": "XML",
+    "bytes": 6556,
+    "sha256": "27fbbd17d6a31b17e97075ce27d0457d87550acf192857a57ae6a1a40dd2664a"
+  },
+  {
+    "id": "diagnostics",
+    "title": "Audit diagnostics",
+    "description": "Reproduction results and targeted checks of reverse pathways, neutral-state behavior and RNG stream reuse.",
+    "filename": "SimWorld_Audit_Diagnostics.json",
+    "url": "/downloads/SimWorld_Audit_Diagnostics.json",
+    "format": "JSON",
+    "bytes": 4476,
+    "sha256": "4d9c8340a1ecddc07035bc0cc6186fd146ea32d94128e8fe40cf8f518e598bbb"
+  }
+]
