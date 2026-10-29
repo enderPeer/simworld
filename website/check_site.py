@@ -44,6 +44,15 @@ class ResourceParser(HTMLParser):
 ResourceParser().feed((ROOT / 'index.html').read_text(encoding='utf-8'))
 data = json.loads((ROOT / 'data/project.json').read_text(encoding='utf-8'))
 require(len(data['phases']) == 17, 'The roadmap must retain all 17 phases')
+publication=json.loads((ROOT.parent.parent/'research/whitepaper/publication.json').read_text(encoding='utf-8'))
+require(data['paper']['version']==publication['version'], 'Stale paper version on the website')
+require(data['paper']['pages']==publication['pages'], 'Stale paper page count on the website')
+require(data['paper']['phaseCoverage']==list(range(17)), 'Paper metadata must cover all detailed phases')
+with zipfile.ZipFile(ROOT/'downloads'/publication['archiveFilename']) as research:
+    archived_publication=json.loads(research.read('research/publication.json'))
+    require(archived_publication==publication, 'Research archive and PDF publication metadata disagree')
+    require(all(f'source/PHASE{i}.md' in research.namelist() for i in range(17)),
+            'Research archive is missing a detailed phase plan')
 for item in data['downloads'] + data['documents']:
     path = artifact(item['url'])
     raw = path.read_bytes()

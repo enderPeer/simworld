@@ -1,0 +1,300 @@
+[
+  {
+    "id": 0,
+    "title": "World rules",
+    "purpose": "Phase 0 defines the state, inputs, observation semantics and time model that later layers must inherit. Its central deliverable is a runnable physical seed with an inspectable history, establishing an engineering baseline before higher-level emergence is attempted.",
+    "mechanisms": "The plan organizes this work into five decisions: quant representation, effective fields, initial conditions, observation and temporal advancement. BUILD0 adopts a smaller effective field set and a geometric cooling schedule for the micro-seed. Current quant records are dictionaries and lists rather than the proposed packed array store. Effective binding and aggregate electron capture produce a small stochastic history; event keys and periodic state hashes allow re-execution checks. Quiet-cell jumps omit selected work under restricted eligibility conditions. Separate storage-cost and shell-approximation spikes inform later development without becoming measurements of the integrated engine.",
+    "dependencies": "There is no earlier phase dependency. The phase must publish versioned constants, state invariants and read/write boundaries. Its original choices also constrain later perception, gravity amendments, runtime-build fingerprints and nested instances; those future requirements should be tracked as explicit interface revisions rather than silently added to the original baseline.",
+    "validation": "The proposed gates include record round-trips, measured storage/update costs, observable probe behavior, light-element output checks and replay equivalence. The actual audit supports 65 passing regression tests and a reproduced seed-42 history with 34 matched hashes in the tested environment. These checks do not validate general quantum dynamics or precision cosmology. Further work should test equilibrium from contrasting initial states, random-stream separation and conservation across every conversion boundary, while keeping fitted targets separate from independent physical benchmarks.",
+    "risks": "The largest risk is treating a coherent implementation as a physical derivation. The observation threshold is an effective software rule, fitted binding is not a fundamental force calculation, and the array microbenchmark does not describe current dictionary storage. Exact replay also establishes neither statistical independence nor a complete resumable checkpoint.",
+    "status": "A reduced Phase 0 prototype is implemented. Several intended guarantees remain unestablished; later phase completion must not be inferred from this baseline.",
+    "source_sections": [
+      "PHASE0.md: The five decisions (task list)",
+      "PHASE0.md: How to implement (sequencing)",
+      "PHASE0.md: Risks",
+      "PHASE0.md: Carry-over open questions (from ROADMAP)",
+      "BUILD0.md: Decisions; Engine architecture",
+      "spec/seams.md: S4, S5, S9, S16, S22, S23"
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Quantum layer",
+    "purpose": "Phase 1 proposes the reusable microscopic execution layer: storage, field interactions, observation, correlations and scheduling. It would replace the micro-seed's provisional structures with interfaces that later nuclear models can consume without depending on storage internals.",
+    "mechanisms": "The planned store uses array blocks indexed by cell and refinement tier, with one stable identifier space across superposed and collapsed records. An explicit edge table represents correlations, and counter-based streams address stochastic events. Field kernels sample interactions from an effective coupling table. A tier scheduler promotes detailed regions and propagates quiet summaries containing temperature, composition, free energy and entropy obligations. Collapse is a logged threshold or coverage operation. A scripted probe remains a test fixture; Phase 14 is intended to supply the world-internal observation map through a compatible interface.",
+    "dependencies": "Phase 0 decisions, constants and boundary contracts must be closed with evidence. The replay harness becomes continuing infrastructure, while measured spike results inform, rather than substitute for, integrated budgets. The nuclear boundary allows reads of collapsed records and composition summaries, and writes of binding outcomes through the field-interaction contract. S21 clarifies the future observation-map producer.",
+    "validation": "Proposed tests include pack/unpack invariants, storage costs at large synthetic populations, interference controls, non-signalling correlation statistics, cavity spectra and repeated deterministic re-execution. The plan targets at least ten million superposed updates per second, but its future performance table remains unmeasured. Skipped and fully evolved regions require both an approximation comparison and replay of the selected algorithm. The acceptance specification also retains a light-element integration test, although another passage excludes nuclei from the standalone layer; that test boundary needs explicit reconciliation.",
+    "risks": "Naming a field, phase variable or entanglement edge does not establish a valid quantum model. Observable interference, marginal distributions and measurement interventions need an explicit mathematical specification. Log growth, correlation-graph complexity and ordering-dependent random keys can undermine scalability or independence even when a single execution replays exactly.",
+    "status": "Detailed proposal. The baseline provides precursor logging, sampling and probe behavior, but the full array store, interference dynamics and correlation validation are not implemented.",
+    "source_sections": [
+      "PHASE1.md: Architecture",
+      "PHASE1.md: Work packages W1-W6",
+      "PHASE1.md: Performance budget (fill from Spike A, then hold the line)",
+      "PHASE1.md: Interface exposed to Phase 2 (nuclear)",
+      "PHASE1.md: Verification strategy",
+      "spec/seams.md: S21, S22, S23"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Nuclear layer",
+    "purpose": "Phase 2 seeks a nuclear model whose bound states, reaction pathways and radiation outputs are computed from declared effective interactions. It would supply atomic structure with consistent nuclide records and give later environments a traceable source of composition and ionization energy.",
+    "mechanisms": "Nucleons are proposed as composite valence states; nuclei retain constituent references, excitation energy and derived scalar properties. A residual attractive interaction with short-range repulsion and saturation combines with the existing electromagnetic coupling. Barrier sampling supplies fusion probabilities, while stability gradients and penetration models govern candidate fission and decay events. Radiation products reuse lower-layer species and deposit energy into cells. A versioned nuclide registry memoizes computed quantities but must remain regenerable. Event scheduling concentrates work on changes in temperature or composition instead of scanning every nucleus at every tick.",
+    "dependencies": "The plan requires the full Phase 1 acceptance and performance gates, not merely today's micro-seed. Phase 3 receives mass, charge, binding, lifetime and decay information through nuclear::nuclide; electron capture may request a transmutation that the nuclear layer adjudicates. Later planetary initialization also depends on a separately logged stellar-yield calculation under the proposed D6 decision.",
+    "validation": "The binding model would be calibrated on a small declared anchor set and evaluated on roughly 200 other nuclides. Tests cover light-nucleus structure, the binding-energy maximum, solar-like burning, carbon production at hotter conditions, terminating decay chains and radiation-energy accounting. Random initial states and a million logged transitions should audit baryon number, charge and energy. Cache deletion must preserve recomputed results. Reaction sampling and hot-region compression also need convergence and reference-distribution checks, particularly after the baseline's reverse-path limitations are repaired.",
+    "risks": "Nuclear rates and half-lives are highly sensitive to structure and barriers. Broad agreement or correct qualitative trends would not establish precise yields or predictive decay times. A proposed hundred-fold lifetime tolerance is an exploratory target. Exact equality after reacting-region compression requires a restricted proof or observable error criterion, not an unrestricted assertion.",
+    "status": "Detailed proposal. Current fitted binding and bounded reaction counts are demonstration kernels, not the force-based nuclear program described here.",
+    "source_sections": [
+      "PHASE2.md: Architecture",
+      "PHASE2.md: Work packages W1-W6",
+      "PHASE2.md: Interface exposed to Phase 3 (atomic)",
+      "PHASE2.md: Verification strategy",
+      "PHASE2.md: Risks",
+      "spec/seams.md: S6"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Atomic layer",
+    "purpose": "Phase 3 proposes a computed atomic interface for chemistry and radiation. Its outputs would include orbital energies, densities, ionization and affinity information, characteristic sizes and spectra, with failures and approximation levels recorded explicitly rather than hidden behind element-specific tables.",
+    "mechanisms": "A radial self-consistent-field solver on a logarithmic grid starts from hydrogenic states and uses a spherical, frozen-nucleus approximation. A declared correction ladder adds correlation terms and configuration mixing when numerical diagnostics indicate inadequacy. Derived records are keyed by physics build, nuclear charge and ionization state. Energetic differences and density integrals supply electronic properties; level differences and overlap estimates supply spectral data. Occupation-balance and pressure-ionization models connect those records to temperature and density. Lazy evaluation supports unusual species, while planned precomputation covers the standard charge range before interactive use.",
+    "dependencies": "The nuclear layer must provide validated charge, mass, radius and binding records through its frozen interface. The shell-fit spike supplies only an exploratory cost/error reference. Chemistry may read atomic records but cannot modify them directly; ionization changes pass through the occupation model, and transmutation remains under nuclear ownership. Spectral consumers share a separate read contract.",
+    "validation": "The proposal combines grid-refinement convergence with ionization-energy, electron-affinity, periodicity, spectral-line and plasma benchmarks. It envisages a nightly charge sweep through 118 and controlled comparisons for neutral and ionized states. Cache-off reconstruction, charge identities and energy accounting accompany physical tests. Validation must distinguish valence-electron count from bonding valency, which one source example conflates. High-charge stability claims require a justified relativistic and nuclear domain; the paper does not assume that a neutral atomic table must end at a particular charge.",
+    "risks": "Spherical approximations and simple correlation corrections can fail for near-degenerate shells, anions and molecularly important properties. Matching selected ionization energies does not establish accurate wavefunctions, affinities or bond energetics. Downstream tolerances must determine acceptable atomic errors, with unresolved cases exposed as structured outcomes instead of silently broadened bands.",
+    "status": "Detailed proposal. The current capture ledger and separate fitted screening study do not implement the planned self-consistent-field solver or full periodic-table validation.",
+    "source_sections": [
+      "PHASE3.md: Architecture",
+      "PHASE3.md: Work packages W1-W5",
+      "PHASE3.md: Interface exposed to Phase 4 (chemistry)",
+      "PHASE3.md: Verification strategy",
+      "PHASE3.md: Risks"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Chemistry layer",
+    "purpose": "Phase 4 would connect atomic calculations to molecular structure, reactions, thermodynamics and surfaces. Its research goal is extensible chemistry in which newly encountered species can be represented and evaluated within a declared approximation domain, without requiring a pre-enumerated product catalog.",
+    "mechanisms": "The proposal combines diatomic electronic approximations with angular terms for polyatomic geometry. Canonical bond graphs identify species and cache derived formation, dipole and intermolecular quantities. Local valence-compatible graph rearrangements generate candidate products; approximate barrier relations and collision conditions produce event propensities. Surface-adsorbed intermediates provide candidate catalytic pathways. Thermodynamic records connect reaction energies, entropy approximations and intermolecular terms to phase behavior and solubility. All caches are computations that can be repeated, rather than independent authorities. Later seams add explicit channel classes for templating, light-driven reactions and amphiphile assembly that ordinary local rearrangement does not supply.",
+    "dependencies": "Validated atomic records must expose the energies, occupancies and spatial information the bonding approximation requires. Materials consume chemical graphs, phase properties, reactions and surface states through chem::species and chem::react. S10-S12 are upstream prerequisites for heredity, compartments and photochemistry; their absence cannot be repaired by downstream biological bookkeeping alone.",
+    "validation": "Selected source gates include molecular geometry and energetics, ionic and metallic limits, water's density anomaly, catalytic controls, polymer distributions and an organic reactor. A broader protocol needs separate tests of channel discovery, kinetics and equilibrium. Closed reversible systems should approach the stated equilibrium from contrasting initial states. Atom and energy budgets, valence validity, unfamiliar-species cases and cache deletion are additional checks. A small calibration set, including any catalytic anchor, must be distinguished from held-out molecules, temperatures and reaction classes.",
+    "risks": "A bounded local search is not a completeness proof for chemistry, and internal thermodynamic consistency cannot identify a missing pathway. Pair-and-angle energies and approximate barriers may miss collective electronic effects or rearrangements. A product with a drug-like formation energy does not establish pharmacological function. Search-budget exhaustion must be distinguishable from physical impossibility.",
+    "status": "Detailed proposal. No general molecular solver, reaction-discovery engine or chemical surface model is present in the current simulation package.",
+    "source_sections": [
+      "PHASE4.md: Architecture",
+      "PHASE4.md: Work packages W1-W6",
+      "PHASE4.md: Interface exposed to Phase 5 (materials)",
+      "PHASE4.md: Verification strategy",
+      "PHASE4.md: Risks",
+      "spec/seams.md: S10, S11, S12"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Materials and substances",
+    "purpose": "Phase 5 would summarize chemical populations as bulk materials whose behavior depends on composition, microstructure and processing history. It supplies the constitutive information needed by mechanics while preserving a route back to the lower-scale assumptions and the events that formed each sample.",
+    "mechanisms": "Material records combine phase fractions, composition signatures, grain structure, porosity, texture, fiber directions and selected history features. Equilibrium and nucleation/growth models connect cooling and processing to microstructure. Effective mechanical relations derive stiffness, strength and fracture behavior; transport models address conductivity, viscosity, diffusion and permeability. Pressure-temperature-time records support geological materials. History remains bounded by folding older events into selected statistics. The mechanics layer writes deformation or exposure events through mat::note_deformation, after which properties are recomputed; it must not directly edit a material's strength or identity.",
+    "dependencies": "The phase requires chemical species, reactions and thermodynamic interfaces, together with explicit inherited error bands. Phase 6 consumes mat::record and the event write-back contract. S3 adds vapor-to-droplet nucleation needed for clouds, S11 adds compartment-assembly kinetics, and S24 requires interval-certified jump summaries for materials before a later scheduler can safely skip their evolution.",
+    "validation": "The proposed forge, kiln, press and loom manifest compares approximately 100 material examples, accompanied by thermal and strain-cycle fuzzing. Tests cover cooling-rate effects, work hardening and annealing, phase mixtures, anisotropy, fracture and transport trends. Bounded-history assertions and cache-off replay check representation discipline. Detailed particle-level reference cases should quantify observable errors introduced by summaries, including hysteresis and response to changed loading. The plan's tight trend bands and looser absolute bands are exploratory criteria; both require independent reference data and declared calibration inputs.",
+    "risks": "A short history digest may omit path dependence that controls a later failure or phase transition. Small particle samples may also be insufficient references for bulk constitutive behavior. Materials cannot be treated as the only lossy stage when later planetary and population models also compress state. A conductivity trend alone is inadequate validation for working semiconductor devices.",
+    "status": "Detailed proposal. Current engine counts do not implement material microstructure, constitutive properties, processing histories or the proposed mechanics interface.",
+    "source_sections": [
+      "PHASE5.md: Architecture",
+      "PHASE5.md: Work packages W1-W6",
+      "PHASE5.md: Interface exposed to Phase 6 (physics/mechanics)",
+      "PHASE5.md: Verification strategy",
+      "PHASE5.md: Risks",
+      "spec/seams.md: S3, S11, S24"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Continuum physics",
+    "purpose": "Phase 6 would evolve spatial fields of matter, momentum and energy using the material properties derived below it. It connects microscopic and constitutive descriptions to fluids, heat transfer, fracture, radiation and electromagnetic effects that later planets and machines need.",
+    "mechanisms": "The plan uses conservative cell fields with advection, diffusion and coupling steps, constrained by local stability limits. Gravity advances orbits and feeds potential-energy changes into budgets. Stress and contact operators produce logged deformation and fracture events. Heat transport and phase change reconcile an entropy ledger with lower-layer thermodynamics. A small set of photon-energy groups uses spectral and material opacity records, while acoustic behavior is read from the continuum operator. Charge/current continuity, induction and magnetic transport complete the initial electromagnetic proposal. Materials are changed through declared event interfaces, not by overwriting their derived properties.",
+    "dependencies": "Material records, spectral data, chemical thermodynamics and jump-state accounting must be validated first. Later consumers expose missing requirements: S1-S4 cover rotation, viscoelasticity, cloud nucleation and gravity/versioning; S8 requires logged boundary-condition events; S13 adds articulated mechanics; S15 extends electromagnetic regimes for circuits and radio. These are required research interfaces, not existing capabilities.",
+    "validation": "The proposed manifest combines orbit and conservation tests, convection and rain-in-a-box, conduction, a heated piston, contact/fracture, spectral absorption, magnetic amplification and wave propagation. Random field initializations exercise stability limits and numerical pathologies. Cross-coupled work, heat, radiation and boundary fluxes must close their budgets. Mesh, step and operator-order refinement should establish convergence independently of pattern matching. Compression comparisons should report observable errors and ledger residuals; bit-identical re-execution of a reduced path is separate from its agreement with detailed evolution.",
+    "risks": "Coarse transport and sub-grid closures may reproduce a trend while missing its magnitude or mechanism. A magnetostatic component does not validate dynamical circuit or radio behavior. Prescribed future performance budgets remain unmeasured. Conservation identities constrain implementation but do not independently establish the correctness of constitutive laws, radiation transport or turbulent closure.",
+    "status": "Detailed proposal. The current shared-temperature lattice provides neither spatial continuum evolution nor the gravity, solid, radiation and electromagnetic operators described here.",
+    "source_sections": [
+      "PHASE6.md: Architecture",
+      "PHASE6.md: Work packages W1-W6",
+      "PHASE6.md: Interface exposed to Phase 7 (planet & space)",
+      "PHASE6.md: Verification strategy",
+      "PHASE6.md: Risks",
+      "spec/seams.md: S1-S4, S8, S13, S15"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Planet and space",
+    "purpose": "Phase 7 proposes planetary environments and astronomical context over geological time. It would connect accretion, interior evolution, climate and chemical reservoirs through the same physical operators and ledgers, supplying life with environments whose resource and energy sources remain traceable.",
+    "mechanisms": "A bodies layer evolves disk material and merger events; planetary summaries retain mass, spin, orbits and reservoir totals. A resolved atmospheric/surface strip exchanges mass and energy with those summaries. Differentiation, mantle flow, plate-boundary driving and weathering connect interior and surface processes. Climate couples insolation, radiative transfer, clouds and reservoirs. A logged offline stellar-yield calculation supplies the disk composition under proposed decision D6. Later additions require producer attribution on fluxes and finer near-surface tracers. Refinement and demotion reconcile budgets, while long temporal jumps end with orbital and ledger consistency checks.",
+    "dependencies": "S1-S5 and S9 address rotation, rheology, nucleation, gravity/versioning and the expansion clock; S12 supplies photochemistry. S19-S20 are additional dependencies for later industrial attribution and local exposure. The planet::env interface exposes thermal, chemical, radiation and nutrient conditions, while biology may return uptake and release events through the common reservoir ledger.",
+    "validation": "Source targets include roughly ten thousand resolved atmospheric elements, an accretion segment and a four-billion-year climate experiment; these are unmeasured ambitions. Proposed tests cover differentiation, orbital patterns, convection thresholds, water/carbon budgets, radiation shielding and climate-response controls. Detailed-versus-summary overlap windows, promotion/demotion storms and long-jump re-anchoring should quantify drift and closure error. The seeded composition must retain its generating run's provenance. Climate states and ice-age timings should be reported as conditional outcomes rather than tuned to match a predetermined habitable history.",
+    "risks": "Coarse spatial resolution and extreme time separation may erase feedbacks that control climate or tectonics. An implausible trajectory can expose a model error, but an undesirable outcome is not automatically a bug. Neither stable habitability nor abiogenesis is guaranteed by environmental gradients. A seeded prior stellar yield also does not demonstrate uninterrupted end-to-end chemical history.",
+    "status": "Detailed proposal. No planetary, astronomical, reservoir or spatial climate implementation exists in the current micro-seed; planning commitments remain prospective.",
+    "source_sections": [
+      "PHASE7.md: Scale contract (what \"planetary\" means here, numerically)",
+      "PHASE7.md: Architecture",
+      "PHASE7.md: Work packages W1-W7",
+      "PHASE7.md: Interface exposed to Phase 8 (life)",
+      "PHASE7.md: Verification strategy",
+      "spec/seams.md: S1-S9, S12, S19, S20"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Life and ecosystems",
+    "purpose": "Phase 8 asks whether the proposed chemistry and environments can support persistent, heritable, competing systems. It extends from catalytic networks and compartments to ecosystems and physical bodies, while treating cognition and culture as later questions rather than requiring a prescribed sequence of named organisms.",
+    "mechanisms": "Templated reactions would support copying and variation; an observational closure detector identifies catalytic networks without creating them. Amphiphile assembly supplies compartments, and resource uptake, growth, work, heat and waste share an energy ledger. Population summaries retain genotype frequencies and host-parasite correlations; detailed individuals are sampled through deterministic stream addresses. Chemical exchanges and mechanical contacts define food-web edges, decomposition returns material to planetary reservoirs, and regulatory chemistry provides candidate routes to multicellularity. Sensory transduction and motion consume existing physical interfaces. Stable intervals may be compressed; ecological or environmental shocks require a validated detailed treatment.",
+    "dependencies": "S10-S12 must add templating, vesicle assembly and photochemistry upstream. The phase reads planetary conditions, radiation/ionization information and material/mechanical state. Its intended writes remain flux and physical interaction events on the shared global clock, clarified by S14. S24 later requires certified population jump intervals rather than allowing the scheduler to invent biological evolution rules.",
+    "validation": "Proposed controls compare catalytic and non-catalytic networks, enclosed and free chemistry, supplied and starved resources, and biology-enabled and abiotic reservoirs. Heredity, variation, competition and persistence need separate observables. Population samples should preserve relevant joint statistics and their response to perturbation, not only marginal means. The source also proposes host-parasite adaptation, selective inhibition, trophic patterns and a compressed 500-million-year run. These are hypotheses and scale targets, not measured achievements; complete energy/material accounting and independent chemical benchmarks remain prerequisites.",
+    "risks": "Catalytic closure alone is insufficient to establish life or its origin. A seeded-replicator fallback would change the causal claim and must be disclosed. The specified UV-B-like harvesting band needs physical justification rather than adoption as a photosynthetic benchmark. Rare variation, ecological correlations and failed emergence must survive both model selection and compression, without forcing the desired evolutionary story.",
+    "status": "Detailed proposal. No biological layer is implemented; the current engine demonstrates neither abiogenesis, heredity, ecological evolution nor organisms.",
+    "source_sections": [
+      "PHASE8.md: Scale contract (the biological LOD ladder)",
+      "PHASE8.md: Architecture",
+      "PHASE8.md: Work packages W1-W7",
+      "PHASE8.md: Interface exposed to Phase 9 (intelligence)",
+      "PHASE8.md: Verification strategy",
+      "PHASE8.md: Risks",
+      "spec/seams.md: S10-S14, S24"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Agency and early civilization",
+    "purpose": "Extend living lineages into agents that learn, manipulate materials, transmit skills and form persistent settlements. The phase ends around an agricultural and occupational-specialization regime; industry is assigned to later phases. Historical labels identify measured patterns rather than new physical substances or implemented capabilities.",
+    "mechanisms": "An agent combines an articulated body, a learned policy and skill memory. Drives derive from resource and energy deficits; actions enter the world as momentum, contact or flux events. Learning estimates budget consequences, while planning extends only as far as predictions remain calibrated. Skills travel through acoustic, visual or material channels. The proposed culture ledger records variant frequency, transmission fidelity and lineage relationships. Cooking is a temperature-time chemical transformation, tool quality follows fracture geometry and wear, and domestication is a response to recorded harvesting or tolerance choices. Outside detailed regions, skill and role distributions replace individual trajectories while retaining lineage-culture correlations.",
+    "dependencies": "The plan requires Phase 8 bodies, resource budgets, sensory transduction and lineage records; Phase 5 material properties; Phase 6 contact and fracture behavior; and suitable Phase 7 geography. S13 must supply articulated mechanics. The S14 wording correction retains one global clock. Proposed decision D9 defines when cultural and demographic compression is valid.",
+    "validation": "Proposed tests compare viable and depleted resource settings, unfamiliar barriers, communication fidelity above and below a cumulative-learning threshold, and worked versus unworked tool geometry. Cooking-related energy returns, domestication traits and occupational distributions would be measured from the ledgers. Ancestry must remain traceable to preceding lineages. Compressed epochs would be compared with detailed village windows, particularly during shocks. The plan targets at most about 1,000 instantiated agents and roughly 10,000 simulated years; these are unmeasured design ambitions.",
+    "risks": "Learning rewards and specially prepared geography can encode the desired outcome indirectly. Culture and physical tool discovery need controls beyond the absence of named action buttons. Historical transitions must remain contingent, and missing discoveries should be distinguished from software defects. Compressed correlations may lose rare innovations or migration effects.",
+    "status": "Detailed research proposal; agent bodies, learning and civilization are not implemented in the inspected engine.",
+    "source_sections": [
+      "PHASE9.md: Scale contract",
+      "PHASE9.md: Architecture",
+      "PHASE9.md: W1-W7",
+      "PHASE9.md: Verification strategy",
+      "spec/seams.md: S13-S14"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Technology and cumulative knowledge",
+    "purpose": "Study agents experimenting with the physical world, building useful artifacts and preserving reproducible knowledge. Technology is proposed as a classification of material structures and their behavior, while science becomes a record of interventions, claims and replications. The current engine demonstrates none of these technological transitions.",
+    "mechanisms": "The proposed research loop reuses agent learning with an explicit exploration cost. Instruments map field-dependent outputs into observations and carry calibration errors. A claims ledger stores intervention descriptions, initial-state references and evidence pointers; independent experiments can change a claim's status. Machines combine material records, articulated structures and field interactions, with fuel, useful work and losses recorded together. Physical communication links support packet routing and cultural diffusion. Computing is intended to arise from switching artifacts. A nested simulator would derive child seeds from parent events, include child outcomes in parent provenance, obey a recursion guard and consume an in-world hardware budget.",
+    "dependencies": "Phase 9 learning and cultural transmission, Phase 5 materials, Phase 6 mechanics and Phase 7 environments must first be validated. S15 extends electromagnetic modeling beyond magnetostatics to circuit and propagation regimes. S16 and proposed decision D10 define nested replay. Ownership-transfer records required by later economic phases are also owed upstream through S18.",
+    "validation": "The plan proposes heat-engine energy and entropy checks, grid responses to changing loads, signal propagation, instrument recovery of known world parameters, and replay of stored experiments. Biological interventions would be tested through dose-response and reservoir changes. Nested runs must reproduce their own results and reject prohibited recursion. Communication effects would be compared with links enabled and disabled. Device and adoption classifiers need perturbation tests. The proposed 100-year industrial scenario and nested-cost budget are targets without integrated measurements.",
+    "risks": "Material trend models may not support useful semiconductor behavior, and rare invention chains may be computationally inaccessible. Directly invoking a child engine does not establish equivalence to computation performed by simulated hardware. Required demonstration milestones also conflict with language allowing technologies to be skipped; these conditions need reconciliation before preregistration.",
+    "status": "Detailed research proposal; technological artifacts, claims ledgers and nested worlds remain unbuilt.",
+    "source_sections": [
+      "PHASE10.md: Scale contract",
+      "PHASE10.md: Architecture",
+      "PHASE10.md: W1-W7",
+      "PHASE10.md: Verification strategy",
+      "spec/seams.md: S15-S16 and S18"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "People and society",
+    "purpose": "Represent persistent collective patterns through interactions among agents, institutions, communication and resource use. The proposed social layer adds interpretable records over earlier mechanisms. It should support controlled comparisons of social outcomes without treating model categories as validated descriptions of real populations or clinical conditions.",
+    "mechanisms": "Sanction graphs record who enforces which expectations and at what cost. Agents encounter those consequences through existing perception and learning channels; the social layer must not directly rewrite policy weights. Training changes skills through time and resource expenditure, while occupational distributions respond to exchange opportunities. Language-like variation is represented through transmission fidelity and mutual intelligibility across geography. Coalitions, membership events and shared claim complexes support persistent group records. Health-related observables combine bodily budgets, exposure and policy-calibration measures. Conflict consumes logistical resources and depends on available artifacts. Stable regions retain compressed graphs and distributions, while institutional shocks require more detailed evolution.",
+    "dependencies": "The phase requires Phase 8 physiology and exposure mechanisms, Phase 9 agents and cultural records, and Phase 10 artifacts, claims and communication networks. S17 fixes the interface wording so norms act through sensed environments rather than privileged policy edits. Proposed decision D11 extends the validity conditions for demographic compression to institutions and social graphs.",
+    "validation": "Proposed experiments include shared-resource communities, language transects with barriers, matched educational cohorts and exposure interventions with delayed recovery. Enforcement expenditure, resource persistence, learning curves and communication fidelity provide measurable outputs. Group records must remain consistent through membership turnover. Artifact-limited conflict and detailed-versus-compressed city comparisons would test additional interfaces. The proposed scale is about 10,000 compressed agents with at most 1,000 instantiated; runtime and model-accuracy measurements are still absent.",
+    "risks": "The same aggregate pattern can arise through many incompatible mechanisms. A pair of communities producing different outcomes is not by itself evidence of realistic governance, and requiring predetermined contrasting outcomes can introduce selection bias. Policy-calibration distributions cannot be equated with human mental health without independent evidence. Social compression must preserve the correlations that determine responses to shocks.",
+    "status": "Detailed research proposal; social institutions and populations are not implemented in the current baseline.",
+    "source_sections": [
+      "PHASE11.md: Scale contract",
+      "PHASE11.md: Architecture and Data rules",
+      "PHASE11.md: W1-W7",
+      "PHASE11.md: Verification strategy",
+      "spec/seams.md: S17"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Money power and political organization",
+    "purpose": "Connect ownership, transferable claims, credit and enforcement to the world's existing physical flows. Monetary and political categories are proposed as interpretations of event networks and record structures. Their accounting must remain explicit, while behavioral and institutional outcomes remain hypotheses to be evaluated under specified conditions.",
+    "mechanisms": "Ownership becomes an engine relation expressed through transfers and holdings that survive changes in resolution. Obligation records specify counterparties, amounts and terms; agents estimate repayment prospects, and circulation can produce a commonly used denomination. Banking coalitions hold assets and issue claims with differing maturities. Extraction and succession mechanisms operate through enforcement, communication and transfer events. Verification of claim chains consumes simulated computing resources, with disputes creating competing rule histories. Propaganda and correction are modeled through claim transmission, replication status and audit capacity. Prices and regime labels are intended as derived measurements rather than primitive state variables or equilibrium targets.",
+    "dependencies": "Phase 11 provides enforcement and social graphs, while Phase 10 provides records, artifacts, networks and reproducibility mechanisms. S18 requires ownership-transfer events and compressed holdings upstream. S16/D10 supplies the proposed verification and nested-computation contract. Proposed decision D12 specifies the validity domain for compressing record graphs and prediction distributions.",
+    "validation": "The plan calls for exact holdings preservation, reconstructible exchange statistics, and explicit separation of nominal records from physical resources. Bank-run tests compare the timing of expectation changes with asset depletion. Additional experiments examine supply shocks, convertibility changes, verification forks, institutional costs, mobility and information correction. Both physical and accounting budgets must close. Compressed states require checks around tipping windows, where averaging may reverse causal ordering. The planned population of roughly 100,000 claim records per region has no measured performance result.",
+    "risks": "Record conservation cannot establish that monetary changes leave production unchanged. Prescribed regime advantages, inequality tails or misinformation rankings are conditional hypotheses rather than universal economic laws. Excluding price variables or named regimes does not remove behavioral assumptions. Independent scenarios and negative results are needed to avoid fitting the desired political narrative.",
+    "status": "Detailed research proposal; ownership, finance and governance systems are not implemented in the inspected engine.",
+    "source_sections": [
+      "PHASE12.md: Scale contract",
+      "PHASE12.md: Architecture and Data rules",
+      "PHASE12.md: W1-W7",
+      "PHASE12.md: Verification strategy",
+      "spec/seams.md: S18"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Infrastructure industry and externalities",
+    "purpose": "Link built infrastructure and industrial production to resource depletion, maintenance, exposure and responsibility. The phase proposes a traceable feedback loop from physical production through transport and consequences to collective action, while retaining a strict distinction between measured exposure and an established effect.",
+    "mechanisms": "Structures are owned artifacts with accumulated load, damage and maintenance histories. Terrain influences construction costs and feasible transport networks. Agent routing and learned coordination produce traffic conventions; freight is constrained by capacity, temperature and spoilage. Regional accounts integrate food, water, energy, waste and recycling. Sparse producer tags accompany industrial fluxes, while local tracer transport resolves concentrations near settlements. Exposure integrates location, duration and concentration; harm records require an applicable response model. Liability records connect source signatures, chemical form, transport and consequences. Network failures redistribute loads, and orbital debris uses aggregate shells with detailed conjunction windows.",
+    "dependencies": "Validated materials, continuum mechanics, planetary transport, biological response and ownership records are prerequisites. S19 adds producer attribution to upstream flux events; S20 adds a finer near-surface advection, diffusion and deposition channel. S2 supplies slow deformation, S13 moving articulated machinery and S7 resolution discipline. Proposed decision D13 governs compression of attribution, exposure and liability records.",
+    "validation": "Proposed tests examine terrain-dependent routes, maintenance-related failure ordering, convention-boundary collisions, water budgets, thermal limits on food transport and recycling energy comparisons. The principal integrated test follows a liability citation across composition, transport and response records. Emission interventions must preserve physical recovery delays. Matched storms on differently maintained networks test vulnerability separately from hazard. Unmodeled exposure effects must remain explicitly unknown. Targets include about 10,000 structures and a bubble-local tracer grid; all associated cost figures remain unmeasured.",
+    "risks": "Producer tagging can lose attribution under mixing or compression, and a coarse transport field can misrepresent local exposure. Citation completeness does not validate a causal response model or determine legal responsibility. Passive tracers omit reactive transport unless coupling is supplied elsewhere. Hazard and cascade outcomes require ensemble and resolution studies rather than a single selected event.",
+    "status": "Detailed research proposal; infrastructure, industrial transport and liability mechanisms have not been built.",
+    "source_sections": [
+      "PHASE13.md: Scale contract",
+      "PHASE13.md: Architecture and Data rules",
+      "PHASE13.md: W1-W7",
+      "PHASE13.md: Verification strategy",
+      "spec/seams.md: S19-S20"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Perception memory and level of detail",
+    "purpose": "Replace the external observer fixture with observation requests generated by simulated agents and records, while defining what numerical detail can be reduced. The plan separates physical state transitions from knowledge about them. Perception-dependent computation must not be mistaken for a demonstrated theory that observation creates physical existence.",
+    "mechanisms": "Gaze combines position, orientation, light and occlusion, with instruments and archive consultations extending observation. Frame allocation derives from simulated scene complexity and agent budgets, never host timing. Knowledge records carry values, resolution, confidence and provenance; remembered or inferred values must remain distinguishable from observations. Testimony propagates through communication and intelligibility constraints, and reconciliation retains source histories instead of simply averaging beliefs. A governor chooses detail using observer overlap, causal proximity and persistent records. Hysteresis discourages oscillation, while certified summaries govern unobserved intervals. Physical and epistemic records are compared through explicit consistency rules.",
+    "dependencies": "The plan consumes Phase 13 infrastructure and attributed ledgers, Phase 9 cognitive budgets, Phase 10 instruments and networks, and Phase 11 communication models. S21 records a corrected observation-source contract, but its mechanics remain future work. S22 requires deterministic allocation traces in replay. Proposed decisions D14 and D15 formalize two-level observation and frame-budget determinism.",
+    "validation": "A gaze-derived map must match the existing probe fixture where their inputs agree. Proposed tests inject host-clock jitter, unsupported belief detail, conflicting testimony and resolution oscillation. Archived evidence should constrain later reconstructed beliefs, and unobserved events must remain discoverable through preserved causal records. Detailed and reduced runs would be compared on physical and epistemic observables using a metric fixed before optimization. The plan targets at least 40% lower tick cost, including governor overhead; this saving has not been measured.",
+    "risks": "Perceptual relevance may omit unseen causes that later become consequential. Exact restoration applies only to information actually retained; it cannot recover discarded detail without assumptions. The comparison metric must cover rare events and correlations, not only aggregate beliefs. Consistency with the baseline collapse rule does not independently validate that rule's physical interpretation.",
+    "status": "Detailed research proposal; only the simpler probe and restricted quiet-cell precursors exist in the baseline.",
+    "source_sections": [
+      "PHASE14.md: Scale contract",
+      "PHASE14.md: Architecture and Data rules",
+      "PHASE14.md: W1-W7",
+      "PHASE14.md: Verification strategy",
+      "spec/seams.md: S21-S22"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Runtime scheduling and scalable execution",
+    "purpose": "Reduce computational cost while preserving the declared semantics and measured accuracy of the model hierarchy. The proposed runtime changes storage, scheduling, batching and device placement; it should not privately invent missing physical or social closure rules. Performance claims would concern complete validated workloads.",
+    "mechanisms": "A unified data-oriented store organizes state into archetype segments with index-based references and explicit snapshots. Tiered scheduling combines region resolution with each layer's permitted update interval. Every skipped interval requires a layer-owned certificate and a defined response when its conditions fail. The proposed device split places cell-based physical calculations on GPUs and cognition and record processing on CPUs. Ordered causal channels preserve events, while selected aggregate or perception channels may incur declared delay. Fixed-point or interval representations expose quantization choices. Run records would include build identities, schedule information, throughput, memory traffic, duty cycles and error-budget expenditure.",
+    "dependencies": "The full Phase 14 perception and reduction contract must first be implemented and tested. S23 adds a runtime-build fingerprint and distinguishes replay within one build from comparison across builds. S24 requires interval-certified summaries from materials, biology, technology, society and monetary records. S16 covers child runs; proposed decision D16 specifies runtime equivalence rather than silently expanding existing reproducibility claims.",
+    "validation": "The plan retains earlier acceptance suites and compares transformed state against reference calculations. Proposed stress tests perturb queue order, transfers, partitioning and host scheduling. Snapshot round trips, certificate violations, event accounting and both device channels receive separate checks. A hardware-named performance record would measure complete runs and regression variability. Target throughput multipliers and an interactive world with roughly 10,000 agents on one reference card are ambitions, not demonstrated capacities.",
+    "risks": "A fixed reduction order does not alone guarantee identity across hardware, compilers and numerical libraries. Quantization bit width bounds representation error only after units, ranges and accumulated propagation are established. Passing a finite corpus does not prove universal equivalence. Coarse biological or institutional dynamics remain scientific modeling work that a scheduler cannot supply.",
+    "status": "Detailed research proposal; the unified runtime, GPU execution and whole-world certificates are unimplemented.",
+    "source_sections": [
+      "PHASE15.md: Scale contract",
+      "PHASE15.md: Architecture and Data rules",
+      "PHASE15.md: W1-W7",
+      "PHASE15.md: Verification strategy",
+      "spec/seams.md: S23-S24"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Integrated emergence and the full experimental loop",
+    "purpose": "Evaluate a complete, persistent history across the preceding mechanisms using an integration harness rather than another physical layer. The proposed outcome includes endogenous innovation, in-world computation and playable historical states. It remains a program-level ambition; no complete quantum-to-civilization run currently exists.",
+    "mechanisms": "A committed initialization, pinned model and recorded events would define each run. Read-only milestone detectors are specified before execution and query a shared event ontology with causal and ordering predicates. Reports would combine milestone timing, structural differences among histories, resource costs and sustained novelty. The proposed ladder includes a communication mesh expanding beyond political boundaries and a depth-one nested world commissioned by agents. Child results must enter the parent claims record and influence subsequent choices. Historical access would reconstruct a selected prefix through certified summaries, then continue detailed evolution where observation requires it.",
+    "dependencies": "Every preceding phase must have implemented mechanisms and validated interfaces. S25 requires a machine-readable event ontology derived from interface contracts and event-kind registries. S23 and S24 supply build identity and certified coarse intervals. D6 initial-condition choices and D10 nested provenance must be disclosed; proposed decision D17 addresses how the project operationalizes unscripted emergence.",
+    "validation": "The plan proposes at least three gating seeds, detector negative controls, causal-ancestry diversity measurements, replay checks and an adversarial recursion test. In-world replication should expose an error in a nested model. Additional targets include opening a historical state within 60 seconds, continued invention over another simulated century, and per-era time and storage accounting. These are future acceptance requirements with blank measurement fields, not completed demonstrations or established computational budgets.",
+    "risks": "Frozen detectors, noun filters and a few diverse seeds cannot prove the absence of scripting or general emergence. Engine rules, reward functions and initialized geography can encode outcomes indirectly. Requiring every seed to realize a fixed historical ladder conflicts with genuine contingency. Failed emergence may reveal model boundaries or unsuitable initial conditions rather than a programming bug. Cross-machine identity remains conditional on a demonstrated numerical contract.",
+    "status": "Detailed terminal-phase proposal; the integrated harness and complete simulated histories are not implemented.",
+    "source_sections": [
+      "PHASE16.md: Scale contract",
+      "PHASE16.md: Architecture and Data rules",
+      "PHASE16.md: W1-W6",
+      "PHASE16.md: Verification strategy",
+      "spec/seams.md: S25"
+    ]
+  }
+]

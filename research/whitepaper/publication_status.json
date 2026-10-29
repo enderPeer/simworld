@@ -1,0 +1,370 @@
+{
+  "audit_date": "2026-10-29",
+  "observed_at_utc": "2026-10-29T10:40:17.353565+00:00",
+  "baseline_commit": "4134abddc30940f455209c442afe68f442ebaa75",
+  "baseline_commit_url": "https://github.com/enderPeer/simworld/commit/4134abddc30940f455209c442afe68f442ebaa75",
+  "repository": {
+    "defaultBranchRef": {
+      "name": "main"
+    },
+    "description": "A reproducible emergent-world research prototype with a documented roadmap from physical processes to complex systems.",
+    "homepageUrl": "https://enderpeer.github.io/simworld/",
+    "url": "https://github.com/enderPeer/simworld",
+    "visibility": "PUBLIC"
+  },
+  "pages": {
+    "url": "https://enderpeer.github.io/simworld/",
+    "build_type": "workflow",
+    "https_enforced": true,
+    "latest_successful_workflow": {
+      "conclusion": "success",
+      "databaseId": 40857374197,
+      "headSha": "4134abddc30940f455209c442afe68f442ebaa75",
+      "name": "Publish project website",
+      "status": "completed",
+      "url": "https://github.com/enderPeer/simworld/actions/runs/40857374197"
+    }
+  },
+  "ci": {
+    "run_id": 40857373977,
+    "url": "https://github.com/enderPeer/simworld/actions/runs/40857373977",
+    "head_sha": "4134abddc30940f455209c442afe68f442ebaa75",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-29T10:24:55Z",
+    "completed_at": "2026-10-29T10:27:45Z",
+    "jobs": [
+      {
+        "name": "Website links and downloads",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 123391623009,
+        "url": "https://github.com/enderPeer/simworld/actions/runs/40857373977/job/123391623009",
+        "started_at": "2026-10-29T10:24:59Z",
+        "completed_at": "2026-10-29T10:25:06Z",
+        "python": "3.11.17",
+        "static_checks_passed": 271
+      },
+      {
+        "name": "Simulation on windows-latest",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 123391623361,
+        "url": "https://github.com/enderPeer/simworld/actions/runs/40857373977/job/123391623361",
+        "started_at": "2026-10-29T10:24:59Z",
+        "completed_at": "2026-10-29T10:27:44Z",
+        "python": "3.11.9",
+        "tests_passed": 65,
+        "pytest_seconds": 136.61,
+        "numpy": "2.4.6",
+        "pytest": "9.1.1",
+        "result_excerpt": "65 passed in 136.61s"
+      },
+      {
+        "name": "Simulation on ubuntu-latest",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 123391623396,
+        "url": "https://github.com/enderPeer/simworld/actions/runs/40857373977/job/123391623396",
+        "started_at": "2026-10-29T10:24:59Z",
+        "completed_at": "2026-10-29T10:27:13Z",
+        "python": "3.11.9",
+        "tests_passed": 65,
+        "pytest_seconds": 112.61,
+        "numpy": "2.4.6",
+        "pytest": "9.1.1",
+        "result_excerpt": "65 passed in 112.61s"
+      }
+    ]
+  },
+  "source_coverage": {
+    "phase_count": 17,
+    "detailed_plans": 17,
+    "phase_profiles": [
+      {
+        "id": 0,
+        "path": "PHASE0.md",
+        "title": "Phase 0 — World Rules",
+        "bytes": 10551,
+        "sha256": "5b1e0d76567d5d976e5985404938a508545a61a4290afe0be77742a71d48e286"
+      },
+      {
+        "id": 1,
+        "path": "PHASE1.md",
+        "title": "Phase 1 — Quantum Layer",
+        "bytes": 7907,
+        "sha256": "e74b7398ca3e5d14e9184c014feed9205b7f42c8e5ea6acfeb60b916326e53f5"
+      },
+      {
+        "id": 2,
+        "path": "PHASE2.md",
+        "title": "Phase 2 — Nuclear Layer",
+        "bytes": 9305,
+        "sha256": "6c63fd8d5ef3ee5e2809883747abd1083814fcb214c6b2efc239b11b532bd30b"
+      },
+      {
+        "id": 3,
+        "path": "PHASE3.md",
+        "title": "Phase 3 — Atomic Layer",
+        "bytes": 9862,
+        "sha256": "a02265ac96e2c4808a691897fb74f8150170db746542d66d7901d875ce9d092f"
+      },
+      {
+        "id": 4,
+        "path": "PHASE4.md",
+        "title": "Phase 4 — Chemistry Layer",
+        "bytes": 10564,
+        "sha256": "f56c293e7c8619255b9383e47a1e605d0feba778ee4f97564a96e2fa4a2cad97"
+      },
+      {
+        "id": 5,
+        "path": "PHASE5.md",
+        "title": "Phase 5 — Materials & Substances",
+        "bytes": 11528,
+        "sha256": "7c9b9ac4b1f203a222c7787d7ebdfd678c232cfe6c4fd2c601fb941b505af554"
+      },
+      {
+        "id": 6,
+        "path": "PHASE6.md",
+        "title": "Phase 6 — Physics Layer",
+        "bytes": 14486,
+        "sha256": "ddfb76ed7a99bf5cef5d26372a4f85301d66d5a063d1e2c97c5f6c8efa1e2560"
+      },
+      {
+        "id": 7,
+        "path": "PHASE7.md",
+        "title": "Phase 7 — Planet & Space",
+        "bytes": 19852,
+        "sha256": "951418845cd06b621e00c210ce509e75dc97f8d6e50b1f3ede6d1b993695304b"
+      },
+      {
+        "id": 8,
+        "path": "PHASE8.md",
+        "title": "Phase 8 — Life: Abiogenesis → Ecosystems",
+        "bytes": 20408,
+        "sha256": "e16dbe5715878749d7d5160aa60b8ed6f4235fdfec0c3bb3791a8f6d28a09f29"
+      },
+      {
+        "id": 9,
+        "path": "PHASE9.md",
+        "title": "Phase 9 — First Humans & Epochs of Civilization",
+        "bytes": 19266,
+        "sha256": "f45a0ba6128ff93c538221c71445883307b08a0b4af7b188ef99f03b39977efb"
+      },
+      {
+        "id": 10,
+        "path": "PHASE10.md",
+        "title": "Phase 10 — Technology Tree (emergent, research-driven)",
+        "bytes": 19977,
+        "sha256": "765aae1fb34a050241f1689431de4eb1900442362b83b164173ff34a3f1c7a6f"
+      },
+      {
+        "id": 11,
+        "path": "PHASE11.md",
+        "title": "Phase 11 — People & Society",
+        "bytes": 20604,
+        "sha256": "dc78a4dc89b399238054a6592e5e42eacfe395b85508737fe2e36f8d1042889b"
+      },
+      {
+        "id": 12,
+        "path": "PHASE12.md",
+        "title": "Phase 12 — Money, Power, Politics",
+        "bytes": 20521,
+        "sha256": "10e57634896fc8f94ad5783569dc2e3bd4faaeb6dbcbb65edbd1c2c1fe0bb583"
+      },
+      {
+        "id": 13,
+        "path": "PHASE13.md",
+        "title": "Phase 13 — Infrastructure, Industry, Externalities",
+        "bytes": 22106,
+        "sha256": "287afcfc47106d9a595f11ab32bdeed2906b91a272b8f6ebf0aed94f85007d40"
+      },
+      {
+        "id": 14,
+        "path": "PHASE14.md",
+        "title": "Phase 14 — Perception, LOD & Existence (the render/sim contract)",
+        "bytes": 21141,
+        "sha256": "0675c6bc86bc0f7f621aaf07462a787376b10db1fdaaea762da20dcce8840be1"
+      },
+      {
+        "id": 15,
+        "path": "PHASE15.md",
+        "title": "Phase 15 — Hyperoptimized Runtime",
+        "bytes": 20691,
+        "sha256": "820c3af4dd5b5ac74edc78cb35ce7f46cb90218dccf1c2450747896422e7095c"
+      },
+      {
+        "id": 16,
+        "path": "PHASE16.md",
+        "title": "Phase 16 — The Full Emergent Loop (definition of done)",
+        "bytes": 18134,
+        "sha256": "69c810472eb45a37f371964e978ad8da397b9099b4eac2030ab1351ca4132969"
+      }
+    ],
+    "specification_files": [
+      "spec/constants.md",
+      "spec/decisions.md",
+      "spec/interfaces.md",
+      "spec/seams.md",
+      "spec/surprises.md"
+    ],
+    "proposed_ontology_file_exists": false
+  },
+  "seams": {
+    "total": 25,
+    "open": 22,
+    "fixed": [
+      {
+        "id": "S14",
+        "status": "FIXED (PHASE8.md reworded same sitting: agents tick on the global clock)"
+      },
+      {
+        "id": "S17",
+        "status": "FIXED (PHASE10.md reworded same sitting: norms = sanction patterns agents sense and predict)"
+      },
+      {
+        "id": "S21",
+        "status": "FIXED (wording + equivalence contract; mechanics land Phase 14 W1/W5)"
+      }
+    ],
+    "wontfix": 0
+  },
+  "implementation": {
+    "physics_build": "0.1",
+    "python_modules": 19,
+    "scope": "Reduced stochastic micro-seed; no implemented chemistry, material, planetary, biological, cognitive, institutional or full-stack runtime layers.",
+    "executable_ast_comparison": [
+      {
+        "path": "sim/__init__.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/atoms.py",
+        "text_changed": true,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/bind.py",
+        "text_changed": true,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/collapse.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/condense.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/constants.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/demo.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/fields.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/jump.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/lattice.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/log.py",
+        "text_changed": true,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/network.py",
+        "text_changed": true,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/nucbind.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/probe.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/quanta.py",
+        "text_changed": true,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/replay.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/rng.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/state.py",
+        "text_changed": true,
+        "executable_ast_equal": true
+      },
+      {
+        "path": "sim/weak.py",
+        "text_changed": false,
+        "executable_ast_equal": true
+      }
+    ],
+    "all_executable_asts_equal_to_original_audit": true,
+    "comment_only_modules_changed": [
+      "sim/atoms.py",
+      "sim/bind.py",
+      "sim/log.py",
+      "sim/network.py",
+      "sim/quanta.py",
+      "sim/state.py"
+    ]
+  },
+  "historical_evidence_to_retain": {
+    "original_local_suite": {
+      "tests_passed": 65,
+      "pytest_seconds": 123.64,
+      "environment": "Recorded Windows development environment; Python 3.11.9, NumPy 2.4.6, pytest 9.1.1"
+    },
+    "publication_local_suite": {
+      "tests_passed": 65,
+      "pytest_seconds": 121.26,
+      "provenance": "Existing local publication-verification report; not a new v1.1 simulation run"
+    },
+    "seed42_replay": {
+      "cells": 8,
+      "ticks": 3400,
+      "hashes_matched": 34,
+      "final_hash": "fe8e094a9753b27c89fc0dffd1905f8de4be45263158d5712618ddd5f6ded1a0",
+      "provenance": "Original 29 October audit; retained because model executable AST remains unchanged. Do not label as rerun for this revision."
+    }
+  },
+  "interpretation_limits": [
+    "Independent passing Windows and Linux test suites do not compare the complete archived hash chains across platforms; do not claim cross-platform bit identity.",
+    "CI timings measure these particular test jobs, not controlled integrated-engine throughput.",
+    "The three FIXED seam entries are wording or interface-contract corrections; their status does not establish implemented downstream physical mechanisms.",
+    "All17 detailed phase documents are available, but only the reduced Phase0 executable baseline is implemented.",
+    "No new simulation experiment was run to collect this status report; exact results are attributed to existing public CI and archived evidence.",
+    "Source comments in six modules now explain limitations. Some frozen design specifications still assert stronger intended guarantees than the code establishes."
+  ]
+}

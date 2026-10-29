@@ -99,7 +99,7 @@ Broad fitted acceptance bands, a small population, and a passing regression suit
 | [`website/`](website/) | Static website, content tooling, and optional local server |
 | [`website/dist/downloads/`](website/dist/downloads/) | Public white paper, source archives, and audit evidence |
 
-The white paper and its research archive preserve a dated source snapshot. Current phase documents may extend that snapshot. A new plan is not evidence that its proposed system has been built.
+White paper **v1.1** includes detailed profiles of all 17 phases and the verified project status at its recorded source commit. The research archive separates that current source baseline from the preserved original simulation audit. Editable publication sources are in [`research/whitepaper/`](research/whitepaper/). A new plan is not evidence that its proposed system has been built.
 
 ## Website and downloads
 

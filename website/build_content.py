@@ -15,6 +15,14 @@ for p in [DATA,DOCS,DOWNLOADS]:p.mkdir(parents=True,exist_ok=True)
 AUDIT_DATE='2026-10-29'
 REPOSITORY_URL='https://github.com/enderPeer/simworld'
 SITE_URL='https://enderpeer.github.io/simworld/'
+PAPER=json.loads((ROOT/'research/whitepaper/publication.json').read_text(encoding='utf-8'))
+# Keep the no-JavaScript fallback and browser cache keys aligned with the PDF.
+index_path=DIST/'index.html'
+index_text=index_path.read_text(encoding='utf-8')
+index_text=re.sub(r'(<strong id="paper-page-count">)\d+',lambda m:m[1]+str(PAPER['pages']),index_text)
+index_text=re.sub(r'(<meta name="simworld-paper-version" content=")[^"]+',lambda m:m[1]+PAPER['version'],index_text)
+index_text=re.sub(r'src="app\.js(?:\?v=[^"]*)?"',f'src="app.js?v={PAPER["version"]}"',index_text)
+index_path.write_text(index_text,encoding='utf-8')
 
 
 def write_archive(path, entries):
@@ -151,6 +159,8 @@ research_archive=DOWNLOADS/'SimWorld_Research_Materials_Public.zip'
 for publication_input in [pdf,research_archive]:
     if not publication_input.is_file():
         raise FileNotFoundError(f'Missing committed publication input: {publication_input.relative_to(ROOT)}')
+assert sha(pdf.read_bytes())==PAPER['pdfSha256'], 'PDF and publication metadata disagree'
+assert pdf.stat().st_size==PAPER['pdfBytes'], 'PDF size and publication metadata disagree'
 # Read the public snapshot without rewriting it: the paper's historical evidence
 # must not silently become a new measurement when the current source changes.
 with zipfile.ZipFile(research_archive) as archive:
@@ -184,8 +194,8 @@ for source,target in [('research/fresh_m4/summary.json','SimWorld_Verified_Run.j
     (DOWNLOADS/target).write_bytes(public_bytes(source,evidence[source]))
 
 download_meta=[
- ('whitepaper','Research white paper','20 pages covering the architecture, implementation evidence, limitations, references and validation agenda.',pdf.name,'PDF'),
- ('research','Research materials','Dated white-paper source snapshot, editable manuscript, test evidence and portable diagnostics. Workstation identifiers are redacted.','SimWorld_Research_Materials_Public.zip','ZIP'),
+ ('whitepaper','Research white paper',f"Version {PAPER['version']} · {PAPER['pages']} pages. Detailed profiles of all 17 phases, latest project status, implementation evidence and research limits.",pdf.name,'PDF'),
+ ('research','Research materials',f"Version {PAPER['version']} manuscript, all 17 phase profiles, current source snapshot and CI evidence, plus the separately preserved original audit.",'SimWorld_Research_Materials_Public.zip','ZIP'),
  ('source','Current engine source','Python engine, tests, prototypes, contributor documentation and all currently available phase plans.','SimWorld_Current_Source.zip','ZIP'),
  ('documentation','Complete documentation','Roadmap, first-build contract, all available phase plans and specification records.','SimWorld_Documentation.zip','ZIP'),
  ('run','Verified run data','Full-precision summary of the reproduced seed-42, eight-cell, 3,400-tick realization.','SimWorld_Verified_Run.json','JSON'),
@@ -194,8 +204,9 @@ download_meta=[
 downloads=[]
 for ident,title,description,name,fmt in download_meta:
     raw=(DOWNLOADS/name).read_bytes()
+    suffix='?v='+PAPER['version'] if ident in ('whitepaper','research') else ''
     downloads.append({'id':ident,'title':title,'description':description,'filename':name,
-                      'url':'/downloads/'+name,'format':fmt,'bytes':len(raw),'sha256':sha(raw)})
+                      'url':'/downloads/'+name+suffix,'format':fmt,'bytes':len(raw),'sha256':sha(raw)})
 write_json(DATA/'downloads.json',downloads)
 
 literature=json.loads(evidence['research/literature.json'])['references']
@@ -211,8 +222,7 @@ project={
  'snapshotDate':AUDIT_DATE,'physicsBuild':'0.1','status':'Research prototype',
  'repositoryURL':REPOSITORY_URL,'websiteURL':SITE_URL,
  'statusDescription':'The current build is a reduced stochastic physics model. The wider world remains a research program.',
- 'paper':{'title':'SimWorld Research White Paper','url':'/downloads/'+pdf.name,'pages':20,'date':'2026-10-29',
-          'snapshotNote':'The white paper preserves its dated audit snapshot with detailed plans through Phase 12. Current documentation includes later plans; their presence is not evidence of implemented capability.'},
+ 'paper':{**PAPER,'url':'/downloads/'+pdf.name+'?v='+PAPER['version']},
  'metrics':{'testsPassed':65,'testSeconds':123.64,'replayHashes':34,'seed':42,'cells':8,'ticks':3400,
             'phaseCount':17,'detailedPhasePlans':len(detailed_phases),'documents':len(docs),'references':len(references),
             'openSeams':open_seams,'totalSeams':len(seam_rows),'Yp':summary['Y_p'],
@@ -238,7 +248,7 @@ project={
    'Which higher-level patterns survive changes in seeds, parameters and environments?'],
  'provenance':{'note':'All reported implementation results refer to the 29 October 2026 audit of physics_build 0.1. Future-phase gates and scale targets are proposals, not achieved capabilities.',
    'currentDocumentation':coverage_note,
-   'snapshotDifference':'The paper archive preserves its earlier source snapshot. Current planning records contain additional phase plans and seams.',
+   'snapshotDifference':PAPER['snapshotNote'],
    'publicDistribution':'Public download archives remove workstation identifiers and include manifests for the distributed bytes.'},
  'phases':phases,'documents':docs,'downloads':downloads,'references':references,
  'reproduce':{'commands':['python -m pip install -r requirements.txt','python -m pytest -q','python -m sim.demo --seed 42 --ticks 3400 --cells 8 --probe-cells 2,3 --out run_demo','python -m sim.replay run_demo'],

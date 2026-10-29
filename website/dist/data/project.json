@@ -10,10 +10,39 @@
   "statusDescription": "The current build is a reduced stochastic physics model. The wider world remains a research program.",
   "paper": {
     "title": "SimWorld Research White Paper",
-    "url": "/downloads/SimWorld_Research_White_Paper.pdf",
-    "pages": 20,
+    "version": "1.1",
     "date": "2026-10-29",
-    "snapshotNote": "The white paper preserves its dated audit snapshot with detailed plans through Phase 12. Current documentation includes later plans; their presence is not evidence of implemented capability."
+    "physicsBuild": "0.1",
+    "sourceRevision": "4134abddc30940f455209c442afe68f442ebaa75",
+    "sourceRevisionURL": "https://github.com/enderPeer/simworld/commit/4134abddc30940f455209c442afe68f442ebaa75",
+    "pages": 38,
+    "phaseCoverage": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "pdfFilename": "SimWorld_Research_White_Paper.pdf",
+    "pdfBytes": 287517,
+    "pdfSha256": "f96ab8c5db763010628d47795be1a3102183b17abb35987cebeadcea36cf788a",
+    "archiveFilename": "SimWorld_Research_Materials_Public.zip",
+    "snapshotNote": "Version 1.1 covers all 17 detailed phase plans, the current dependency ledger, and verified Windows/Linux CI at source commit 4134abd. Planned capabilities remain distinct from the reduced implemented baseline.",
+    "historicalEvidenceNote": "The original 29 October 2026 simulation audit is preserved; this publication revision does not claim a new physical experiment.",
+    "ciURL": "https://github.com/enderPeer/simworld/actions/runs/40857373977",
+    "url": "/downloads/SimWorld_Research_White_Paper.pdf?v=1.1"
   },
   "metrics": {
     "testsPassed": 65,
@@ -89,7 +118,7 @@
   "provenance": {
     "note": "All reported implementation results refer to the 29 October 2026 audit of physics_build 0.1. Future-phase gates and scale targets are proposals, not achieved capabilities.",
     "currentDocumentation": "Detailed phase plans cover 0–16. All seventeen phases have detailed plans; implementation status is separate.",
-    "snapshotDifference": "The paper archive preserves its earlier source snapshot. Current planning records contain additional phase plans and seams.",
+    "snapshotDifference": "Version 1.1 covers all 17 detailed phase plans, the current dependency ledger, and verified Windows/Linux CI at source commit 4134abd. Planned capabilities remain distinct from the reduced implemented baseline.",
     "publicDistribution": "Public download archives remove workstation identifiers and include manifests for the distributed bytes."
   },
   "phases": [
@@ -649,22 +678,22 @@
     {
       "id": "whitepaper",
       "title": "Research white paper",
-      "description": "20 pages covering the architecture, implementation evidence, limitations, references and validation agenda.",
+      "description": "Version 1.1 · 38 pages. Detailed profiles of all 17 phases, latest project status, implementation evidence and research limits.",
       "filename": "SimWorld_Research_White_Paper.pdf",
-      "url": "/downloads/SimWorld_Research_White_Paper.pdf",
+      "url": "/downloads/SimWorld_Research_White_Paper.pdf?v=1.1",
       "format": "PDF",
-      "bytes": 231333,
-      "sha256": "b9fdc7fabbad8c7849ede84e5aaff60aa89849702b199138ffd60fb77225793f"
+      "bytes": 287517,
+      "sha256": "f96ab8c5db763010628d47795be1a3102183b17abb35987cebeadcea36cf788a"
     },
     {
       "id": "research",
       "title": "Research materials",
-      "description": "Dated white-paper source snapshot, editable manuscript, test evidence and portable diagnostics. Workstation identifiers are redacted.",
+      "description": "Version 1.1 manuscript, all 17 phase profiles, current source snapshot and CI evidence, plus the separately preserved original audit.",
       "filename": "SimWorld_Research_Materials_Public.zip",
-      "url": "/downloads/SimWorld_Research_Materials_Public.zip",
+      "url": "/downloads/SimWorld_Research_Materials_Public.zip?v=1.1",
       "format": "ZIP",
-      "bytes": 849241,
-      "sha256": "4a30890fe97ddc86f069028f4016956041764f0413ea3572e4739ad38915996e"
+      "bytes": 1081718,
+      "sha256": "93bc2db405cc4513d6a8621c8232106e792aabdf115969a21c78af859ad91a6f"
     },
     {
       "id": "source",
@@ -673,8 +702,8 @@
       "filename": "SimWorld_Current_Source.zip",
       "url": "/downloads/SimWorld_Current_Source.zip",
       "format": "ZIP",
-      "bytes": 211031,
-      "sha256": "b88a2ae3742fb8b4ce9ac9799412569b9fc55564d6761ff24eed177ae7197bd3"
+      "bytes": 211093,
+      "sha256": "27544b563b5cf1f83b2e8b74453f6560e3523b41053c23d1fab562a195453e15"
     },
     {
       "id": "documentation",
