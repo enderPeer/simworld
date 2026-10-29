@@ -1,0 +1,312 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-29",
+  "positioning": "Proposed products that could grow from SimWorld's tools and research program. The first group extends existing simulation and replay foundations. The others depend on physical, biological, agent or runtime capabilities that still need implementation and validation. These are product concepts, not released products or evidence of market demand.",
+  "products": [
+    {
+      "id": "replay-studio",
+      "name": "Replay Studio",
+      "category": "foundation",
+      "tagline": "Understand where two simulated histories begin to disagree.",
+      "audience": "Simulation developers and research teams reviewing reproducibility.",
+      "problem": "A final metric can hide the events behind a changed result.",
+      "experience": "Load two runs, compare state hashes, select a divergent interval, and inspect recorded event keys and payloads.",
+      "output": "A shareable divergence report tied to source, settings and run evidence.",
+      "firstRelease": "A local viewer for SimWorld's existing logs and hash sequences.",
+      "foundation": "Compressed event logs, periodic hashes and verified re-execution already exist.",
+      "requirements": [
+        "Stable log schemas and run manifests",
+        "Event comparison and readable explanations"
+      ],
+      "validation": "Locate deliberately altered or truncated records and reproduce the existing replay outcomes without changing the model.",
+      "phases": [
+        0,
+        1,
+        15
+      ],
+      "format": "Local desktop or browser-based run inspector.",
+      "boundary": "Recorded history is not a full checkpoint. Exact replay remains scoped to a supported numerical environment."
+    },
+    {
+      "id": "experiment-workbench",
+      "name": "Experiment Workbench",
+      "category": "foundation",
+      "tagline": "Turn individual runs into traceable, comparable experiments.",
+      "audience": "Researchers and engineers running simulation studies.",
+      "problem": "Comparisons become ambiguous when settings, versions and outputs are separated.",
+      "experience": "Define a run matrix, execute a batch, compare observables, and export the exact configurations behind each result.",
+      "output": "Versioned experiment bundles, comparison tables and reproducibility reports.",
+      "firstRelease": "A batch runner and results browser for the existing micro-seed CLI.",
+      "foundation": "The engine already emits run summaries, event logs and hashes.",
+      "requirements": [
+        "Batch orchestration and failure reporting",
+        "Parameter provenance and compatibility checks",
+        "Audited random-stream identities before uncertainty inference"
+      ],
+      "validation": "Reproduce individual runs, reject incompatible comparisons, and verify the analysis against known synthetic datasets.",
+      "phases": [
+        0,
+        1,
+        15
+      ],
+      "format": "Python toolkit with a local experiment dashboard.",
+      "boundary": "Organizing experiments does not make the underlying physical model accurate or its random draws independent."
+    },
+    {
+      "id": "seed-learning-lab",
+      "name": "Seed Learning Lab",
+      "category": "foundation",
+      "tagline": "Teach simulation through experiments that can be inspected and repeated.",
+      "audience": "Computational-science educators, students and science communicators.",
+      "problem": "A visual demonstration can conceal its assumptions and approximation limits.",
+      "experience": "Follow a guided run, inspect selected events, compare a controlled variation, and explain which conclusions the evidence supports.",
+      "output": "Annotated experiments, exercises and reproducible lesson bundles.",
+      "firstRelease": "Guided lessons using fixed, documented micro-seed examples and their replay records.",
+      "foundation": "A runnable reduced model, public audit evidence and detailed explanatory documents are available.",
+      "requirements": [
+        "Accessible visual explanations",
+        "Curated controls and teaching materials",
+        "A safe interface to supported run settings"
+      ],
+      "validation": "Check every displayed quantity against saved outputs and test whether learners distinguish software verification from physical validation.",
+      "phases": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "format": "Interactive course modules and a classroom laboratory.",
+      "boundary": "The current model can teach computational reasoning; it should not be presented as an accurate quantum-universe simulator."
+    },
+    {
+      "id": "chemistry-workbench",
+      "name": "Chemistry Workbench",
+      "category": "physical",
+      "tagline": "Explore reaction hypotheses inside an explicitly bounded model.",
+      "audience": "Computational-chemistry researchers and advanced teaching laboratories.",
+      "problem": "A proposed pathway needs both kinetic and thermodynamic checks.",
+      "experience": "Choose a supported reaction family, vary initial composition and temperature, and compare pathways and equilibrium behavior.",
+      "output": "Reaction-network diagrams, concentration trajectories and assumption-linked reports.",
+      "firstRelease": "A closed, fixed-temperature reactor for one declared small reaction family.",
+      "foundation": "Event-recording patterns exist; molecular structure and reaction discovery remain Phase 3–4 proposals.",
+      "requirements": [
+        "Validated atomic and molecular calculations",
+        "Reversible rates and channel search",
+        "Declared uncertainty and supported conditions"
+      ],
+      "validation": "Reach reference equilibria from different initial states and match independent kinetic benchmarks within declared tolerances.",
+      "phases": [
+        3,
+        4
+      ],
+      "format": "Research workbench with an exportable model API.",
+      "boundary": "No universal chemistry, drug-discovery accuracy or laboratory substitute is implied. Unsupported pathways must remain explicit."
+    },
+    {
+      "id": "materials-foundry",
+      "name": "Materials Foundry",
+      "category": "physical",
+      "tagline": "Connect processing history to the properties of a modeled material.",
+      "audience": "Materials researchers and engineering educators.",
+      "problem": "Composition alone cannot explain every consequence of processing.",
+      "experience": "Apply a heating, cooling or deformation sequence and compare resulting microstructure and property curves.",
+      "output": "Traceable processing histories, property comparisons and uncertainty ranges.",
+      "firstRelease": "One material family and one processing protocol with a frozen calibration set.",
+      "foundation": "Phase 5 specifies microstructure and history records; the current engine has no material model.",
+      "requirements": [
+        "Validated chemistry and phase behavior",
+        "Constitutive and transport models",
+        "Independent processing and property benchmarks"
+      ],
+      "validation": "Predict held-out property curves and hysteresis while checking energy accounting and the error introduced by compressed histories.",
+      "phases": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "format": "Material exploration software and a model library.",
+      "boundary": "Exploratory outputs would require domain validation before engineering use. No material qualification or manufacturing guarantee is established."
+    },
+    {
+      "id": "planet-systems-lab",
+      "name": "Planet Systems Lab",
+      "category": "physical",
+      "tagline": "Explore planetary feedbacks with visible resource and energy budgets.",
+      "audience": "Planetary-science researchers, educators and world designers.",
+      "problem": "Changing one environmental condition can alter several coupled reservoirs.",
+      "experience": "Vary a supported forcing or inventory and compare the resulting atmospheric, surface and water-budget trajectories.",
+      "output": "Scenario maps, time series and conservation reports.",
+      "firstRelease": "A single-planet column model with explicit energy and water exchange.",
+      "foundation": "The current analytic cooling schedule is a limited precursor; transport and planetary systems are proposed in Phases 6–7.",
+      "requirements": [
+        "Validated transport and radiative models",
+        "Material properties and reservoir interfaces",
+        "Resolution and long-time stability studies"
+      ],
+      "validation": "Match independent component benchmarks and preserve declared budgets during time-step and spatial refinement.",
+      "phases": [
+        5,
+        6,
+        7
+      ],
+      "format": "Scenario workbench and educational planetary explorer.",
+      "boundary": "These would be model-conditioned scenarios, not validated forecasts of Earth's climate or evidence of an inevitable habitable world."
+    },
+    {
+      "id": "evolution-observatory",
+      "name": "Evolution Observatory",
+      "category": "worlds",
+      "tagline": "Trace how replicating populations persist, compete and change.",
+      "audience": "Artificial-life researchers and complexity laboratories.",
+      "problem": "Population totals can obscure the history behind a new strategy.",
+      "experience": "Specify resources and replication rules, run controlled variations, and follow lineages through competition and environmental change.",
+      "output": "Lineage histories, resource budgets and comparative evolution reports.",
+      "firstRelease": "Explicitly seeded replicators in a small, controlled environment.",
+      "foundation": "The event-history approach exists; heredity, compartments and ecological mechanisms remain Phase 8 research.",
+      "requirements": [
+        "Implemented replication and mutation semantics",
+        "Resource and energy accounting",
+        "Validated population-to-individual comparisons"
+      ],
+      "validation": "Demonstrate heritable variation and selection under matched controls, with lineage statistics stable under declared numerical changes.",
+      "phases": [
+        4,
+        7,
+        8
+      ],
+      "format": "Artificial-life laboratory with lineage analysis tools.",
+      "boundary": "Seeded replication is not a demonstration of abiogenesis. Complexity or persistence alone does not establish biological realism."
+    },
+    {
+      "id": "agent-trials",
+      "name": "Agent Trials",
+      "category": "worlds",
+      "tagline": "Evaluate learning and cooperation under explicit physical constraints.",
+      "audience": "Agent researchers and teams studying simulated character behavior.",
+      "problem": "A successful policy may depend on hidden information or unpriced actions.",
+      "experience": "Run matched tasks with controlled sensing, energy and communication budgets; inspect actions and compare transfer to unfamiliar conditions.",
+      "output": "Versioned task suites, behavior traces and comparative evaluation reports.",
+      "firstRelease": "One embodied resource-gathering task in a declared prepared environment.",
+      "foundation": "Phase 9 proposes budgeted agency; the present engine contains no cognitive or embodied agents.",
+      "requirements": [
+        "Reliable sensing and action interfaces",
+        "Validated task physics and resource costs",
+        "Versioned rewards, controls and agent records"
+      ],
+      "validation": "Prevent privileged information access and show that results survive held-out seeds and matched capability budgets.",
+      "phases": [
+        6,
+        8,
+        9,
+        14
+      ],
+      "format": "Agent evaluation environment and benchmark toolkit.",
+      "boundary": "Performance would characterize the specified tasks, not general intelligence, human cognition or real-world deployment readiness."
+    },
+    {
+      "id": "network-resilience-lab",
+      "name": "Network Resilience Lab",
+      "category": "worlds",
+      "tagline": "Explore how maintenance and local failures affect connected infrastructure.",
+      "audience": "Infrastructure researchers and systems-design educators.",
+      "problem": "Network connections can turn a local disruption into a wider service loss.",
+      "experience": "Compare maintenance strategies under matched hazard scenarios, then trace disrupted flows, resource consumption and recovery delays.",
+      "output": "Service trajectories, failure paths and maintenance-cost accounting.",
+      "firstRelease": "A small abstract transport or water network with documented failure rules.",
+      "foundation": "Phase 13 describes maintenance, attribution and cascade records; these systems are unbuilt.",
+      "requirements": [
+        "Validated network flow and degradation models",
+        "Explicit hazard and boundary conditions",
+        "Consistent asset and resource ledgers"
+      ],
+      "validation": "Reproduce reference network cases and separate hazard, exposure and vulnerability effects across controlled ensembles.",
+      "phases": [
+        6,
+        7,
+        12,
+        13
+      ],
+      "format": "Infrastructure scenario laboratory with traceable reports.",
+      "boundary": "Research scenarios would not constitute operational safety assessments or site-specific engineering recommendations."
+    },
+    {
+      "id": "institution-sandbox",
+      "name": "Institution Sandbox",
+      "category": "worlds",
+      "tagline": "Compare institutional mechanisms in controlled model communities.",
+      "audience": "Computational social-science researchers and educators.",
+      "problem": "Similar collective outcomes can arise from very different assumptions.",
+      "experience": "Vary communication reliability, ownership rules or enforcement costs while holding resources and agent capabilities constant.",
+      "output": "Outcome distributions, exchange records and causal comparison reports.",
+      "firstRelease": "A small common-resource community with explicitly specified behavioral policies.",
+      "foundation": "Phases 9, 11 and 12 propose agency, institutions and accounting; none is implemented today.",
+      "requirements": [
+        "Declared agent behavior and information access",
+        "Consistent ownership and obligation records",
+        "Controls and alternative behavioral models"
+      ],
+      "validation": "Check accounting identities, sensitivity to assumptions, and held-out behavioral patterns; retain failed and divergent outcomes.",
+      "phases": [
+        9,
+        11,
+        12
+      ],
+      "format": "Research and teaching environment for institutional experiments.",
+      "boundary": "This would explore consequences of assumptions, not rank real societies, forecast markets or prescribe public policy."
+    },
+    {
+      "id": "world-creator",
+      "name": "World Creator",
+      "category": "worlds",
+      "tagline": "Design starting conditions and explore the histories they permit.",
+      "audience": "Game creators, narrative designers and procedural-world researchers.",
+      "problem": "A generated map is only a starting point for a world with a history.",
+      "experience": "Define a bounded region, choose explicit initial conditions, observe its supported dynamics, and export selected states and event histories.",
+      "output": "World maps, replayable histories and evidence-linked narrative prompts.",
+      "firstRelease": "A regional editor around one validated environment-and-agent interaction.",
+      "foundation": "The roadmap connects planetary, ecological and cultural histories; the current seed cannot generate playable worlds.",
+      "requirements": [
+        "Implemented regional world and agent models",
+        "Observation and reconstruction contracts",
+        "Interactive runtime and export interfaces"
+      ],
+      "validation": "Preserve causal history across save, replay and detail changes; test varied outcomes rather than guarantee a prescribed storyline.",
+      "phases": [
+        7,
+        8,
+        9,
+        14,
+        15,
+        16
+      ],
+      "format": "World editor and content-export toolkit.",
+      "boundary": "Prepared environments and authored rules must remain visible. A compelling fictional world does not establish physical or historical accuracy."
+    },
+    {
+      "id": "adaptive-runtime",
+      "name": "Adaptive Runtime",
+      "category": "worlds",
+      "tagline": "Allocate simulation work against an explicit error contract.",
+      "audience": "Simulation and game-engine developers managing multiple update scales.",
+      "problem": "Skipping detail can change the very behavior an application needs to preserve.",
+      "experience": "Integrate a model, declare observables and certified coarse intervals, then compare detailed and reduced execution across workloads.",
+      "output": "Runtime adapters, scheduling traces and measured cost-versus-fidelity reports.",
+      "firstRelease": "One model with two resolution levels and a tested CPU scheduler.",
+      "foundation": "Restricted quiet-cell jumps exist; the general runtime and cross-layer certificates are Phase 14–15 proposals.",
+      "requirements": [
+        "Model-owned reduction certificates",
+        "Deterministic scheduling and build identities",
+        "Hardware-named benchmark workloads"
+      ],
+      "validation": "Preserve declared observables and same-build replay under scheduling stress while measuring approximation error and actual cost.",
+      "phases": [
+        1,
+        14,
+        15
+      ],
+      "format": "Embeddable runtime SDK and profiling tools.",
+      "boundary": "No universal speedup or cross-hardware bit identity is assumed. Each model and numerical configuration needs its own evidence."
+    }
+  ]
+}

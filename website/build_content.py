@@ -21,7 +21,6 @@ index_path=DIST/'index.html'
 index_text=index_path.read_text(encoding='utf-8')
 index_text=re.sub(r'(<strong id="paper-page-count">)\d+',lambda m:m[1]+str(PAPER['pages']),index_text)
 index_text=re.sub(r'(<meta name="simworld-paper-version" content=")[^"]+',lambda m:m[1]+PAPER['version'],index_text)
-index_text=re.sub(r'src="app\.js(?:\?v=[^"]*)?"',f'src="app.js?v={PAPER["version"]}"',index_text)
 index_path.write_text(index_text,encoding='utf-8')
 
 
@@ -66,6 +65,11 @@ def public_bytes(name,raw):
 
 def sha(data):return hashlib.sha256(data).hexdigest()
 def write_json(path,obj):path.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+# Proposed products are an authored catalog, separate from measured model results.
+products=json.loads((ROOT/'website/content/products.json').read_text(encoding='utf-8'))
+write_json(DATA/'products.json',products)
+write_json(DOWNLOADS/'SimWorld_Product_Portfolio.json',products)
 
 phase_rows=[
  (0,'World rules','Foundations','Define the primitive records, effective fields, initial state, time and observation contracts.',
@@ -196,6 +200,7 @@ for source,target in [('research/fresh_m4/summary.json','SimWorld_Verified_Run.j
 download_meta=[
  ('whitepaper','Research white paper',f"Version {PAPER['version']} · {PAPER['pages']} pages. Detailed profiles of all 17 phases, latest project status, implementation evidence and research limits.",pdf.name,'PDF'),
  ('research','Research materials',f"Version {PAPER['version']} manuscript, all 17 phase profiles, current source snapshot and CI evidence, plus the separately preserved original audit.",'SimWorld_Research_Materials_Public.zip','ZIP'),
+ ('portfolio','Possible product portfolio','Twelve proposed products, with intended users, first scopes, dependencies and validation gates. These are concepts, not shipping products.','SimWorld_Product_Portfolio.json','JSON'),
  ('source','Current engine source','Python engine, tests, prototypes, contributor documentation and all currently available phase plans.','SimWorld_Current_Source.zip','ZIP'),
  ('documentation','Complete documentation','Roadmap, first-build contract, all available phase plans and specification records.','SimWorld_Documentation.zip','ZIP'),
  ('run','Verified run data','Full-precision summary of the reproduced seed-42, eight-cell, 3,400-tick realization.','SimWorld_Verified_Run.json','JSON'),
@@ -221,6 +226,7 @@ project={
  'description':'A research project exploring how physical processes, life, learning and institutions might connect through one reproducible simulated history.',
  'snapshotDate':AUDIT_DATE,'physicsBuild':'0.1','status':'Research prototype',
  'repositoryURL':REPOSITORY_URL,'websiteURL':SITE_URL,
+ 'portfolio':{'url':'portfolio.html','conceptCount':len(products['products']),'version':products['version']},
  'statusDescription':'The current build is a reduced stochastic physics model. The wider world remains a research program.',
  'paper':{**PAPER,'url':'/downloads/'+pdf.name+'?v='+PAPER['version']},
  'metrics':{'testsPassed':65,'testSeconds':123.64,'replayHashes':34,'seed':42,'cells':8,'ticks':3400,
@@ -257,6 +263,23 @@ project={
 }
 write_json(DATA/'project.json',project)
 (DIST/'.nojekyll').write_text('',encoding='utf-8')
+
+# Version page assets by their bytes and datasets by the combined public content.
+# A product or website edit can now invalidate caches without changing the paper.
+content_version=sha((DATA/'project.json').read_bytes()+(DATA/'products.json').read_bytes())[:12]
+def version_asset(match):
+    name=match['name']
+    asset=DIST/name
+    if not asset.is_file():raise FileNotFoundError(f'Missing page asset: {name}')
+    return match['prefix']+name+'?v='+sha(asset.read_bytes())[:12]+'"'
+for page in DIST.glob('*.html'):
+    page_text=page.read_text(encoding='utf-8')
+    metadata=f'<meta name="simworld-content-version" content="{content_version}">'
+    if 'name="simworld-content-version"' in page_text:
+        page_text=re.sub(r'<meta name="simworld-content-version" content="[^"]*">',metadata,page_text)
+    else:page_text=page_text.replace('</head>','  '+metadata+'\n</head>')
+    page_text=re.sub(r'(?P<prefix>(?:src|href)=")(?P<name>[^":?#]+\.(?:js|css))(?:\?[^"]*)?"',version_asset,page_text)
+    page.write_text(page_text,encoding='utf-8')
 
 # Verify public archives contain no private host paths and every published source
 # manifest hashes the actual public bytes. Use strict checks on decoded text.

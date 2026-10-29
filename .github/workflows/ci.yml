@@ -54,4 +54,6 @@ jobs:
       - name: Check paths, evidence files and download integrity
         run: python website/check_site.py
       - name: Check browser script syntax
-        run: node --check website/dist/app.js
+        run: |
+          node --check website/dist/app.js
+          node --check website/dist/portfolio.js

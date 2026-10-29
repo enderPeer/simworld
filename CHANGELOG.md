@@ -1,5 +1,12 @@
 # Changelog
 
+## Possible product portfolio — 29 October 2026
+
+- Add twelve proposed applications across tooling extensions, physical-model workbenches, and longer-range world and agent systems.
+- Show intended users, first proposed scope, existing foundations, missing capabilities, phase dependencies, and validation gates for every concept.
+- Add category/search filters, concept details, comparisons, a printable catalog and a JSON download.
+- Link the portfolio from the homepage and use content-based cache keys for updated assets and data.
+
 ## White paper 1.1 — 29 October 2026
 
 - Expand the paper to 38 pages with detailed profiles of all 17 phases, including mechanisms, interfaces, validation gates and research limits.

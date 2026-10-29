@@ -4,6 +4,8 @@
 
 [Project website](https://enderpeer.github.io/simworld/) · [Research white paper](website/dist/downloads/SimWorld_Research_White_Paper.pdf) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
+[Possible product portfolio](https://enderpeer.github.io/simworld/portfolio.html) explores twelve proposed applications, with intended users, first scopes, missing capabilities, and validation gates. These are product hypotheses rather than available software.
+
 [![CI](https://github.com/enderPeer/simworld/actions/workflows/ci.yml/badge.svg)](https://github.com/enderPeer/simworld/actions/workflows/ci.yml)
 [![GitHub Pages](https://github.com/enderPeer/simworld/actions/workflows/pages.yml/badge.svg)](https://github.com/enderPeer/simworld/actions/workflows/pages.yml)
 

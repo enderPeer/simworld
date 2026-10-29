@@ -20,14 +20,24 @@
     "sha256": "93bc2db405cc4513d6a8621c8232106e792aabdf115969a21c78af859ad91a6f"
   },
   {
+    "id": "portfolio",
+    "title": "Possible product portfolio",
+    "description": "Twelve proposed products, with intended users, first scopes, dependencies and validation gates. These are concepts, not shipping products.",
+    "filename": "SimWorld_Product_Portfolio.json",
+    "url": "/downloads/SimWorld_Product_Portfolio.json",
+    "format": "JSON",
+    "bytes": 18145,
+    "sha256": "a3170d573f1246b791d69f0e32dd51192ecc0907a5504a9694379c12784d349f"
+  },
+  {
     "id": "source",
     "title": "Current engine source",
     "description": "Python engine, tests, prototypes, contributor documentation and all currently available phase plans.",
     "filename": "SimWorld_Current_Source.zip",
     "url": "/downloads/SimWorld_Current_Source.zip",
     "format": "ZIP",
-    "bytes": 211093,
-    "sha256": "27544b563b5cf1f83b2e8b74453f6560e3523b41053c23d1fab562a195453e15"
+    "bytes": 211188,
+    "sha256": "bf7120a9788d97f06e230385d02ede7ba87d4cf0066f00a83911b5564c7a54e1"
   },
   {
     "id": "documentation",

@@ -10,6 +10,7 @@ from urllib.parse import urlsplit, unquote
 import hashlib
 import json
 import zipfile
+import re
 
 ROOT = Path(__file__).resolve().parent / 'dist'
 checks = 0
@@ -41,7 +42,8 @@ class ResourceParser(HTMLParser):
         artifact(url)
 
 
-ResourceParser().feed((ROOT / 'index.html').read_text(encoding='utf-8'))
+for page in ROOT.glob('*.html'):
+    ResourceParser().feed(page.read_text(encoding='utf-8'))
 data = json.loads((ROOT / 'data/project.json').read_text(encoding='utf-8'))
 require(len(data['phases']) == 17, 'The roadmap must retain all 17 phases')
 publication=json.loads((ROOT.parent.parent/'research/whitepaper/publication.json').read_text(encoding='utf-8'))
@@ -65,8 +67,23 @@ for item in data['downloads'] + data['documents']:
                         for name in archive.namelist()), f'Unsafe archive members: {path.name}')
 for phase in data['phases']:
     artifact(phase['document'])
+catalog=json.loads((ROOT/'data/products.json').read_text(encoding='utf-8'))
+require(len(catalog['products'])==12, 'The portfolio should contain twelve complete concepts')
+require(data['portfolio']['conceptCount']==len(catalog['products']), 'Portfolio count is stale')
+ids=set()
+fields=('id','name','category','tagline','audience','problem','experience','output','firstRelease','foundation','validation','format','boundary')
+for product in catalog['products']:
+    require(all(isinstance(product.get(key),str) and product[key].strip() for key in fields), 'Incomplete product concept')
+    require(bool(re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',product['id'])), 'Invalid product identifier')
+    require(product['id'] not in ids, 'Duplicate product identifier')
+    ids.add(product['id'])
+    require(product['category'] in ('foundation','physical','worlds'), 'Unknown concept category')
+    require(isinstance(product['requirements'],list) and all(isinstance(x,str) and x.strip() for x in product['requirements']), 'Missing capability requirements')
+    require(bool(product['phases']) and all(type(n) is int and 0<=n<=16 for n in product['phases']), 'Invalid phase dependency')
+require(json.loads((ROOT/'downloads/SimWorld_Product_Portfolio.json').read_text(encoding='utf-8'))==catalog,
+        'Downloadable catalog differs from the website')
 for path in ROOT.rglob('*'):
     require(not any(part in ('.git', '.runtime', '__pycache__') or part.startswith('.env')
                     for part in path.relative_to(ROOT).parts), f'Private runtime file in artifact: {path}')
 print(f'{checks} static website checks passed; {len(data["documents"])} documents, '
-      f'{len(data["downloads"])} downloads, 17 phases.')
+      f'{len(data["downloads"])} downloads, 17 phases, {len(catalog["products"])} product concepts.')

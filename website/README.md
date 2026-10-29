@@ -24,6 +24,8 @@ You can also serve that directory with another static HTTP server.
 | `dist/index.html` | Main page, navigation and accessible structure |
 | `dist/styles.css` | Desktop and mobile layout |
 | `dist/app.js` | Phase explorer, document search, reader and download controls |
+| `dist/portfolio.html`, `portfolio.css`, `portfolio.js` | Product concept portfolio, filters, comparisons and printable view |
+| `content/products.json` | Authored product hypotheses, intended users, dependencies and validation gates |
 | `build_content.py` | Generates current project data, documentation copies and archives |
 | `check_site.py` | Checks publication paths, downloads and metadata before deployment |
 | `dist/data/` | Generated project metadata and download checksums |
@@ -34,6 +36,17 @@ Asset paths are resolved relative to the HTML document. The same output works at
 the root of a local server and under GitHub's `/simworld/` project path. Keep
 links inside the site relative; external research and repository links use
 complete HTTPS URLs.
+
+## Product portfolio
+
+The portfolio contains possible applications of the research, not released products.
+Edit `content/products.json`, then run the content builder and static checks. Keep
+existing capabilities separate from missing mechanisms, and provide a concrete
+validation gate for every concept. The site offers category/search filters,
+comparisons of two or three concepts, a full printable catalog, and a JSON download.
+
+Page assets and dataset requests use content-based cache keys. Related-phase links
+open the homepage roadmap at the requested phase using `?phase=N#roadmap`.
 
 ## Source documents and archived evidence
 
