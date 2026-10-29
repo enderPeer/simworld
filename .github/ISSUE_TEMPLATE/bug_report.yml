@@ -1,0 +1,23 @@
+name: Reproducibility or software problem
+description: Report a concrete failure with enough context to reproduce it.
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: Distinguish a software failure from a known physical approximation.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Include commands, seed, ticks, cells, probe settings, and commit or physics build.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and evidence
+      description: Python/NumPy versions, operating system, relevant logs or hashes. Remove private paths and credentials.

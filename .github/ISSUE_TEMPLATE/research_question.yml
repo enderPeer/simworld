@@ -1,0 +1,22 @@
+name: Research question or model improvement
+description: Propose a testable model question, benchmark, or cross-phase interface change.
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question and affected model
+      description: State the proposed mechanism and the phase or code it concerns.
+    validations:
+      required: true
+  - type: textarea
+    id: experiment
+    attributes:
+      label: Experiment and falsifiable outcome
+      description: Identify observables, controls, assumptions, and results that would count against the proposal.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: References and limitations
+      description: Link primary sources or project evidence and distinguish fitted targets from independent validation.
