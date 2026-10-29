@@ -1,6 +1,6 @@
 # Seams — cross-phase logic errors and unclean dependencies
 
-Found while planning Phases 6–15 ahead of implementation. This is the
+Found while planning Phases 6–16 ahead of implementation. This is the
 **rework backlog**: each seam names the upstream layer that must change,
 the test that will go red first, and the phase that can't go green until
 it lands. A seam is closed only by an upstream fix + test, never by a
