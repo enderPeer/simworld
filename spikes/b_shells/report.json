@@ -1,0 +1,78 @@
+{
+  "spike": "B shells",
+  "model": "hydrogenic analytic + fitted per-l plane y=sqrt(IP/Ry)*n = c+d*n+e*pos_in_block (aufbau features, Z-only)",
+  "n_train": 41,
+  "bands": {
+    "H": "0.1% (analytic anchor)",
+    "others": "40% (screening-only error)"
+  },
+  "test": [
+    {
+      "sym": "H",
+      "z": 1,
+      "model": "hydrogenic analytic",
+      "ip_real": 13.5984,
+      "ip_L0_bare_Z": 13.6,
+      "ip_L1": 13.6,
+      "err_L0_pct": 0.0,
+      "err_L1_pct": 0.0,
+      "band_pct": 0.1,
+      "band_pass": true
+    },
+    {
+      "sym": "He",
+      "z": 2,
+      "model": "fitted screening",
+      "ip_real": 24.5872,
+      "ip_L0_bare_Z": 54.4,
+      "ip_L1": 20.4347,
+      "err_L0_pct": 121.3,
+      "err_L1_pct": -16.9,
+      "band_pct": 40.0,
+      "band_pass": true
+    },
+    {
+      "sym": "Li",
+      "z": 3,
+      "model": "fitted screening",
+      "ip_real": 5.3917,
+      "ip_L0_bare_Z": 30.6,
+      "ip_L1": 5.6291,
+      "err_L0_pct": 467.5,
+      "err_L1_pct": 4.4,
+      "band_pct": 40.0,
+      "band_pass": true
+    },
+    {
+      "sym": "C",
+      "z": 6,
+      "model": "fitted screening",
+      "ip_real": 11.2603,
+      "ip_L0_bare_Z": 122.4,
+      "ip_L1": 9.21,
+      "err_L0_pct": 987.0,
+      "err_L1_pct": -18.2,
+      "band_pct": 40.0,
+      "band_pass": true
+    },
+    {
+      "sym": "Fe",
+      "z": 26,
+      "model": "fitted screening",
+      "ip_real": 7.9024,
+      "ip_L0_bare_Z": 574.6,
+      "ip_L1": 7.5806,
+      "err_L0_pct": 7171.2,
+      "err_L1_pct": -4.1,
+      "band_pct": 40.0,
+      "band_pass": true
+    }
+  ],
+  "train_fit_rms_err_pct": 6.9,
+  "worst_train": {
+    "sym": "B",
+    "err_pct": -18.1
+  },
+  "all_test_bands_pass": true,
+  "phase3_verdict": "compute-not-tabulate is feasible: aufbau + hydrogenic + one fitted screening plane holds all five probe elements within ~20% (band 40%). Phase 3's SCF solver must go past smooth screening only when it needs sub-chemical accuracy (~1-5%): worst residuals are compact 1s^2 (He) and p-block row trends; s- and d-block first IPs need nothing exotic"
+}

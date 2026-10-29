@@ -1,0 +1,24 @@
+{
+  "spike": "A quant cost",
+  "config": {
+    "superposed": 1000000,
+    "collapsed_capacity": 10000,
+    "interactions_per_tick": 100000,
+    "ticks": 100,
+    "theta": 12,
+    "collapsed_total": 10000,
+    "collapse_batches": 88
+  },
+  "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "python": "3.11.9",
+  "numpy": "2.4.6",
+  "evolve_ns_per_quant_per_tick": 3.5534,
+  "evolve_quanta_per_s": 281419503,
+  "evolve_target_ge_1e7_quanta_s": true,
+  "rng_index_quanta_pairs_per_s": 20360889,
+  "interactions_per_s": 20400224,
+  "interact_ns_per_pair": 49.0191,
+  "collapse_ns_per_batch_mean": 604463.6,
+  "full_tick_s_mean": 0.013899,
+  "notes": "elementwise numpy SoA, no packing changes; scatter collisions (same index twice in one tick) left benign by design"
+}

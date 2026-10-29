@@ -1,0 +1,10 @@
+{
+  "note": "ONLY place real-world binding energies live (MeV). Fit offline via fit_nuc_anchors.py; sim/ gets the five coefficients as published constants, never runtime lookups.",
+  "anchors": [
+    {"Z": 1, "A": 2, "B": 2.2246},
+    {"Z": 1, "A": 3, "B": 8.482},
+    {"Z": 2, "A": 3, "B": 7.718},
+    {"Z": 2, "A": 4, "B": 28.296},
+    {"Z": 26, "A": 56, "B": 492.26}
+  ]
+}

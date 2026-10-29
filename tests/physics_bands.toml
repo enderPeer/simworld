@@ -1,0 +1,19 @@
+# BUILD0 acceptance bands (nightly CI reads this file too).
+# "zero_or_in" marks the granularity-floor convention: the engine may
+# legitimately end at zero of a species (burned away); if it ends with
+# any of it, the value must sit in the band. See spec/surprises.md.
+
+[nuc]
+n_p_ratio = [0.10, 0.20]
+Y_p = [0.20, 0.30]
+X_H = [0.69, 0.80]
+D_H = [1.0e-6, 5.0e-4]
+D_H_mode = "zero_or_in"
+Li_H = "record"
+
+[atoms]
+X_neutral = [0.90, 1.0]
+X_e_over_saha_max = 2.0
+
+[jumps]
+min_jumps = 1

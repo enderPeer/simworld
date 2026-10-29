@@ -1,0 +1,34 @@
+# Local environments and interpreter caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Generated experiments and authoring work; public evidence lives in site downloads.
+runs/
+_m3run/
+_m4run/
+_nightly_ci.xml
+run_demo/
+reproduced_*/
+test-results*.xml
+tmp/
+output/
+
+# Local tunnel state and credentials must never be published.
+website/.runtime/
+.cloudflared/
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+
+# Editor and operating-system state
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
