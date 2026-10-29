@@ -7,7 +7,8 @@ overnight Great Run on the cluster comes out with the whole ladder
 present in the ledgers, in order, with no step scripted:
 nucleosynthesis → elements → planetesimals → planet → life →
 evolution → humans → fire → bronze → farms → cities → grids → radio
-→ **artificial worlds built inside SimWorld by the world's own
+→ internet-analog (the `net/` mesh growth phase) →
+**artificial worlds built inside SimWorld by the world's own
 agents** (Phase 10's `nest/` at depth 1, D10, born from an in-world
 choice event — the roadmap's "AI" demystified to mechanism: a
 coalition commissioning a simulation of its own world, its results
@@ -61,7 +62,10 @@ first hominin-grade budget-gated choice (Phase 9), first controlled
 fire-analog flux event with the Phase 6/9 fracture-geometry trail,
 first smelt-analog (from ore geography, not from a recipe), first
 city-grade polis cluster, first grid-tie load-frequency series, first
-radio-analog broadcast event on `net/` — each with its era-timestamp
+radio-analog broadcast event on `net/`, first mesh-growth threshold-
+crossing where network-analog connectivity outruns political-analog
+borders (the internet-analog rung: the map of who-talks-to-whom stops
+matching the map of who-owns-what) — each with its era-timestamp
 and its surprise-ledger entry, and **zero of them with an injection
 timestamp** (there is no such thing; the scripture lint proves the
 channel does not exist). **Seed B** reaches every rung by visibly

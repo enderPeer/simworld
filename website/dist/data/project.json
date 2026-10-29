@@ -601,8 +601,8 @@
       "title": "Phase 16 — The Full Emergent Loop (definition of done)",
       "category": "Phase plan",
       "url": "/docs/PHASE16.md",
-      "bytes": 17880,
-      "sha256": "05802717f6aa89ea9b76ea6e644f8ff7d262a8bc63f3c105e2ddc5f0683e091c"
+      "bytes": 18134,
+      "sha256": "69c810472eb45a37f371964e978ad8da397b9099b4eac2030ab1351ca4132969"
     },
     {
       "id": "spec/constants.md",
@@ -673,8 +673,8 @@
       "filename": "SimWorld_Current_Source.zip",
       "url": "/downloads/SimWorld_Current_Source.zip",
       "format": "ZIP",
-      "bytes": 210919,
-      "sha256": "9b804d6a9ba17ddf48bdfd8720178cdf3bf970a4c93ebc1cc9a7c04d0df96210"
+      "bytes": 211031,
+      "sha256": "b88a2ae3742fb8b4ce9ac9799412569b9fc55564d6761ff24eed177ae7197bd3"
     },
     {
       "id": "documentation",
@@ -683,8 +683,8 @@
       "filename": "SimWorld_Documentation.zip",
       "url": "/downloads/SimWorld_Documentation.zip",
       "format": "ZIP",
-      "bytes": 145837,
-      "sha256": "47a98c3bd4217458e0d007f08f2c13adf9963084977c6cf8c2dc471e5da9e500"
+      "bytes": 145950,
+      "sha256": "cdbb3e812f1bcda043a34ba2f790b720e274cf57a353e2da9317accc124588aa"
     },
     {
       "id": "run",
