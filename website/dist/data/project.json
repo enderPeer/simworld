@@ -26,8 +26,8 @@
     "detailedPhasePlans": 17,
     "documents": 24,
     "references": 10,
-    "openSeams": 21,
-    "totalSeams": 24,
+    "openSeams": 22,
+    "totalSeams": 25,
     "Yp": 0.2276176024279211,
     "Xe": 0.003457216940363008,
     "nucleons": 1318,
@@ -633,8 +633,8 @@
       "title": "Seams — cross-phase logic errors and unclean dependencies",
       "category": "Specifications",
       "url": "/docs/spec/seams.md",
-      "bytes": 14765,
-      "sha256": "a6ceb192b1880785f68ee66a26dcdc6ab9c21a860a2b0ea146d7ac010bd2d2ef"
+      "bytes": 15818,
+      "sha256": "4e21d4f8835185ebfef0d335b08628b1ae93412bd1f77db63e269809922ad43f"
     },
     {
       "id": "spec/surprises.md",
@@ -673,8 +673,8 @@
       "filename": "SimWorld_Current_Source.zip",
       "url": "/downloads/SimWorld_Current_Source.zip",
       "format": "ZIP",
-      "bytes": 210508,
-      "sha256": "75074ff22227841e0ca000c4f546d2cc4402301309714630748692b6e3f017c8"
+      "bytes": 210919,
+      "sha256": "9b804d6a9ba17ddf48bdfd8720178cdf3bf970a4c93ebc1cc9a7c04d0df96210"
     },
     {
       "id": "documentation",
@@ -683,8 +683,8 @@
       "filename": "SimWorld_Documentation.zip",
       "url": "/downloads/SimWorld_Documentation.zip",
       "format": "ZIP",
-      "bytes": 145425,
-      "sha256": "9265b27fa05a2efb021bec7b13aeca9e607945dc38ddbe7090376c574587690e"
+      "bytes": 145837,
+      "sha256": "47a98c3bd4217458e0d007f08f2c13adf9963084977c6cf8c2dc471e5da9e500"
     },
     {
       "id": "run",

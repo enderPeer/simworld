@@ -26,8 +26,8 @@
     "filename": "SimWorld_Current_Source.zip",
     "url": "/downloads/SimWorld_Current_Source.zip",
     "format": "ZIP",
-    "bytes": 210508,
-    "sha256": "75074ff22227841e0ca000c4f546d2cc4402301309714630748692b6e3f017c8"
+    "bytes": 210919,
+    "sha256": "9b804d6a9ba17ddf48bdfd8720178cdf3bf970a4c93ebc1cc9a7c04d0df96210"
   },
   {
     "id": "documentation",
@@ -36,8 +36,8 @@
     "filename": "SimWorld_Documentation.zip",
     "url": "/downloads/SimWorld_Documentation.zip",
     "format": "ZIP",
-    "bytes": 145425,
-    "sha256": "9265b27fa05a2efb021bec7b13aeca9e607945dc38ddbe7090376c574587690e"
+    "bytes": 145837,
+    "sha256": "47a98c3bd4217458e0d007f08f2c13adf9963084977c6cf8c2dc471e5da9e500"
   },
   {
     "id": "run",
