@@ -5,7 +5,8 @@
   "source_baseline": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
   "purpose": "Execution specification for future work; no new simulation capability is implemented by these records.",
   "ready_now": [
-    "D0-03",
+    "D0-04",
+    "D0-05",
     "D0-06"
   ],
   "first_milestone": "D0",
@@ -263,9 +264,14 @@
         "sim/log.py:EventContext",
         "spec/seams.md: S8, S25"
       ],
-      "state": "blocked",
+      "state": "verified",
       "milestone": "D0",
-      "evidence": [],
+      "evidence": [
+        "spec/ontology.json",
+        "sim/ontology.py",
+        "tests/test_event_registry.py",
+        "tasks/D0-03-event-registry.md"
+      ],
       "commands_are_planned": true,
       "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
     },

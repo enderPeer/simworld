@@ -1,0 +1,150 @@
+{
+  "schema": "event-ontology/0.1",
+  "registry_version": "0.1",
+  "manifest_binding": "schemas.events",
+  "introduced_by_ticket": "D0-03",
+  "s25_closure": "partial_foundation",
+  "scope_note": "Registers only the event kinds implemented in physics build 0.1 (M2-M4 slices, phase 0). It reserves an extension mechanism for later phases without fabricating their kinds; S25 stays partial foundation work, not closed for all future phases.",
+  "roles": ["draw", "log_only"],
+  "identity_model": {
+    "semantic_id_format": "^(draw|log_only)\\.[a-z_]+@[1-9][0-9]*(/[a-z_]+)?$",
+    "canonical_identity": "utf8('name|role|kind_id|schema_version|lane_or_dash'); lane_or_dash is the lane after '/' or '-'",
+    "stable_hash": "fnv1a64 over the canonical identity string (sim.rng.fnv1a64)",
+    "lane": "the part after '/' distinguishes multiple producers sharing one kind; declared explicitly, never derived from container or call order",
+    "sub_lane": "engine RNG address lane (informational for identity; D0-04 replaces it with explicit draw addresses)",
+    "attempt": "attempt counters are reserved for D0-04 draw addressing and are not serialized in 0.1 or 0.2 logs",
+    "independent_of": ["wall_clock_timing", "python_container_order", "module_cache"]
+  },
+  "events": [
+    {
+      "semantic_id": "draw.condense@1",
+      "stable_hash": 3189784068720294580,
+      "name": "condense",
+      "kind_id": 0,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/demo.py:run",
+      "sub_lane": null,
+      "causes": ["thermal"],
+      "q_fields": [],
+      "payload_fields": ["need"]
+    },
+    {
+      "semantic_id": "draw.react@1/weak",
+      "stable_hash": 353930663980663653,
+      "name": "react",
+      "kind_id": 2,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/weak.py:step",
+      "sub_lane": 0,
+      "causes": ["weak"],
+      "q_fields": [],
+      "payload_fields": ["p_ud", "p_du"]
+    },
+    {
+      "semantic_id": "draw.react@1/bind",
+      "stable_hash": 9174305713718291578,
+      "name": "react",
+      "kind_id": 2,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/bind.py:bind_nucleons",
+      "sub_lane": 1,
+      "causes": ["bind"],
+      "q_fields": [],
+      "payload_fields": ["p_neutron"]
+    },
+    {
+      "semantic_id": "draw.react@1/network",
+      "stable_hash": 792141069659281505,
+      "name": "react",
+      "kind_id": 2,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/network.py:step",
+      "sub_lane": 2,
+      "causes": ["network"],
+      "q_fields": [],
+      "payload_fields": ["n_channels", "T"]
+    },
+    {
+      "semantic_id": "draw.react@1/atoms",
+      "stable_hash": 16501688708446700589,
+      "name": "react",
+      "kind_id": 2,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/atoms.py:step",
+      "sub_lane": 3,
+      "causes": ["atoms"],
+      "q_fields": [],
+      "payload_fields": ["n_channels", "T", "e_free"]
+    },
+    {
+      "semantic_id": "draw.decay@1",
+      "stable_hash": 6060566733511546784,
+      "name": "decay",
+      "kind_id": 3,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/collapse.py:probe_sweep",
+      "sub_lane": null,
+      "causes": ["probe"],
+      "q_fields": ["superposed_id"],
+      "payload_fields": []
+    },
+    {
+      "semantic_id": "draw.annih@1",
+      "stable_hash": 3616719541584191625,
+      "name": "annih",
+      "kind_id": 4,
+      "role": "draw",
+      "schema_version": 1,
+      "producer": "sim/demo.py:_annihilate",
+      "sub_lane": null,
+      "causes": ["thermal"],
+      "q_fields": [],
+      "payload_fields": ["k"]
+    },
+    {
+      "semantic_id": "log_only.collapse@1",
+      "stable_hash": 5001677329616403956,
+      "name": "collapse",
+      "kind_id": 5,
+      "role": "log_only",
+      "schema_version": 1,
+      "producer": "sim/collapse.py:theta_sweep",
+      "sub_lane": null,
+      "causes": ["theta"],
+      "q_fields": ["superposed_id"],
+      "payload_fields": []
+    },
+    {
+      "semantic_id": "log_only.jump@1",
+      "stable_hash": 628528354631060220,
+      "name": "jump",
+      "kind_id": 6,
+      "role": "log_only",
+      "schema_version": 1,
+      "producer": "sim/jump.py:try_jump",
+      "sub_lane": null,
+      "causes": ["thermal"],
+      "q_fields": [],
+      "payload_fields": ["T_land"]
+    }
+  ],
+  "extension": {
+    "next_kind_id": 7,
+    "registration_rule": "a phase's freeze contract must add its kinds here before its first engine call site merges; unregistered kinds must not enter KIND_IDS or LOG_KIND_IDS",
+    "s8_note": "the boundary-driving kind (S8) stays unregistered until Phase 7 planning; reserving space is not implementing",
+    "reserved_for_future_phases": "none enumerated on purpose (S25: fabricating future kinds is forbidden)"
+  },
+  "legacy_0_1": {
+    "encoding": "log entry field 'kind' = fnv1a64(u16 kind id) & 0xFFFF, the truncated counter-based-stream hash",
+    "applies_to_log_schemas": ["0.1-legacy", "0.2"],
+    "registry_identity_present_in_serialized_logs": false,
+    "reserved_kind_ids_without_producer": {"collide": 1},
+    "policy": "The truncated hash remains the serialized identity in 0.1-legacy and 0.2 logs; stable_hash is a registry-side identity for future addressing (D0-04), not a claim that old logs contain registry IDs. Legacy 0.1 logs are verified only in the archived 0.1 source environment."
+  }
+}

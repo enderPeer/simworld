@@ -9,7 +9,7 @@
     "state": "historical_micro_slice_accepted",
     "full_phase0_complete": false,
     "reported_tests_passed": 65,
-    "local_reproduction_2026_10_30": "85 passed as of the D0-02 candidate (65 baseline 0.1 tests green on the metadata-only candidate + 20 candidate controls) on Windows-10, Python 3.11.9, NumPy 2.4.6",
+    "local_reproduction_2026_10_30": "101 passed as of the D0-03 candidate (65 baseline 0.1 tests green on the metadata-only candidates + 36 candidate controls) on Windows-10, Python 3.11.9, NumPy 2.4.6",
     "candidate_identity": "spec/baselines/candidate.json",
     "baseline_manifest": "spec/baselines/physics-0.1.json",
     "test_scope": "spec/test-scope.json",
@@ -20,7 +20,8 @@
     "scope": "Effective reduced model. Exact re-execution is environment-scoped; no cross-platform complete-hash identity or checkpoint claim."
   },
   "ready_now": [
-    "D0-03",
+    "D0-04",
+    "D0-05",
     "D0-06"
   ],
   "first_milestone": "D0",

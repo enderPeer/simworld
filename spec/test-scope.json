@@ -15,7 +15,8 @@
   },
   "scope_exempt_files": [
     "tests/test_baseline_manifest.py",
-    "tests/test_run_manifest.py"
+    "tests/test_run_manifest.py",
+    "tests/test_event_registry.py"
   ],
   "notes": {
     "tests/test_log.py": "Codec and verification mechanics survive model changes; encoding itself is log schema 0.1-legacy.",
@@ -27,7 +28,8 @@
     "tests/test_m2_jump.py": "jump equivalence reference is superseded by D0-11 certificates.",
     "tests/test_replay.py": "Replay mechanics are invariants but bit-identity claims are same-build/same-environment only.",
     "tests/test_baseline_manifest.py": "New D0-01 suite; exempt because it validates the scope file itself.",
-    "tests/test_run_manifest.py": "New D0-02 candidate controls (run manifests, preflight, legacy rejection policy); exempt as post-freeze candidate work under new names."
+    "tests/test_run_manifest.py": "New D0-02 candidate controls (run manifests, preflight, legacy rejection policy); exempt as post-freeze candidate work under new names.",
+    "tests/test_event_registry.py": "New D0-03 candidate controls (event ontology validation, stable identity, legacy encoding separation); exempt as post-freeze candidate work under new names."
   },
   "tests": {
     "tests/test_log.py::test_record_read_roundtrip": "shared_invariant",
