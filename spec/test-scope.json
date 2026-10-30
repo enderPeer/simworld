@@ -16,7 +16,8 @@
   "scope_exempt_files": [
     "tests/test_baseline_manifest.py",
     "tests/test_run_manifest.py",
-    "tests/test_event_registry.py"
+    "tests/test_event_registry.py",
+    "tests/test_rng_addresses.py"
   ],
   "notes": {
     "tests/test_log.py": "Codec and verification mechanics survive model changes; encoding itself is log schema 0.1-legacy.",
@@ -24,12 +25,13 @@
     "tests/test_m3_nuclei.py": "liquid_drop anchors are the five fitted calibration points; channel-shape tests change with D0-07 graph enumeration.",
     "tests/test_m4_atoms.py": "capture gating and jump straddle behavior is exactly what D0-09/D0-11 repair.",
     "tests/test_physics_bands.py": "Bands are tuning targets (permit zero D/H, record Li/H without predictive check) - domain-scoped validation only.",
-    "tests/test_rng.py": "Scheme primitives are invariants; trajectory golden vectors belong to 0.1 addressing and are regenerated as new goldens by D0-04.",
+    "tests/test_rng.py": "Scheme primitives are invariants; their golden vectors stay 0.1. D0-04 added a separate addressed stream (schema 0.2) with new goldens in tests/test_rng_addresses.py without replacing these.",
     "tests/test_m2_jump.py": "jump equivalence reference is superseded by D0-11 certificates.",
     "tests/test_replay.py": "Replay mechanics are invariants but bit-identity claims are same-build/same-environment only.",
     "tests/test_baseline_manifest.py": "New D0-01 suite; exempt because it validates the scope file itself.",
     "tests/test_run_manifest.py": "New D0-02 candidate controls (run manifests, preflight, legacy rejection policy); exempt as post-freeze candidate work under new names.",
-    "tests/test_event_registry.py": "New D0-03 candidate controls (event ontology validation, stable identity, legacy encoding separation); exempt as post-freeze candidate work under new names."
+    "tests/test_event_registry.py": "New D0-03 candidate controls (event ontology validation, stable identity, legacy encoding separation); exempt as post-freeze candidate work under new names.",
+    "tests/test_rng_addresses.py": "New D0-04 candidate controls (logical 0.2 draw addressing, defect regression, bounds, diagnostic mode, statistical battery); exempt as post-freeze candidate work under new names."
   },
   "tests": {
     "tests/test_log.py::test_record_read_roundtrip": "shared_invariant",

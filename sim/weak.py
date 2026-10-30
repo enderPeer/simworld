@@ -48,7 +48,8 @@ def step(store, ctx, tick, cell, T, sub=0):
     if nu + nd == 0:
         return 0
     r = ctx.draws(tick, "react", cell=cell, sub=sub, n=nu + nd,
-                  payload=[float(p_ud), float(p_du)], cause="weak")
+                  payload=[float(p_ud), float(p_du)], cause="weak",
+                  event="draw.react@1/weak")
     u_ids = [q for j, q in enumerate(pu) if r[j] < p_ud]
     d_ids = [q for j, q in enumerate(pd) if r[nu + j] < p_du]
     store.flip_species(u_ids, cell, 0, 1)

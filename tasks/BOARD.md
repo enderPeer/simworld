@@ -9,6 +9,7 @@ ticket done here; update the structured records together with a card's evidence.
 
 | Card | Ticket | State |
 | --- | --- | --- |
+| [D0-04 Distinct random addresses](D0-04-random-addresses.md) | D0-04 | verified (126/126 tests 2026-10-30, RNG schema 0.2, trajectories moved, bands held) |
 | [D0-03 Event registry and stable event identities](D0-03-event-registry.md) | D0-03 | verified (101/101 tests 2026-10-30, S25 partial foundation) |
 | [D0-02 Run manifests and compatibility preflight](D0-02-run-manifests.md) | D0-02 | verified (commit `b5b6287`) |
 | [D0-01 Baseline freeze and change control](D0-01-baseline-freeze.md) | D0-01 | verified (commit `d27ed0d`) |
@@ -17,7 +18,6 @@ ticket done here; update the structured records together with a card's evidence.
 
 | Ticket | Title | State |
 | --- | --- | --- |
-| D0-04 | Give independent stochastic events distinct random addresses | ready |
 | D0-05 | Fingerprint the full causal state with a typed schema | ready |
 | D0-06 | Kinetic time units and closed-box reference harness | ready |
 

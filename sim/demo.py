@@ -59,7 +59,7 @@ def _annihilate(store, ctx, tick, cell, sp, k):
     pool composition so probe on/off stays stream-aligned.
     """
     r = ctx.draws(tick, "annih", cell=cell, payload=[float(k)], n=k,
-                  cause="thermal")
+                  cause="thermal", event="draw.annih@1", channel=sp)
     removed = 0
     pool = store.superposed_pool(cell, sp)
     take = min(k, len(pool))
@@ -146,7 +146,8 @@ def run(seed, ticks, cells, ctx, probe=None, jump=True):
                 if need > 0:
                     r = ctx.draws(tick, "condense", cell=c,
                                   payload=[float(need)], n=2 * need,
-                                  cause="thermal").reshape(need, 2)
+                                  cause="thermal", event="draw.condense@1",
+                                  channel=sp).reshape(need, 2)
                     m = MASS[sp]
                     add = store.add_superposed
                     for j in range(need):

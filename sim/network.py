@@ -100,7 +100,8 @@ def step(nuc, ctx, tick, cell, T, sub=2):
     if not ch:
         return 0
     r = ctx.draws(tick, "react", cell=cell, sub=sub, n=2 * len(ch),
-                  payload=[float(len(ch)), float(T)], cause="network")
+                  payload=[float(len(ch)), float(T)], cause="network",
+                  event="draw.react@1/network")
     counts = nuc.counts[:, cell]
     fired = 0
     for j, (ia, ib, kc, kf, kr) in enumerate(ch):

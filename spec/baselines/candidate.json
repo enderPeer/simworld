@@ -1,15 +1,17 @@
 {
   "schema": "candidate-identity/0.1",
   "registered": "2026-10-30",
-  "ticket": "D0-02, D0-03",
+  "ticket": "D0-02, D0-03, D0-04",
   "physics_build": "0.1",
   "log_schema": "0.2",
+  "rng_schema": "0.2",
   "event_registry": "event-ontology/0.1",
   "baseline_commit": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
   "baseline_sim_tree": "b2d994c2b45560700d0a24600456e33394d06b4e",
-  "sim_tree": "6c519b6decbcb1ac131c387de29df64a6cc3afe1",
+  "sim_tree": "363ea9186fad2c2ecd8622a4160b370ed007aa71",
   "previous_sim_trees": {
-    "after_D0-02": "0bb968d7ba02937735bb4f3e3200fc0569d2c130"
+    "after_D0-02": "0bb968d7ba02937735bb4f3e3200fc0569d2c130",
+    "after_D0-03": "6c519b6decbcb1ac131c387de29df64a6cc3afe1"
   },
-  "note": "ADR-D0-01 candidate registration for drift from the frozen 0.1 source: run manifests, log schema 0.2 header binding and replay preflight (D0-02), then the event ontology registry bound through schemas.events (D0-03). All metadata-only. Equations, RNG addressing and canonical state hashing are unchanged, so the 0.1 characterization and band suites still pass against this candidate. A behavior change would move those suites to the archived 0.1 environment; a new physics label requires D0-12 acceptance."
+  "note": "ADR-D0-01 candidate registration for drift from the frozen 0.1 source: run manifests and replay preflight (D0-02), event ontology registry (D0-03), then D0-04 logical draw addressing (RNG schema 0.2, ADR-D0-02): production stochastic calls are addressed by registry event identity + explicit channel + offset. This is the first behavior change: trajectories move (seed 42/3400 final_hash fe8e094a... -> f85d189e... on the candidate), yet all 0.1 characterization and band suites still pass, so they keep running on the candidate; exact 0.1 trajectory reproduction stays with the archived source environment at the baseline commit. A new physics label requires D0-12 acceptance."
 }

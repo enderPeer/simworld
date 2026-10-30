@@ -98,7 +98,8 @@ def bind_nucleons(store, ctx, tick, cell, p_neutron, sub=1):
     total = len(pu) + len(pd) + len(cu) + len(cd)
     n_bar = total // 3
     r = ctx.draws(tick, "react", cell=cell, sub=sub, n=n_bar,
-                  payload=[float(p_neutron)], cause="bind")
+                  payload=[float(p_neutron)], cause="bind",
+                  event="draw.react@1/bind")
     neutrons = 0
     for j in range(n_bar):
         for _ in range(3):

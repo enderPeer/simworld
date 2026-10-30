@@ -58,6 +58,17 @@ def load(path=None):
     return doc
 
 
+_REGISTRY_INDEX = None
+
+
+def registry_identity_index():
+    """semantic_id -> stable_hash, loaded once per process."""
+    global _REGISTRY_INDEX
+    if _REGISTRY_INDEX is None:
+        _REGISTRY_INDEX = identity_map(load())
+    return _REGISTRY_INDEX
+
+
 def identity_map(doc):
     """semantic_id -> stable_hash, built from sorted ids (order-independent)."""
     by_id = {event["semantic_id"]: event for event in doc["events"]}

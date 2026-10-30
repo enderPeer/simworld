@@ -20,7 +20,8 @@ def probe_sweep(store, ctx, tick, cell):
     if not ids:
         return 0
     n = len(ids)
-    r = ctx.draws(tick, "decay", cell=cell, q=ids, n=6 * n, cause="probe")
+    r = ctx.draws(tick, "decay", cell=cell, q=ids, n=6 * n, cause="probe",
+                  event="draw.decay@1")
     r = r.reshape(n, 6)
     pos = r[:, 0:3] - 0.5
     mom = (r[:, 3:6] - 0.5) * 2.0

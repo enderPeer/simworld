@@ -5,7 +5,6 @@
   "source_baseline": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
   "purpose": "Execution specification for future work; no new simulation capability is implemented by these records.",
   "ready_now": [
-    "D0-04",
     "D0-05",
     "D0-06"
   ],
@@ -317,9 +316,13 @@
         "sim/demo.py:run condensation loop and _annihilate",
         "website/dist/downloads/SimWorld_Audit_Diagnostics.json:rng_reuse_diagnostic"
       ],
-      "state": "blocked",
+      "state": "verified",
       "milestone": "D0",
-      "evidence": [],
+      "evidence": [
+        "spec/adr/ADR-D0-02-random-addresses.md",
+        "tests/test_rng_addresses.py",
+        "tasks/D0-04-random-addresses.md"
+      ],
       "commands_are_planned": true,
       "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
     },

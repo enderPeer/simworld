@@ -8,8 +8,10 @@ The replay driver also compares periodic state hashes from state.py.
 
 The intended contract is that stochastic mutations use EventContext.
 This class records calls, not arbitrary writes to the underlying stores.
-Repeated calls with identical stream coordinates currently reuse draws;
-repeatability must therefore be distinguished from statistical independence.
+Calls that pass a registry event identity address logical streams
+(ADR-D0-02-random-addresses.md); calls without one keep the legacy
+per-coordinate addressing, which reuses prefixes and must not be used
+for independent events.
 """
 
 import gzip
@@ -19,10 +21,26 @@ import json
 import numpy as np
 
 from . import rng
+from . import ontology
+from .ontology import OntologyError
 
 
 class LogError(RuntimeError):
     pass
+
+
+_LEGACY_DOC = (
+    "legacy address (cell<<24)+(sub<<48), restarts the prefix per call; "
+    "kept for toy worlds and pre-D0-04 history only"
+)
+
+
+def _registry_identity(event_id):
+    try:
+        stable_id = ontology.registry_identity_index()[event_id]
+    except (OntologyError, KeyError):
+        raise LogError(f"event identity {event_id!r} is not in the registry") from None
+    return stable_id
 
 
 def event_digest(q, payload):
@@ -87,11 +105,14 @@ class EventContext:
     """Modes: 'record' (needs path), 'verify' (needs verify_path + expectations), 'off'."""
 
     def __init__(self, seed, mode="record", path=None, verify_path=None,
-                 physics_build=None, meta=None, log_schema=None, manifest_digest=None):
+                 physics_build=None, meta=None, log_schema=None, manifest_digest=None,
+                 diagnose=False):
         if mode not in ("record", "verify", "off"):
             raise LogError(f"unknown mode {mode!r}")
         self.seed = int(seed)
         self.mode = mode
+        self.diagnose = bool(diagnose)
+        self._ranges = {}
         self._writer = None
         self._events = None
         self._pending = None
@@ -125,13 +146,18 @@ class EventContext:
             self._events = iter(body[:-1] if self._end is not None else body)
 
     def draws(self, tick, kind, *, cell=0, sub=0, q=(), payload=None, n=None,
-              cause="thermal"):
-        """Record/verify a draw batch, then generate values at fixed coordinates.
+              cause="thermal", event=None, channel=0, offset=0):
+        """Record/verify a draw batch, then generate values at fixed addresses.
 
-        Payload and IDs enter the event digest, but not the RNG address.
-        Calling twice at the same seed/tick/kind/cell/sub restarts the same
-        prefix. Distinct species or events need separate addresses before
-        independence can be claimed; changing that schema changes replay.
+        With ``event`` (a registry semantic_id such as 'draw.react@1/weak')
+        the batch is addressed by event identity, tick, cell and explicit
+        channel, per ADR-D0-02-random-addresses.md: chunking a range or
+        reordering independent events cannot shift another stream's values.
+        ``offset`` allocates a sub-range of one stream. Payload and IDs
+        still enter the event digest but never the address. Without
+        ``event`` the legacy scheme is used: it restarts the prefix per
+        call and two calls at the same seed/tick/kind/cell/sub reuse
+        draws, which is why it stays out of the production physics.
         """
         if n is None:
             n = len(payload) if payload is not None else len(q)
@@ -142,13 +168,30 @@ class EventContext:
         s = [event_digest(q, payload)]
         if self.mode == "verify":
             self._check(tick, kind, cell, q, s, cause)
-        # Cells and sub-lanes partition the counter range for current sizes.
-        # There is no call counter: another batch at this address reuses it.
-        start = (int(cell) << 24) + (int(sub) << 48)
-        values = rng.draws(self.seed, tick, kind, n, start=start)
+        if event is not None:
+            values = self._addressed_draws(event, tick, cell, channel, n, offset)
+        else:
+            # Cells and sub-lanes partition the counter range for current sizes.
+            # There is no call counter: another batch at this address reuses it.
+            start = (int(cell) << 24) + (int(sub) << 48)
+            values = rng.draws(self.seed, tick, kind, n, start=start)
         if self.mode == "record":
             self._writer.event(tick, kind, cell, q, s, cause)
         return values
+
+    def _addressed_draws(self, event, tick, cell, channel, n, offset):
+        event_hash = _registry_identity(event)
+        if self.diagnose:
+            key = (event, int(tick), int(cell), int(channel))
+            span = (int(offset), int(offset) + int(n))
+            for other, prev in self._ranges.items():
+                if other == key and span[0] < prev[1] and prev[0] < span[1]:
+                    raise rng.AddressError(
+                        f"duplicate draw range {span} on stream {key}: "
+                        f"overlaps previously allocated {prev}")
+            self._ranges[key] = span
+        return rng.draws_at(event_hash, tick, cell, channel, self.seed, n,
+                            offset=offset)
 
     def event(self, tick, kind, *, cell=0, q=(), s=(), cause="thermal"):
         """Non-stochastic log entry (jump, theta collapse): key-checked in replay."""

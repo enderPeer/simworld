@@ -33,7 +33,7 @@ RUN_MANIFEST_SCHEMA = "run-manifest/0.1"
 LOG_SCHEMA = "0.2"
 CURRENT_SCHEMAS = {
     "log": LOG_SCHEMA,
-    "rng": "0.1",
+    "rng": "0.2",
     "state": "0.1",
     "events": "0.1",
     "manifest": RUN_MANIFEST_SCHEMA,
@@ -42,6 +42,7 @@ NUMERIC_POLICY = {
     "dtype": "float64",
     "byte_order": "native",
     "rng_scheme": "splitmix64-fnv1a-0.1",
+    "addressing": "logical-0.2",
 }
 LEGACY_INSTRUCTION = (
     "run has no manifest.json: it predates run manifests (log schema "

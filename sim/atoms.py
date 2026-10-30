@@ -96,7 +96,8 @@ def step(atom, nuc, ctx, tick, cell, T, sub=3):
     f = _prefactor(T)
     m = len(channels)
     r = ctx.draws(tick, "react", cell=cell, sub=sub, n=m * (1 + P_BUDGET),
-                  payload=[float(m), float(T), float(e_free)], cause="atoms")
+                  payload=[float(m), float(T), float(e_free)], cause="atoms",
+                  event="draw.react@1/atoms")
     events = 0
     for j, (i, B, A) in enumerate(channels):
         n_tot = int(counts[i])
