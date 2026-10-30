@@ -24,6 +24,8 @@ jobs:
           python-version: '3.11'
       - name: Build the current public research library
         run: python website/build_content.py
+      - name: Validate the development specification
+        run: python scripts/check_development_spec.py
       - name: Verify the published artifact
         run: python website/check_site.py
       - name: Configure GitHub Pages

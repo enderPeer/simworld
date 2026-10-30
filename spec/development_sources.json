@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-10-30",
+  "source_baseline": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
+  "encoding": "UTF-8; CRLF normalized to LF for portable text fingerprints",
+  "note": "ROADMAP_DIFF.md was a supplied local audit input and is fingerprinted independently of the baseline commit.",
+  "inputs": [
+    {
+      "path": "ROADMAP_DIFF.md",
+      "normalized_bytes": 21147,
+      "sha256_normalized_utf8_lf": "0e8251c1773976e0e3e76d74e926fcc66e3f7513dbb476a95ffceb1a4436be9e"
+    },
+    {
+      "path": "ROADMAP.md",
+      "normalized_bytes": 11840,
+      "sha256_normalized_utf8_lf": "19602a87c78827f2b02cfebb55513aff19c8782db003c3b74ff6d0a8aa5d0a36"
+    },
+    {
+      "path": "BUILD0.md",
+      "normalized_bytes": 22379,
+      "sha256_normalized_utf8_lf": "7274f1ab42ce85851bee498b99ac86740385dd442736a121ba995cbe80531543"
+    },
+    {
+      "path": "PHASE0.md",
+      "normalized_bytes": 10551,
+      "sha256_normalized_utf8_lf": "5b1e0d76567d5d976e5985404938a508545a61a4290afe0be77742a71d48e286"
+    },
+    {
+      "path": "PHASE1.md",
+      "normalized_bytes": 7907,
+      "sha256_normalized_utf8_lf": "e74b7398ca3e5d14e9184c014feed9205b7f42c8e5ea6acfeb60b916326e53f5"
+    },
+    {
+      "path": "PHASE2.md",
+      "normalized_bytes": 9305,
+      "sha256_normalized_utf8_lf": "6c63fd8d5ef3ee5e2809883747abd1083814fcb214c6b2efc239b11b532bd30b"
+    },
+    {
+      "path": "PHASE3.md",
+      "normalized_bytes": 9862,
+      "sha256_normalized_utf8_lf": "a02265ac96e2c4808a691897fb74f8150170db746542d66d7901d875ce9d092f"
+    },
+    {
+      "path": "PHASE4.md",
+      "normalized_bytes": 10564,
+      "sha256_normalized_utf8_lf": "f56c293e7c8619255b9383e47a1e605d0feba778ee4f97564a96e2fa4a2cad97"
+    },
+    {
+      "path": "PHASE5.md",
+      "normalized_bytes": 11528,
+      "sha256_normalized_utf8_lf": "7c9b9ac4b1f203a222c7787d7ebdfd678c232cfe6c4fd2c601fb941b505af554"
+    },
+    {
+      "path": "PHASE6.md",
+      "normalized_bytes": 14486,
+      "sha256_normalized_utf8_lf": "ddfb76ed7a99bf5cef5d26372a4f85301d66d5a063d1e2c97c5f6c8efa1e2560"
+    },
+    {
+      "path": "PHASE7.md",
+      "normalized_bytes": 19852,
+      "sha256_normalized_utf8_lf": "951418845cd06b621e00c210ce509e75dc97f8d6e50b1f3ede6d1b993695304b"
+    },
+    {
+      "path": "PHASE8.md",
+      "normalized_bytes": 20408,
+      "sha256_normalized_utf8_lf": "e16dbe5715878749d7d5160aa60b8ed6f4235fdfec0c3bb3791a8f6d28a09f29"
+    },
+    {
+      "path": "PHASE9.md",
+      "normalized_bytes": 19266,
+      "sha256_normalized_utf8_lf": "f45a0ba6128ff93c538221c71445883307b08a0b4af7b188ef99f03b39977efb"
+    },
+    {
+      "path": "PHASE10.md",
+      "normalized_bytes": 19977,
+      "sha256_normalized_utf8_lf": "765aae1fb34a050241f1689431de4eb1900442362b83b164173ff34a3f1c7a6f"
+    },
+    {
+      "path": "PHASE11.md",
+      "normalized_bytes": 20604,
+      "sha256_normalized_utf8_lf": "dc78a4dc89b399238054a6592e5e42eacfe395b85508737fe2e36f8d1042889b"
+    },
+    {
+      "path": "PHASE12.md",
+      "normalized_bytes": 20521,
+      "sha256_normalized_utf8_lf": "10e57634896fc8f94ad5783569dc2e3bd4faaeb6dbcbb65edbd1c2c1fe0bb583"
+    },
+    {
+      "path": "PHASE13.md",
+      "normalized_bytes": 22106,
+      "sha256_normalized_utf8_lf": "287afcfc47106d9a595f11ab32bdeed2906b91a272b8f6ebf0aed94f85007d40"
+    },
+    {
+      "path": "PHASE14.md",
+      "normalized_bytes": 21141,
+      "sha256_normalized_utf8_lf": "0675c6bc86bc0f7f621aaf07462a787376b10db1fdaaea762da20dcce8840be1"
+    },
+    {
+      "path": "PHASE15.md",
+      "normalized_bytes": 20691,
+      "sha256_normalized_utf8_lf": "820c3af4dd5b5ac74edc78cb35ce7f46cb90218dccf1c2450747896422e7095c"
+    },
+    {
+      "path": "PHASE16.md",
+      "normalized_bytes": 18134,
+      "sha256_normalized_utf8_lf": "69c810472eb45a37f371964e978ad8da397b9099b4eac2030ab1351ca4132969"
+    },
+    {
+      "path": "spec/seams.md",
+      "normalized_bytes": 15818,
+      "sha256_normalized_utf8_lf": "4e21d4f8835185ebfef0d335b08628b1ae93412bd1f77db63e269809922ad43f"
+    },
+    {
+      "path": "spec/decisions.md",
+      "normalized_bytes": 4128,
+      "sha256_normalized_utf8_lf": "d96d77022cc27f652ae9818becf1b73ccfa249644240182bcd1562c7e676796b"
+    },
+    {
+      "path": "spec/constants.md",
+      "normalized_bytes": 5210,
+      "sha256_normalized_utf8_lf": "b8740656052e310e2bdbbd8fd5b0e7acbe9876e6b337b47848b35cd7e6cea0a6"
+    },
+    {
+      "path": "spec/interfaces.md",
+      "normalized_bytes": 3216,
+      "sha256_normalized_utf8_lf": "3d120a57e24d6f0297bc0f59f73a40cbe82ec64d0f7be926856069f70f2ad9da"
+    },
+    {
+      "path": "spec/surprises.md",
+      "normalized_bytes": 3318,
+      "sha256_normalized_utf8_lf": "0d048ff8d662660025ecff903d9d63cd8fcc362a86f5e4a23db19d5a4bb4df0f"
+    },
+    {
+      "path": "docs/architecture.md",
+      "normalized_bytes": 6178,
+      "sha256_normalized_utf8_lf": "b9dd9b459e30b1c217c21b1c2ca0b2b1d2ae0c303e8657154502d37d5a82269d"
+    },
+    {
+      "path": "docs/research-status.md",
+      "normalized_bytes": 6984,
+      "sha256_normalized_utf8_lf": "d8fa5e3f7fe0736f6f454b4a40a9d5417470e6ea10f1c63444b09a8ee1c753ab"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "normalized_bytes": 5213,
+      "sha256_normalized_utf8_lf": "c0e5e86509160f45308adc4dcdb691c834b673c620e77b4934f099ab5e755177"
+    }
+  ]
+}

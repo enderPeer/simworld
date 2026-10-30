@@ -1,0 +1,473 @@
+{
+  "schema_version": "1.0",
+  "planning_version": "1.0",
+  "as_of": "2026-10-30",
+  "source_baseline": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
+  "physics_build": "0.1",
+  "proposed_next_physics_build": "0.2 candidate; not implemented or accepted",
+  "baseline": {
+    "state": "historical_micro_slice_accepted",
+    "full_phase0_complete": false,
+    "reported_tests_passed": 65,
+    "audit": "ROADMAP_DIFF.md",
+    "ci_url": "https://github.com/enderPeer/simworld/actions/runs/40863848747",
+    "ci_verified_for_source": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
+    "replay_hashes_in_original_audit": 34,
+    "scope": "Effective reduced model. Exact re-execution is environment-scoped; no cross-platform complete-hash identity or checkpoint claim."
+  },
+  "ready_now": [
+    "D0-01"
+  ],
+  "first_milestone": "D0",
+  "seam_summary": {
+    "total": 25,
+    "open": 22,
+    "contract_corrections": [
+      "S14",
+      "S17",
+      "S21"
+    ],
+    "implemented_closures_verified_here": 0
+  },
+  "phases": [
+    {
+      "phase": 0,
+      "title": "World rules",
+      "implementation_state": "micro_slice_accepted",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P00-D1",
+        "P00-D2",
+        "P00-D3",
+        "P00-D4",
+        "P00-D5",
+        "P00-SPIKE-A",
+        "P00-SPIKE-B",
+        "P00-BASELINE"
+      ],
+      "related_seams": [
+        "S4",
+        "S5",
+        "S9",
+        "S16",
+        "S22",
+        "S23",
+        "S24",
+        "S25"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 1,
+      "title": "Quantum layer",
+      "implementation_state": "precursor_present",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P01-W1",
+        "P01-W2",
+        "P01-W3",
+        "P01-W4",
+        "P01-W5",
+        "P01-W6"
+      ],
+      "related_seams": [
+        "S5",
+        "S16",
+        "S21",
+        "S22",
+        "S23",
+        "S24",
+        "S25"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 2,
+      "title": "Nuclear layer",
+      "implementation_state": "precursor_present",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P02-W1",
+        "P02-W2",
+        "P02-W3",
+        "P02-W4",
+        "P02-W5",
+        "P02-W6"
+      ],
+      "related_seams": [
+        "S6",
+        "S9"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 3,
+      "title": "Atomic layer",
+      "implementation_state": "precursor_present",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P03-W1",
+        "P03-W2",
+        "P03-W3",
+        "P03-W4",
+        "P03-W5"
+      ],
+      "related_seams": [],
+      "evidence": []
+    },
+    {
+      "phase": 4,
+      "title": "Chemistry",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P04-W1",
+        "P04-W2",
+        "P04-W3",
+        "P04-W4",
+        "P04-W5",
+        "P04-W6"
+      ],
+      "related_seams": [
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 5,
+      "title": "Materials and substances",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P05-W1",
+        "P05-W2",
+        "P05-W3",
+        "P05-W4",
+        "P05-W5",
+        "P05-W6"
+      ],
+      "related_seams": [
+        "S2",
+        "S3",
+        "S11",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 6,
+      "title": "Continuum physics",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P06-W1",
+        "P06-W2",
+        "P06-W3",
+        "P06-W4",
+        "P06-W5",
+        "P06-W6"
+      ],
+      "related_seams": [
+        "S1",
+        "S2",
+        "S4",
+        "S8",
+        "S9",
+        "S12",
+        "S13",
+        "S15",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 7,
+      "title": "Planet and space",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P07-W1",
+        "P07-W2",
+        "P07-W3",
+        "P07-W4",
+        "P07-W5",
+        "P07-W6",
+        "P07-W7"
+      ],
+      "related_seams": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S12",
+        "S19",
+        "S20",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 8,
+      "title": "Life and ecosystems",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P08-W1",
+        "P08-W2",
+        "P08-W3",
+        "P08-W4",
+        "P08-W5",
+        "P08-W6",
+        "P08-W7"
+      ],
+      "related_seams": [
+        "S10",
+        "S11",
+        "S12",
+        "S14",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 9,
+      "title": "Agency and civilization",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P09-W1",
+        "P09-W2",
+        "P09-W3",
+        "P09-W4",
+        "P09-W5",
+        "P09-W6",
+        "P09-W7"
+      ],
+      "related_seams": [
+        "S13",
+        "S14",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 10,
+      "title": "Technology and knowledge",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P10-W1",
+        "P10-W2",
+        "P10-W3",
+        "P10-W4",
+        "P10-W5",
+        "P10-W6",
+        "P10-W7"
+      ],
+      "related_seams": [
+        "S5",
+        "S13",
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 11,
+      "title": "People and society",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P11-W1",
+        "P11-W2",
+        "P11-W3",
+        "P11-W4",
+        "P11-W5",
+        "P11-W6",
+        "P11-W7"
+      ],
+      "related_seams": [
+        "S17",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 12,
+      "title": "Money and politics",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P12-W1",
+        "P12-W2",
+        "P12-W3",
+        "P12-W4",
+        "P12-W5",
+        "P12-W6",
+        "P12-W7"
+      ],
+      "related_seams": [
+        "S16",
+        "S17",
+        "S18",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 13,
+      "title": "Infrastructure and externalities",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P13-W1",
+        "P13-W2",
+        "P13-W3",
+        "P13-W4",
+        "P13-W5",
+        "P13-W6",
+        "P13-W7"
+      ],
+      "related_seams": [
+        "S2",
+        "S7",
+        "S13",
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 14,
+      "title": "Perception memory and detail",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P14-W1",
+        "P14-W2",
+        "P14-W3",
+        "P14-W4",
+        "P14-W5",
+        "P14-W6",
+        "P14-W7"
+      ],
+      "related_seams": [
+        "S7",
+        "S16",
+        "S21",
+        "S22",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 15,
+      "title": "Runtime and scalability",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P15-W1",
+        "P15-W2",
+        "P15-W3",
+        "P15-W4",
+        "P15-W5",
+        "P15-W6",
+        "P15-W7"
+      ],
+      "related_seams": [
+        "S7",
+        "S9",
+        "S16",
+        "S22",
+        "S23",
+        "S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 16,
+      "title": "Integrated emergent loop",
+      "implementation_state": "not_implemented",
+      "specification_state": "detailed_plan",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "required_work_packages": [
+        "P16-W1",
+        "P16-W2",
+        "P16-W3",
+        "P16-W4",
+        "P16-W5",
+        "P16-W6"
+      ],
+      "related_seams": [
+        "S6",
+        "S16",
+        "S23",
+        "S24",
+        "S25"
+      ],
+      "evidence": []
+    }
+  ],
+  "update_rule": "Change status only with a source revision, command/reference, scoped result and evidence link. Contract fixes do not mark future mechanics implemented."
+}

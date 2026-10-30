@@ -67,6 +67,40 @@ for item in data['downloads'] + data['documents']:
                         for name in archive.namelist()), f'Unsafe archive members: {path.name}')
 for phase in data['phases']:
     artifact(phase['document'])
+
+# The current development plan is a separate, changing record from the paper's
+# dated evidence. Keep all public copies and the self-contained source bundle in
+# agreement, without silently rewriting that scientific publication.
+repo = ROOT.parent.parent
+backlog = json.loads((repo/'spec/development_backlog.json').read_text(encoding='utf-8'))
+status = json.loads((repo/'spec/status.json').read_text(encoding='utf-8'))
+development = data['development']
+require(development['version'] == backlog['planning_version'], 'Stale development planning version')
+require(development['date'] == backlog['date'], 'Stale development planning date')
+require(development['readyTickets'] == status['ready_now'], 'Website ready queue differs from current status')
+require(development['starterTicketCount'] == len(backlog['starter_tickets']), 'Stale starter ticket count')
+require(development['workPackageCount'] == sum(len(p['work_packages']) for p in backlog['phases']),
+        'Stale phase work package count')
+require(development['seamCount'] == len(backlog['seams']), 'Stale development seam count')
+require(any(doc['id'] == 'DEVELOPMENT_SPEC.md' for doc in data['documents']),
+        'Development specification is missing from the project library')
+require(any(doc['id'] == 'ROADMAP_DIFF.md' for doc in data['documents']),
+        'Roadmap audit is missing from the project library')
+require((ROOT/'downloads/SimWorld_Development_Specification.md').read_bytes() ==
+        artifact(development['document']).read_bytes(), 'Specification download differs from the library')
+require(json.loads((ROOT/'downloads/SimWorld_Development_Backlog.json').read_text(encoding='utf-8')) == backlog,
+        'Downloadable development backlog differs from the current plan')
+with zipfile.ZipFile(ROOT/'downloads/SimWorld_Current_Source.zip') as source:
+    required = ['DEVELOPMENT_SPEC.md', 'ROADMAP_DIFF.md', 'scripts/check_development_spec.py',
+                'spec/development_backlog.json', 'spec/development_sources.json', 'spec/status.json']
+    required += [name for ticket in backlog['starter_tickets'] for name in ticket['files_existing']]
+    required += [item['path'] for item in json.loads((repo/'spec/development_sources.json').read_text(encoding='utf-8'))['inputs']]
+    require(all('simworld/'+name in source.namelist() for name in required),
+            'Source download is missing part of the development specification or its source inputs')
+    require(json.loads(source.read('simworld/spec/development_backlog.json')) == backlog,
+            'Source download contains a stale development backlog')
+    require(json.loads(source.read('simworld/spec/status.json')) == status,
+            'Source download contains a stale development status')
 catalog=json.loads((ROOT/'data/products.json').read_text(encoding='utf-8'))
 require(len(catalog['products'])==12, 'The portfolio should contain twelve complete concepts')
 require(data['portfolio']['conceptCount']==len(catalog['products']), 'Portfolio count is stale')

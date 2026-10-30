@@ -51,6 +51,8 @@ jobs:
           python-version: '3.11'
       - name: Build current documentation and source downloads
         run: python website/build_content.py
+      - name: Validate development coverage, dependencies and status
+        run: python scripts/check_development_spec.py --ready
       - name: Check paths, evidence files and download integrity
         run: python website/check_site.py
       - name: Check browser script syntax

@@ -1,5 +1,15 @@
 # Changelog
 
+## Development specification 1.0 — 30 October 2026
+
+- Reconcile the roadmap, implementation audit, all 17 phase plans and seam ledger into one development specification.
+- Define 12 starter tickets, 112 phase work packages and 25 seam closure contracts, with dependencies, acceptance criteria and source traceability.
+- Separate current implementation, local model validation and later integration gates; make D0-01 the first ready ticket.
+- Add structured backlog/status records, source fingerprints and an offline validator, checked in CI and before website deployment.
+- Publish the specification and backlog in the website library and downloads, with a complete source bundle for development.
+
+The physics build remains `0.1`. This plan specifies future implementation and preserves the historical experiment evidence.
+
 ## Possible product portfolio — 29 October 2026
 
 - Add twelve proposed applications across tooling extensions, physical-model workbenches, and longer-range world and agent systems.

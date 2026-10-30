@@ -2,7 +2,7 @@
 
 **A reproducible physical seed and a research program for an emergent world.**
 
-[Project website](https://enderpeer.github.io/simworld/) · [Research white paper](website/dist/downloads/SimWorld_Research_White_Paper.pdf) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
+[Project website](https://enderpeer.github.io/simworld/) · [Research white paper](website/dist/downloads/SimWorld_Research_White_Paper.pdf) · [Development specification](DEVELOPMENT_SPEC.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
 [Possible product portfolio](https://enderpeer.github.io/simworld/portfolio.html) explores twelve proposed applications, with intended users, first scopes, missing capabilities, and validation gates. These are product hypotheses rather than available software.
 
@@ -21,8 +21,21 @@ The executable project is currently a **small, effective stochastic physics mode
 | Run the existing model | [Quick start](#quick-start) below |
 | Understand the implementation | [Architecture guide](docs/architecture.md) |
 | Evaluate the scientific claims and limitations | [Research status](docs/research-status.md) and the [white paper](website/dist/downloads/SimWorld_Research_White_Paper.pdf) |
+| Start developing the next build | [Development specification](DEVELOPMENT_SPEC.md), beginning with **D0-01** |
 | See the full research program | [ROADMAP.md](ROADMAP.md) and the individual `PHASE*.md` plans |
 | Propose a change | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## Start developing
+
+[DEVELOPMENT_SPEC.md](DEVELOPMENT_SPEC.md) reconciles the implementation audit, original roadmap, all 17 phase plans and the seam ledger into one execution plan. It contains **12 starter tickets, 112 phase work packages and 25 cross-phase seams**, with dependencies, acceptance criteria, proposed files and validation commands.
+
+Start with **D0-01: freeze the historical baseline and define change control**. The first milestone stabilizes run identity, random-event addressing, reversible kinetics, causal state and conservation before the project expands into new layers. After D0-01, manifest, event-contract and reference-kinetics design work can proceed in parallel.
+
+```sh
+python scripts/check_development_spec.py --ready
+```
+
+This command checks the plan and prints work whose prerequisites are satisfied. [The structured backlog](spec/development_backlog.json) and [status record](spec/status.json) distinguish planned work from verified implementation; all full-phase completion flags currently remain false. Proposed test commands in tickets are to run after the corresponding implementation exists. Use `--check-sources` to compare the planning inputs with their recorded fingerprints.
 
 ## What is implemented
 
@@ -96,6 +109,8 @@ Broad fitted acceptance bands, a small population, and a passing regression suit
 | [`spikes/`](spikes/) | Separate quant-cost and shell-approximation experiments |
 | [`spec/`](spec/) | Constants, decisions, interfaces, known surprises, and cross-phase dependencies |
 | [`BUILD0.md`](BUILD0.md) | Contract for the first runnable micro-seed |
+| [`DEVELOPMENT_SPEC.md`](DEVELOPMENT_SPEC.md), [`spec/development_backlog.json`](spec/development_backlog.json) | Reconciled execution plan, starter tickets, phase work packages and acceptance gates |
+| [`ROADMAP_DIFF.md`](ROADMAP_DIFF.md) | Supplied implementation audit used to reconcile the development plan |
 | [`ROADMAP.md`](ROADMAP.md), `PHASE*.md` | Proposed scope, mechanisms, and gates across 17 phases |
 | [`docs/`](docs/) | Reader guides and implementation status |
 | [`website/`](website/) | Static website, content tooling, and optional local server |

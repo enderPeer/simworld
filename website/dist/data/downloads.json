@@ -30,24 +30,44 @@
     "sha256": "a3170d573f1246b791d69f0e32dd51192ecc0907a5504a9694379c12784d349f"
   },
   {
+    "id": "development",
+    "title": "Development specification",
+    "description": "The reconciled roadmap: 17 phases, 112 work packages, 12 starter tickets and 25 cross-phase seams. Begin with D0-01; use the current source ZIP for the complete linked bundle.",
+    "filename": "SimWorld_Development_Specification.md",
+    "url": "/downloads/SimWorld_Development_Specification.md",
+    "format": "MD",
+    "bytes": 134588,
+    "sha256": "abc393bf224d84302765bd1aabd77bfd5198a245f36a0a4868f3d7d645de37bd"
+  },
+  {
+    "id": "backlog",
+    "title": "Structured development backlog",
+    "description": "Machine-readable tickets, dependencies, phase gates and acceptance criteria for development planning. These records do not claim new capabilities are implemented.",
+    "filename": "SimWorld_Development_Backlog.json",
+    "url": "/downloads/SimWorld_Development_Backlog.json",
+    "format": "JSON",
+    "bytes": 146963,
+    "sha256": "d82f665117d9e23f7c1624db50a6b3cd2eec39d80d0de0306055e13e613915f5"
+  },
+  {
     "id": "source",
-    "title": "Current engine source",
-    "description": "Python engine, tests, prototypes, contributor documentation and all currently available phase plans.",
+    "title": "Current source and development bundle",
+    "description": "Python engine, tests, prototypes, development specification, structured backlog and status, validator, source audit and all 17 phase plans.",
     "filename": "SimWorld_Current_Source.zip",
     "url": "/downloads/SimWorld_Current_Source.zip",
     "format": "ZIP",
-    "bytes": 211188,
-    "sha256": "bf7120a9788d97f06e230385d02ede7ba87d4cf0066f00a83911b5564c7a54e1"
+    "bytes": 1377697,
+    "sha256": "523f55194caaa91979dca1ce297d2bac096bfcb25e195d4c838915b7bed69a60"
   },
   {
     "id": "documentation",
     "title": "Complete documentation",
-    "description": "Roadmap, first-build contract, all available phase plans and specification records.",
+    "description": "Development specification, roadmap audit, first-build contract, all 17 phase plans and specification records.",
     "filename": "SimWorld_Documentation.zip",
     "url": "/downloads/SimWorld_Documentation.zip",
     "format": "ZIP",
-    "bytes": 145950,
-    "sha256": "cdbb3e812f1bcda043a34ba2f790b720e274cf57a353e2da9317accc124588aa"
+    "bytes": 195871,
+    "sha256": "fc4f64a6a0c2707fe0a39435f73c57a3e937ae90d371da7ade67773693997a01"
   },
   {
     "id": "run",

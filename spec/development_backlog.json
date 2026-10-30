@@ -1,0 +1,2838 @@
+{
+  "schema_version": "1.0",
+  "planning_version": "1.0",
+  "date": "2026-10-30",
+  "source_baseline": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
+  "purpose": "Execution specification for future work; no new simulation capability is implemented by these records.",
+  "ready_now": [
+    "D0-01"
+  ],
+  "first_milestone": "D0",
+  "milestones": [
+    {
+      "id": "D0",
+      "title": "Reference stabilization",
+      "depends_on": [],
+      "state": "planned",
+      "phases": [
+        0
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R1",
+      "title": "Physical foundations",
+      "depends_on": [
+        "D0"
+      ],
+      "state": "planned",
+      "phases": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R2",
+      "title": "Chemistry and materials",
+      "depends_on": [
+        "R1"
+      ],
+      "state": "planned",
+      "phases": [
+        4,
+        5
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R3",
+      "title": "Continuum and planetary systems",
+      "depends_on": [
+        "R2"
+      ],
+      "state": "planned",
+      "phases": [
+        6,
+        7
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R4",
+      "title": "Life and agency",
+      "depends_on": [
+        "R3"
+      ],
+      "state": "planned",
+      "phases": [
+        8,
+        9
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R5",
+      "title": "Technology and institutions",
+      "depends_on": [
+        "R4"
+      ],
+      "state": "planned",
+      "phases": [
+        10,
+        11,
+        12
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R6",
+      "title": "Infrastructure and observation",
+      "depends_on": [
+        "R5"
+      ],
+      "state": "planned",
+      "phases": [
+        13,
+        14
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R7",
+      "title": "Runtime transformation",
+      "depends_on": [
+        "R6"
+      ],
+      "state": "planned",
+      "phases": [
+        15
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R8",
+      "title": "Integrated world experiments",
+      "depends_on": [
+        "R7"
+      ],
+      "state": "planned",
+      "phases": [
+        16
+      ],
+      "evidence": []
+    }
+  ],
+  "starter_tickets": [
+    {
+      "id": "D0-01",
+      "title": "Freeze the historical baseline and define change control",
+      "priority": "P0",
+      "depends_on": [],
+      "owner_role": "Reference-model maintainer",
+      "files_existing": [
+        "spec/decisions.md",
+        "spec/constants.md",
+        "BUILD0.md",
+        "CONTRIBUTING.md",
+        "website/dist/downloads/SimWorld_Research_Materials_Public.zip"
+      ],
+      "files_new": [
+        "spec/adr/ADR-D0-01-versioning.md",
+        "spec/baselines/physics-0.1.json",
+        "tests/test_baseline_manifest.py",
+        "spec/test-scope.json"
+      ],
+      "problem_evidence": "The frozen documentation treats D1-D5 as closed, while ROADMAP_DIFF and executable comments identify weaker guarantees. The physics_build string is manually maintained and historical artifacts lack a complete execution identity.",
+      "change": "Identify an immutable 0.1 source revision and dependency environment, record artifact fingerprints and supported reproduction commands, and establish candidate/accepted build states. Preserve accepted historical data without representing the broader phase as complete.",
+      "acceptance": [
+        "The manifest resolves to exact source and preserved 0.1 summary, decompressed log and hash-list fingerprints; validate hashes without rerunning the universe.",
+        "A current-status record distinguishes accepted BUILD0 microslice, known defects, proposed phase contracts and implemented-but-unvalidated changes.",
+        "The version policy names model, runtime, log, RNG and state schemas and requires new artifacts for changes that alter a trajectory or its interpretation.",
+        "No original audit or acceptance files are overwritten or silently replaced.",
+        "Classify every existing test as a shared invariant, legacy 0.1 characterization or domain-scoped model-validation check. Specify separate execution contexts before behavior changes and run legacy characterizations against the archived 0.1 source; no blanket xfail or weakened assertion hides a changed model."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_baseline_manifest.py"
+      ],
+      "compatibility": "This ticket is documentation/manifest work and must not alter 0.1 simulation outputs. Historical replay remains an isolated archived-source operation.",
+      "source_trace": [
+        "ROADMAP_DIFF.md: Status ambiguity",
+        "ROADMAP_DIFF.md: Recommended roadmap revisions",
+        "spec/seams.md: S9, S23"
+      ],
+      "state": "ready",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-02",
+      "title": "Add explicit run manifests and compatibility preflight",
+      "priority": "P0",
+      "depends_on": [
+        "D0-01"
+      ],
+      "owner_role": "Reproducibility maintainer",
+      "files_existing": [
+        "sim/demo.py",
+        "sim/log.py",
+        "sim/replay.py",
+        "tests/test_log.py",
+        "tests/test_replay.py"
+      ],
+      "files_new": [
+        "sim/manifest.py",
+        "tests/test_run_manifest.py",
+        "spec/run-manifest.schema.json"
+      ],
+      "problem_evidence": "run_recorded currently records ticks, cells, hash interval, probes and jump flag. replay_dir primarily checks physics_build and reuses meta; source, constants, numerical/runtime identity and schema identity are not complete compatibility inputs.",
+      "change": "Emit a validated run manifest containing model/runtime identifiers, relevant source/configuration hashes, numeric policy, package versions, seed, scheduler settings and schema versions. Classify which fields affect exact replay and which are informational. Check compatibility before allocating a world or consuming events.",
+      "acceptance": [
+        "Manifest round trips preserve semantic fields and reject missing required fields, unsupported schemas and contradictory settings.",
+        "Tests change a behavior-relevant constant/configuration, source/runtime fingerprint or RNG schema while retaining the old physics label; preflight fails before simulation.",
+        "Nonsemantic paths and timestamps do not enter simulation RNG coordinates or canonical state hashes.",
+        "Legacy 0.1 input is either supported by an explicitly compatible reader/executor or rejected with an archived-source reproduction instruction; no guessed migration is performed."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_run_manifest.py tests/test_log.py tests/test_replay.py"
+      ],
+      "compatibility": "Adding metadata alone need not change the physical equations. The log schema must still change if its serialized header changes, and the compatibility policy must preserve historical verification boundaries.",
+      "source_trace": [
+        "sim/demo.py:run_recorded",
+        "sim/replay.py:replay_dir",
+        "sim/log.py:LogWriter",
+        "spec/seams.md: S9, S23"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-03",
+      "title": "Register current event kinds and stable event identities",
+      "priority": "P0",
+      "depends_on": [
+        "D0-01"
+      ],
+      "owner_role": "Event-contract maintainer",
+      "files_existing": [
+        "sim/constants.py",
+        "sim/rng.py",
+        "sim/log.py",
+        "tests/test_log.py"
+      ],
+      "files_new": [
+        "spec/ontology.json",
+        "tests/test_event_registry.py"
+      ],
+      "problem_evidence": "Draw kinds live in constants.KIND_IDS, while collapse/jump kinds are separately declared in rng.LOG_KIND_IDS. Logs encode a truncated kind hash and generic payload digest; there is no global versioned semantic registry.",
+      "change": "Create a minimal registry for events actually implemented today, with unique stable IDs, schema versions, required payload fields, producer ownership and draw-versus-log-only role. Define stable process/species/channel/attempt identity for new events. Reserve an extension mechanism without fabricating future phase implementations.",
+      "acceptance": [
+        "Duplicate IDs, conflicting names/schema versions, unregistered producers and missing required fields fail validation.",
+        "The same semantic event ID survives cache regeneration and deterministic channel re-enumeration.",
+        "Legacy encoding is identified separately; replacing truncated kind hashes does not pretend old logs use the new registry.",
+        "The initial registry contains only implemented kinds and documented extension points; S25 is marked partial foundation work, not closed for all future phases."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_event_registry.py tests/test_log.py"
+      ],
+      "compatibility": "A registry/schema change requires explicit log compatibility. Event identity must be independent of wall-clock timing and incidental Python container order.",
+      "source_trace": [
+        "sim/constants.py:KIND_IDS",
+        "sim/rng.py:LOG_KIND_IDS",
+        "sim/log.py:EventContext",
+        "spec/seams.md: S8, S25"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-04",
+      "title": "Give independent stochastic events distinct random addresses",
+      "priority": "P0",
+      "depends_on": [
+        "D0-02",
+        "D0-03"
+      ],
+      "owner_role": "Stochastic-kernel maintainer",
+      "files_existing": [
+        "sim/rng.py",
+        "sim/log.py",
+        "sim/demo.py",
+        "sim/weak.py",
+        "sim/bind.py",
+        "sim/network.py",
+        "sim/atoms.py",
+        "sim/collapse.py",
+        "tests/test_rng.py",
+        "tests/test_log.py"
+      ],
+      "files_new": [
+        "spec/adr/ADR-D0-02-random-addresses.md",
+        "tests/test_rng_addresses.py"
+      ],
+      "problem_evidence": "EventContext.draws starts at (cell << 24) + (sub << 48) on every call. Condensation and removal calls for different species reuse prefixes at the same tick/kind/cell/sub; payload contents do not change the address. The public audit reproduces identical prefixes for requests of length 10 and 16 with different payloads.",
+      "change": "Introduce explicit logical draw addresses containing stable event/process identity and a draw offset. Define supported bounds, overflow and duplicate-range behavior, deterministic byte encoding and generator/hash collision assumptions. Allocate species/channel identities explicitly rather than use a global call-order counter.",
+      "acceptance": [
+        "The original repeated-prefix case is captured as a regression. Distinct logical events receive disjoint addresses; duplicate allocations are rejected in a diagnostic mode.",
+        "Chunking one draw range and reordering independent events produce the same addressed values; conditionally omitted work does not shift unrelated streams.",
+        "Scalar/vector implementations match new golden vectors, invalid address bounds fail clearly, and record/verify modes regenerate identical new-build histories.",
+        "A separately declared statistical test battery checks the chosen generator and application streams. Do not assert that all numeric outputs differ or that unique coordinates mathematically prove independence."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_rng.py tests/test_rng_addresses.py tests/test_log.py tests/test_replay.py"
+      ],
+      "compatibility": "This changes trajectories. Advance the candidate behavior/RNG version and record new golden vectors without replacing 0.1 vectors or treating new final hashes as failures of historical reproduction.",
+      "source_trace": [
+        "sim/log.py:EventContext.draws",
+        "sim/demo.py:run condensation loop and _annihilate",
+        "website/dist/downloads/SimWorld_Audit_Diagnostics.json:rng_reuse_diagnostic"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-05",
+      "title": "Fingerprint the full causal state with a typed schema",
+      "priority": "P1",
+      "depends_on": [
+        "D0-02",
+        "D0-03"
+      ],
+      "owner_role": "State/replay maintainer",
+      "files_existing": [
+        "sim/state.py",
+        "sim/demo.py",
+        "sim/quanta.py",
+        "sim/lattice.py",
+        "tests/test_replay.py"
+      ],
+      "files_new": [
+        "spec/state-schema.json",
+        "tests/test_causal_state.py"
+      ],
+      "problem_evidence": "Current fingerprints include sorted record columns and selected arrays, but do not include pool ordering, next-ID allocation, driver skip/bound/processed flags or freeze-tracking state that can affect later execution. IDs are converted to float64 and array byte order is native.",
+      "change": "Inventory authoritative versus derived state, move causal driver variables into a serializable state record, and hash explicit field names/types/shapes with a fixed byte-order policy. Preserve order where it affects future random selection; do not sort a causal pool merely to make hashes match.",
+      "acceptance": [
+        "Changing each causal field independently changes the new fingerprint or fails a consistency invariant; purely diagnostic/informational fields follow the documented exclusion rule.",
+        "Integer identifiers remain lossless at their declared supported limits; type, length and endian encoding are explicit.",
+        "Equivalent serialization round trips produce identical fingerprints, including after cache reconstruction where cache contents are declared noncausal.",
+        "Document that a complete causal-state fingerprint is not yet a resumable checkpoint: pause/resume, I/O atomicity and version migration require their own later acceptance tests."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_causal_state.py tests/test_replay.py"
+      ],
+      "compatibility": "Use a new state/hash schema. Preserve original hashes as original-schema artifacts; never compare incompatible schema digests as though they measure physical drift.",
+      "source_trace": [
+        "sim/demo.py:run",
+        "sim/quanta.py:columns and pool operations",
+        "sim/state.py:canonical_hash",
+        "ROADMAP_DIFF.md: Replay and reproducibility diff"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-06",
+      "title": "Specify kinetic time and build a closed-box reference harness",
+      "priority": "P0",
+      "depends_on": [
+        "D0-01"
+      ],
+      "owner_role": "Numerical-model maintainer",
+      "files_existing": [
+        "sim/constants.py",
+        "sim/network.py",
+        "sim/atoms.py",
+        "sim/weak.py",
+        "sim/lattice.py",
+        "tests/physics_bands.toml"
+      ],
+      "files_new": [
+        "spec/adr/ADR-D0-03-kinetic-time.md",
+        "spec/validation-protocol.json",
+        "tests/reference/finite_reactions.py",
+        "tests/test_kinetic_reference.py"
+      ],
+      "problem_evidence": "The driver uses geometric physical-looking times but weak, nuclear and atomic kernels apply fitted per-tick probabilities without a consistent variable delta-t. Caps, a fixed draw budget and one-forward-or-reverse scheduling change effective kinetics. Several configured constants have no operative runtime use.",
+      "change": "Declare rate units, supported temperature/population domain, time-step mapping, reaction combinatorics and open/closed reservoirs. Implement a small independent reference for fixed-temperature finite systems, plus exact or analytically known stationary distributions. Keep expansion-driven cosmological claims outside this reference gate.",
+      "acceptance": [
+        "A parameter ledger distinguishes operative constants, calibration inputs, mathematical constants, declared-but-unused fields and future placeholders.",
+        "Reference cases include a reversible finite A+B/C system and a one-charge capture/ionization system with exact inventory constraints.",
+        "Reference correctness is checked against analytic probabilities or an independently derived finite-state generator; the same production helper is not used on both sides of the comparison.",
+        "Numerical tolerance, supported domain, seed/sample protocol, error budget and calibration/held-out split are committed before inspecting candidate outcomes. No invented universal tolerance or arbitrary cosmology band is substituted.",
+        "Dimensionless/model-time use is clearly labeled if no defensible physical-unit mapping is yet selected."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_kinetic_reference.py"
+      ],
+      "compatibility": "This defines the candidate model contract. It must not retroactively reinterpret the time or rates of archived 0.1 records.",
+      "source_trace": [
+        "sim/constants.py:time_at",
+        "sim/weak.py:flip_probs",
+        "sim/network.py:_prob and step",
+        "sim/atoms.py:step",
+        "docs/research-status.md: Physical rates and resolution"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-07",
+      "title": "Enumerate reversible nuclear channels independently of populations",
+      "priority": "P0",
+      "depends_on": [
+        "D0-03",
+        "D0-06"
+      ],
+      "owner_role": "Nuclear-kernel maintainer",
+      "files_existing": [
+        "sim/bind.py",
+        "sim/network.py",
+        "tests/test_m3_nuclei.py"
+      ],
+      "files_new": [
+        "tests/test_nuclear_channels.py"
+      ],
+      "problem_evidence": "network._rates skips any pair with an absent forward reactant. A product-only (Z=1,A=2) state therefore lacks the reverse path to (1,1)+(0,1), although bind.channel_open accepts the forward channel. Other reactions may fire; the defect is the absent reverse edge.",
+      "change": "Build a canonical, bounded, reversible channel graph from allowed species and declared binding/stability rules. Store stoichiometry, reaction Q, canonical ID and forward/reverse availability separately from instantaneous population propensities. Preserve the distinction between imposed stability rules and derived energies.",
+      "acceptance": [
+        "A product-only state contains the expected dissociation edge even with zero corresponding reactants; forward propensity is zero while a permitted reverse propensity can be positive.",
+        "Absent products do not remove an allowed forward edge. Canonical graph/cache reconstruction produces identical channel identities and order.",
+        "Duplicate unordered pairs and invalid species sums are rejected; every channel's A and Z stoichiometry balances exactly.",
+        "This PR demonstrates reachability/structure only; it does not claim correct equilibrium until D0-08 passes."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_nuclear_channels.py"
+      ],
+      "compatibility": "Graph enumeration changes event identities and potential histories; use the candidate build and regenerate only its references.",
+      "source_trace": [
+        "sim/network.py:_rates",
+        "sim/bind.py:channel",
+        "website/dist/downloads/SimWorld_Audit_Diagnostics.json:nuclear_reverse_diagnostic"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-08",
+      "title": "Derive paired nuclear propensities and validate the sampler",
+      "priority": "P0",
+      "depends_on": [
+        "D0-04",
+        "D0-06",
+        "D0-07"
+      ],
+      "owner_role": "Nuclear/numerical-model maintainer",
+      "files_existing": [
+        "sim/network.py",
+        "sim/nucbind.py",
+        "sim/constants.py",
+        "tests/test_m3_nuclei.py"
+      ],
+      "files_new": [
+        "tests/test_nuclear_kinetics.py",
+        "spec/nuclear-kinetics.md"
+      ],
+      "problem_evidence": "The reverse expression uses total product binding rather than channel Q, omits the forward charged-pair suppression, and combines capped probabilities with sequential if/elif updates. Identical-pair counting is ni*(ni-1), whose coefficient convention is not declared.",
+      "change": "Derive forward/reverse propensities from the selected equilibrium relation and declared microscopic counting convention. Implement the reference stepper for the bounded domain before any accelerated approximation. Separate equilibrium constants, kinetic prefactors and event sampling.",
+      "acceptance": [
+        "For finite reference states, paired transitions satisfy the declared stationary relation, including product-only/reactant-only boundaries and identical reactants.",
+        "Reaction Q uses product minus reactant bindings; shared suppression/statistical factors follow the written derivation rather than a cosmetic formula substitution.",
+        "The sampler matches reference transition probabilities and stationary distributions under the predeclared protocol; test finite-population distributions rather than requiring their mean to equal a thermodynamic-limit formula exactly.",
+        "Conservation and nonnegative counts hold for every event, and event ordering/time refinement effects are bounded or explicitly part of the selected exact reference algorithm.",
+        "Stochastic tests use registered confidence/seed rules with deterministic structural tests as the primary regression checks; they are not 'some event eventually happens' assertions."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_nuclear_channels.py tests/test_nuclear_kinetics.py tests/test_kinetic_reference.py"
+      ],
+      "compatibility": "Expect changed yields. Do not retune or broaden old acceptance bands merely to regain green status; publish new-model results against frozen calibration and held-out cases.",
+      "source_trace": [
+        "sim/network.py:_rates, _prob, step",
+        "sim/nucbind.py:binding",
+        "docs/research-status.md: Nuclear reverse reactions"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-09",
+      "title": "Make the atomic state graph reversible at neutral and ionized boundaries",
+      "priority": "P0",
+      "depends_on": [
+        "D0-04",
+        "D0-06"
+      ],
+      "owner_role": "Atomic-kernel maintainer",
+      "files_existing": [
+        "sim/atoms.py",
+        "sim/demo.py",
+        "sim/constants.py",
+        "tests/test_m4_atoms.py"
+      ],
+      "files_new": [
+        "spec/adr/ADR-D0-04-atomic-state.md",
+        "tests/test_atomic_kinetics.py"
+      ],
+      "problem_evidence": "Fully captured species are excluded from channels; m_up = captured % n_tot also removes reverse moves at fully filled capture levels. T>T_GATE disables every update, so existing bound populations cannot ionize there. The archived 100-neutral-particle diagnostic records zero events while the internal Saha helper predicts positive ionization.",
+      "change": "Use an explicitly enumerated charge-state population representation for the supported model. Derive adjacent capture/ionization transitions and keep reverse moves available at full neutrality, including with zero free electrons. Declare what temperatures and charge states are supported; remove unjustified gating or return an explicit unsupported-domain result.",
+      "acceptance": [
+        "Neutral, fully ionized and partially filled initial states have the correct nonzero/zero transition propensities at their boundaries, tested without dependence on lucky random draws.",
+        "The one-charge finite system relaxes from both ends to the same reference stationary distribution under D0-06's protocol.",
+        "Multi-charge inventory counts, occupancy and adjacent transition energies are explicit; no global multi-level equilibrium claim is made from the one-charge Saha formula.",
+        "Nuclear charge, bound/free electron inventory and nonnegative populations satisfy independent event accounting.",
+        "Summary metrics distinguish bound-electron fraction from neutral-particle number fraction; downstream code and test names use the correct definition."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_atomic_kinetics.py tests/test_kinetic_reference.py"
+      ],
+      "compatibility": "This changes state serialization, kinetics and likely summary values. Version all affected schemas and the candidate model; keep 0.1 aggregate-state data readable only in its declared context.",
+      "source_trace": [
+        "sim/atoms.py:AtomStore, step, saha_x_e",
+        "sim/demo.py:_yields",
+        "website/dist/downloads/SimWorld_Audit_Diagnostics.json:atomic_absorbing_diagnostic"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-10",
+      "title": "Expose inventory transfers and model boundary accounting",
+      "priority": "P0",
+      "depends_on": [
+        "D0-06",
+        "D0-08",
+        "D0-09"
+      ],
+      "owner_role": "Model-interface maintainer",
+      "files_existing": [
+        "sim/demo.py",
+        "sim/bind.py",
+        "sim/weak.py",
+        "sim/network.py",
+        "sim/atoms.py",
+        "sim/log.py"
+      ],
+      "files_new": [
+        "sim/accounting.py",
+        "spec/accounting-contract.md",
+        "tests/test_accounting.py"
+      ],
+      "problem_evidence": "Atomic free charge is currently derived algebraically from captured counts. The wider thermal/weak/bind pipeline uses prescribed baths and sea completion without an independently closed constituent charge, energy or entropy ledger.",
+      "change": "Add a small independent inventory accounting layer for repaired reaction events and declare external reservoirs/boundary inputs for the wider pipeline. Record known stoichiometric changes and modeled energy exchange; report unmodeled transfers as unsupported rather than invent equal-and-opposite entries solely to make residuals vanish.",
+      "acceptance": [
+        "Nuclear and atomic closed-box event budgets independently reconstruct before/after inventory and catch a deliberately missing or doubled transfer.",
+        "The specification names which quantities are conserved in each control and which cross open boundaries in the expanding demo.",
+        "Sea-completion and thermal-bath limitations are represented explicitly in diagnostics; no global conservation claim is inherited from the atomic identity alone.",
+        "Rates/state changes and accounting records agree on units and event identity, with unsupported quantities visibly marked rather than silently treated as zero."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_accounting.py tests/test_nuclear_kinetics.py tests/test_atomic_kinetics.py"
+      ],
+      "compatibility": "A new observational ledger can be metadata-only, but closing a missing physical transfer by changing model behavior is a separate versioned change. Full photon dynamics, baryogenesis and sea-completion replacement are outside this PR.",
+      "source_trace": [
+        "sim/bind.py:bind_nucleons",
+        "sim/demo.py:run and _yields",
+        "sim/atoms.py:free_electrons",
+        "docs/research-status.md: Known gaps"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-11",
+      "title": "Replace quietness heuristics with explicit jump certificates",
+      "priority": "P0",
+      "depends_on": [
+        "D0-05",
+        "D0-08",
+        "D0-09",
+        "D0-10"
+      ],
+      "owner_role": "Reduction/reference maintainer",
+      "files_existing": [
+        "sim/jump.py",
+        "sim/network.py",
+        "sim/atoms.py",
+        "sim/demo.py",
+        "tests/test_m2_jump.py",
+        "tests/test_m4_atoms.py"
+      ],
+      "files_new": [
+        "spec/adr/ADR-D0-05-jump-equivalence.md",
+        "tests/test_jump_certificates.py"
+      ],
+      "problem_evidence": "network.jump_quiet checks currently enumerated per-tick weights against 1e-8, while JUMP_SPAN is 1000. Nonzero hazard accumulates across channels/cells/intervals, and the existing graph omits reverse paths. One seed's identical final hash is not a universal proof.",
+      "change": "Keep jumping disabled for unsupported repaired kernels until they issue a certificate over the complete skipped interval. Exact mode requires zero omitted transition hazard. A distinct approximate mode must carry a conservative integrated bound, declared error budget, assumptions and invalidation conditions.",
+      "acceptance": [
+        "Zero-hazard inert controls match detailed evolution exactly, including causal-state fingerprints and event semantics.",
+        "Any active, unknown, gate-crossing or uncertified interval refuses a jump; tests cover reverse-only and initially neutral cases.",
+        "Approximate certificates bound the integral of all possible omitted hazards over the interval under their stated assumptions, not only the current single-channel probability; accumulated run budget is checked separately.",
+        "Violation of a certificate's population, temperature, boundary or schema assumptions invalidates it before skipping.",
+        "Selected ensemble/reference comparisons test the declared observable error protocol; approximate jumps are never labeled bit-identical by construction."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q tests/test_jump_certificates.py tests/test_causal_state.py"
+      ],
+      "compatibility": "The conservative first implementation may retain only zero-hazard jumps or no jumps. Performance regression is reported honestly; later speedups require measurements and cannot weaken scientific gates.",
+      "source_trace": [
+        "sim/jump.py:eligible, try_jump",
+        "sim/network.py:jump_quiet",
+        "sim/atoms.py:jump_quiet",
+        "spec/seams.md: S7, S24"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    },
+    {
+      "id": "D0-12",
+      "title": "Publish the new reference validation dossier and release decision",
+      "priority": "P0",
+      "depends_on": [
+        "D0-02",
+        "D0-03",
+        "D0-04",
+        "D0-05",
+        "D0-06",
+        "D0-07",
+        "D0-08",
+        "D0-09",
+        "D0-10",
+        "D0-11"
+      ],
+      "owner_role": "Verification/model-release maintainer",
+      "files_existing": [
+        "tests/physics_bands.toml",
+        "tests/test_physics_bands.py",
+        "spec/constants.md",
+        "spec/decisions.md",
+        "spec/interfaces.md",
+        "spec/surprises.md",
+        "docs/research-status.md",
+        ".github/workflows/ci.yml"
+      ],
+      "files_new": [
+        "spec/baselines/physics-0.2.json",
+        "benchmarks/reference_workload.py",
+        "reports/reference-0.2/manifest.json"
+      ],
+      "problem_evidence": "The current broad bands include tuning targets, permit zero D/H, and record Li/H without a predictive check. Prototype SoA throughput does not measure the actual dictionary-backed complete engine.",
+      "change": "Run the preregistered controlled and held-out studies, archive every result and failure, profile the complete reference workload, and decide whether the candidate qualifies for an accepted 0.2 baseline. Keep software verification, physical validity, numerical error, sampling uncertainty and runtime cost separate.",
+      "acceptance": [
+        "All deterministic structural, compatibility, state, inventory and boundary regressions pass; new-build record/replay passes within each supported environment.",
+        "Held-out controls meet the prespecified tolerances and sample-size/power plan; calibration and evaluation cases are identified separately. Passing seeds are not selected after inspection.",
+        "Temperature, time-resolution, population-size and event-order studies quantify the supported domain. Rare-species zeros are reported with counting limitations, not treated as abundance validation.",
+        "The dossier includes manifests, machine-readable metrics, uncertainty methodology, reference comparisons, known failures and run/storage costs for the actual engine.",
+        "Windows/Linux CI passing is not advertised as cross-platform complete-hash identity unless that comparison is explicitly performed and supported.",
+        "Acceptance is withheld if a core gate fails. Only after passing does the release mark the new baseline accepted and unlock the next Phase 1 work package."
+      ],
+      "validation_commands_after_implementation": [
+        "python -m pytest -q -p no:cacheprovider  # active suites after D0-01 test-scope migration",
+        "python -m sim.demo --seed 42 --ticks 3400 --cells 8 --probe-cells 2,3 --out runs/reference-0.2-seed42",
+        "python -m sim.replay runs/reference-0.2-seed42",
+        "python benchmarks/reference_workload.py --help"
+      ],
+      "compatibility": "New 0.2 results are compared scientifically with 0.1 where definitions permit, not forced to equal old bit traces. Do not overwrite historical artifacts or make release labels claim completion of all ROADMAP Phase 0 requirements.",
+      "source_trace": [
+        "tests/physics_bands.toml",
+        "tests/test_physics_bands.py",
+        "spikes/a_quant_cost/report.json",
+        "ROADMAP_DIFF.md: Highest-risk roadmap choices",
+        "docs/research-status.md: Near-term research sequence"
+      ],
+      "state": "blocked",
+      "milestone": "D0",
+      "evidence": [],
+      "commands_are_planned": true,
+      "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
+    }
+  ],
+  "phases": [
+    {
+      "phase": 0,
+      "title": "World rules",
+      "delivery_stage": "R1",
+      "source_file": "PHASE0.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "micro_slice_accepted",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [],
+      "work_packages": [
+        {
+          "id": "P00-D1",
+          "source_work_package": "D1",
+          "description": "Specify the actual quant representation, IDs, pool order and canonical state. Treat a future SoA layout as a separately tested implementation change, not an existing fact.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-D2",
+          "source_work_package": "D2",
+          "description": "Publish the effective field/model domain, calibrated inputs, structural rules and intended downstream observables. Require a named error/validation claim for each approximation.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-D3",
+          "source_work_package": "D3",
+          "description": "Versioned run manifest: source revision, model constants and digest, physics build, RNG/event/state schemas, environment/runtime fingerprint and complete run configuration.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-D4",
+          "source_work_package": "D4",
+          "description": "Define physical measurement/state transitions, numerical refinement and rendering separately. Keep the external probe fixture until a validated world-generated observation source exists.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-D5",
+          "source_work_package": "D5",
+          "description": "Specify the global clock, dimensional time/rate convention, quiet-interval validity and exact-versus-approximate comparison policy.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-SPIKE-A",
+          "source_work_package": "Spike A",
+          "description": "Retain historical array microbenchmark; add representative engine profiling before deriving any production budget.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-SPIKE-B",
+          "source_work_package": "Spike B",
+          "description": "Retain the fitted shell experiment as calibration/feasibility evidence; document training and held-out sets without promoting it to an atomic solver.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P00-BASELINE",
+          "source_work_package": "Spike C and BUILD0 M0-M4",
+          "description": "Preserve existing replay and reduced-physics acceptance evidence, then add targeted characterization tests for gaps and a versioned successor baseline.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Existing 0.1 source and archived runs",
+        "Operational status/provenance schema",
+        "Explicit compatibility and model-change policy before altered stochastic behavior"
+      ],
+      "related_seams": [
+        "S4",
+        "S5",
+        "S9",
+        "S16",
+        "S22",
+        "S23",
+        "S24",
+        "S25"
+      ],
+      "acceptance": [
+        "A clean supported environment reproduces the preserved 0.1 acceptance run and verifies its saved event/hash trace; incompatible schemas fail with an actionable message.",
+        "The successor run manifest identifies every input needed to rerun its declared model; metadata-only checks are distinguished from complete checkpoints.",
+        "Distinct logical stochastic events have distinct versioned addresses, while re-requesting the same logical event yields the same draws.",
+        "Product-only and fully neutral characterization cases expose the existing reverse-path gaps; successor kernels pass their declared reachability and equilibrium tests.",
+        "The status registry cannot label a phase accepted without required evidence and closed prerequisite gates."
+      ],
+      "limits": [
+        "The milestone is trustworthy reduced-model infrastructure, not a Standard Model or full quantum universe.",
+        "A global charge/energy assertion requires explicit bath and conversion-boundary accounting; algebraic electron-ledger closure alone is insufficient.",
+        "D1-D5 closure in historical documents does not override contrary executable evidence."
+      ],
+      "source_sections": [
+        "PHASE0.md: The five decisions; How to implement; Carry-over open questions",
+        "BUILD0.md: Environment; Physics build 0.1; Milestones; Not in this slice",
+        "ROADMAP_DIFF.md: Status ambiguity; Replay and reproducibility diff"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 1,
+      "title": "Quantum layer",
+      "delivery_stage": "R1",
+      "source_file": "PHASE1.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "precursor_present",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [],
+      "work_packages": [
+        {
+          "id": "P01-W1",
+          "source_work_package": "W1",
+          "description": "Array-based quant store, stable address mapping, snapshot serialization and representative benchmarks; preserve semantic IDs and deterministic pool/event ordering.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P01-W2",
+          "source_work_package": "W2",
+          "description": "Effective field and interaction kernels under an explicit model contract; population generation and interaction rules distinguish metadata from dynamics.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P01-W3",
+          "source_work_package": "W3",
+          "description": "Tier scheduler and region summaries with validity intervals, invalidation rules, retained budgets and observable-error tests.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P01-W4",
+          "source_work_package": "W4",
+          "description": "Observation/collapse rules and controlled interference cases against a declared reference quantum model; threshold transitions alone are not enough.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P01-W5",
+          "source_work_package": "W5",
+          "description": "Explicit joint-state/correlation representation, graph invariants and semantic RNG addresses; test marginals and non-signalling independently of a chosen correlation score.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P01-W6",
+          "source_work_package": "W6",
+          "description": "Probe fixture and field-only acceptance harness, plus a separately named compatibility/integration harness retaining the existing micro-seed nuclei/capture modules.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Phase 0 successor baseline and compatibility policy",
+        "Approved quantum-model scope before W4/W5",
+        "W1 and W2 can proceed in parallel after contracts; W3 consumes their stable interfaces; W4/W5 follow relevant state and scheduler contracts; W6 integrates"
+      ],
+      "related_seams": [
+        "S5",
+        "S16",
+        "S21",
+        "S22",
+        "S23",
+        "S24",
+        "S25"
+      ],
+      "acceptance": [
+        "Store serialization round-trips complete declared state, including allocation/pool/scheduler state if checkpoint resumption is claimed.",
+        "Controlled interference and correlation tests match an independently specified model; no-signalling marginals and measurement settings are part of the test definition.",
+        "Randomized schedule and observation fixtures preserve the declared replay contract; approximate tier comparisons meet preregistered observable tolerances.",
+        "Actual integrated storage/logging cost is measured with hardware and workload recorded; historical spike numbers are not reused as engine throughput.",
+        "The Phase 1 to 2 interface identifies readable state and the sole binding-event write path."
+      ],
+      "limits": [
+        "PHASE1 definition excludes nuclei while W6 demands H/He/Li. Resolve this by separating the field-only engine gate from the retained micro-seed integration gate.",
+        "Graph edges plus scalar per-quant phase do not establish a general entangled-state model.",
+        "Do not require the proposed 50 ns/quant or 20 ns/event thresholds in Python without a measured implementation/hardware budget."
+      ],
+      "source_sections": [
+        "PHASE1.md: Definition of done; Architecture; W1-W6; Interface exposed to Phase 2; Verification strategy",
+        "spec/seams.md: S21-S25"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 2,
+      "title": "Nuclear layer",
+      "delivery_stage": "R1",
+      "source_file": "PHASE2.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "precursor_present",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        1
+      ],
+      "work_packages": [
+        {
+          "id": "P02-W1",
+          "source_work_package": "W1",
+          "description": "Effective nucleon/residual-strong/Coulomb kernels and explicitly accounted constituent conversion; document calibration rather than infer force emergence from filtered baryon enumeration.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P02-W2",
+          "source_work_package": "W2",
+          "description": "Binding/excitation records over a declared nuclide domain, reproducible computation/cache, disjoint calibration and prediction sets.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P02-W3",
+          "source_work_package": "W3",
+          "description": "Reversible fusion channels with channel Q, physical propensities and finite-population combinatorics; reacting-region reduced evolution with quantified error.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P02-W4",
+          "source_work_package": "W4",
+          "description": "Fission and decay channels, stability/termination rules, explicit supported modes and rate uncertainties.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P02-W5",
+          "source_work_package": "W5",
+          "description": "Radiation transport/deposition records coupled to explicit matter/energy ledgers and declared spectral/species scope.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P02-W6",
+          "source_work_package": "W6",
+          "description": "Nuclear acceptance, bounded-domain fuzz, stellar-cell yield experiment and frozen nuclide/radiation interface for atoms.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Verified Phase 1 event/state interfaces",
+        "Successor baseline reversible-rate and conservation contracts",
+        "W1/W2 development can overlap; W3 needs both, W4 needs binding/excitation, W5 uses transition products, W6 integrates"
+      ],
+      "related_seams": [
+        "S6",
+        "S9"
+      ],
+      "acceptance": [
+        "Prespecified held-out binding/structure set is evaluated separately from the five-anchor fit; unsupported nuclides return explicit states rather than fabricated values.",
+        "Every intended reverse channel remains reachable from product-only initial states and small closed networks match reference stationary distributions.",
+        "Per-event baryon number, charge and energy including emitted/absorbed bath terms close to stated numerical tolerances.",
+        "Rate-bucket, timestep and population convergence are measured; decay fuzz terminates or reports an explicitly supported stable/metastable state.",
+        "A stellar-yield source includes initialization, build, seed, log and uncertainty before any Phase 7 disk composition may consume it.",
+        "Cache-off evaluation reproduces the chosen model's outputs; the nuclide and radiation APIs have typed units and uncertainty fields."
+      ],
+      "limits": [
+        "Loose half-life bands are initial-model limits, not predictive accuracy.",
+        "No blanket arbitrary-temperature/density or full nuclear chart support without a declared domain.",
+        "The source's 10-cm shielding example must specify source spectrum and material; it is not a universal radiation acceptance condition."
+      ],
+      "source_sections": [
+        "PHASE2.md: Architecture; W1-W6; Interface exposed to Phase 3; Verification strategy; Risks",
+        "BUILD0.md: M3; Not in this slice",
+        "sim/network.py: _rates and step"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 3,
+      "title": "Atomic layer",
+      "delivery_stage": "R1",
+      "source_file": "PHASE3.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "precursor_present",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        2
+      ],
+      "work_packages": [
+        {
+          "id": "P03-W1",
+          "source_work_package": "W1",
+          "description": "Radial solver and documented correction hierarchy with grid/convergence error and explicit failed/unbound cases.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P03-W2",
+          "source_work_package": "W2",
+          "description": "Species records and derived ionization, affinity, radius, occupancy and bonding descriptors over a declared Z/ion range.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P03-W3",
+          "source_work_package": "W3",
+          "description": "Spectral energies and declared transition/intensity approximations; versioned read-only line/opacity inputs.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P03-W4",
+          "source_work_package": "W4",
+          "description": "Reversible ionization/recombination with consistent bath terms, charge accounting and explicitly supported equilibrium/non-equilibrium regimes.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P03-W5",
+          "source_work_package": "W5",
+          "description": "Atomic acceptance, held-out curves/spectra, fuzz, cache regeneration and chemical species interface.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Validated nuclear record and radiation interface for integrated acceptance",
+        "Analytic/recorded nuclear fixtures may unblock isolated solver development but must remain labeled fixtures",
+        "W2-W4 consume W1; W5 integrates derived records and spectra/plasma"
+      ],
+      "related_seams": [],
+      "acceptance": [
+        "Hydrogenic reference states and grid-refinement studies verify the numerical solver independently of fitted many-electron targets.",
+        "Held-out ionization, affinity and spectral cases quantify errors and correction-ladder use; all published records identify model and error status.",
+        "Closed-box ionization tests approach the same reference distribution from neutral and ionized starting states across the supported temperature/density domain.",
+        "Species caches can be removed and recomputed with identical results within the declared implementation contract.",
+        "Chemistry receives both electron occupancy and separately defined bonding-capacity descriptors; charge equals nuclear charge minus electron count."
+      ],
+      "limits": [
+        "The source conflates oxygen's valence-electron count with common bonding valency; the operational schema must separate these quantities.",
+        "A proposed numerical cutoff or solver failure is not evidence that the periodic table ends at that Z.",
+        "Spherical effective orbitals and energy differences alone do not guarantee molecular or spectroscopic accuracy."
+      ],
+      "source_sections": [
+        "PHASE3.md: Architecture; W1-W5; Interface exposed to Phase 4; Verification strategy; Risks",
+        "spikes/b_shells/report.json",
+        "sim/atoms.py"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 4,
+      "title": "Chemistry",
+      "delivery_stage": "R2",
+      "source_file": "PHASE4.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        3
+      ],
+      "work_packages": [
+        {
+          "id": "P04-W1",
+          "source_work_package": "W1",
+          "description": "Bounded bond/interaction models consuming atomic records, with declared treatment of ionic, covalent and metallic regimes.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P04-W2",
+          "source_work_package": "W2",
+          "description": "Molecular geometry, directional bonding and intermolecular terms with tested graph/geometry canonicalization.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P04-W3",
+          "source_work_package": "W3",
+          "description": "Channel discovery, barrier models, reversible event sampling, electron transfer and surface intermediates; extend the allowed channel ontology for S10 templates and S12 photoexcitation.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P04-W4",
+          "source_work_package": "W4",
+          "description": "Thermodynamic and phase records, solubility and acid/base calculations within a supported domain; expose the aggregate/self-assembly interface required by S11.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P04-W5",
+          "source_work_package": "W5",
+          "description": "Polymer/catenation and organic reactor stress cases with independent data; report distributions and unknown pathways.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P04-W6",
+          "source_work_package": "W6",
+          "description": "Conservation/domain fuzz, previously unseen graph cases, cache-off replay and species/reaction interface acceptance.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Validated atomic energies/densities and nuclear charge/radius for integrated use",
+        "W1 to W2 to W3; W4/W5 overlap after core reaction contracts; W6 integrates",
+        "S12 kernel can use typed prescribed photon-flux fixtures before Phase 6 exists; its later integration must consume the actual Phase 6 flux contract"
+      ],
+      "related_seams": [
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "acceptance": [
+        "A narrowly declared molecule/reaction domain matches held-out structure, energy and kinetic references after calibration is frozen.",
+        "Enumerated reversible pairs satisfy the specified equilibrium relation and remain reachable from every intended admissible initial state.",
+        "Every event preserves atoms, charge and accounted energy; invalid graphs and unsupported searches produce explicit results.",
+        "S10: a template accelerates formation of its complement relative to matched non-template/non-catalytic controls, with no direct product injection.",
+        "S11: aggregate/cell interfaces and concentration-ramp fixtures support measured assembly kinetics in the owning chemistry/materials kernels.",
+        "S12: photochannels consume a typed spectral flux, account for photon energy, and produce an on/off photolysis difference in the declared reference system.",
+        "A new-species test checks supported behavior without pre-populating the registry; it does not claim exhaustive chemistry."
+      ],
+      "limits": [
+        "Local valence rearrangement is not a completeness proof. A missing candidate must not silently mean a physically impossible reaction.",
+        "The Haber example's H3 expression needs correction before it becomes a test fixture; use a balanced declared reaction.",
+        "Internal equilibrium consistency does not validate missing pathways, rates or the barrier approximation.",
+        "Chemistry may be developed in bounded stages; a universal reaction engine and pharmaceutical prediction are not the first deliverable."
+      ],
+      "source_sections": [
+        "PHASE4.md: Architecture; W1-W6; Interface exposed to Phase 5; Verification strategy; Risks",
+        "spec/seams.md: S10-S12"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 5,
+      "title": "Materials and substances",
+      "delivery_stage": "R2",
+      "source_file": "PHASE5.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        4
+      ],
+      "work_packages": [
+        {
+          "id": "P05-W1",
+          "source_work_package": "W1",
+          "description": "Material aggregation records, canonical signatures and explicit composition/phase/history provenance.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P05-W2",
+          "source_work_package": "W2",
+          "description": "Phase and nucleation/growth kinetics, including S3 aerosol-mediated condensation and S11 amphiphile assembly where those mechanisms belong.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P05-W3",
+          "source_work_package": "W3",
+          "description": "Mechanical property tensors, deformation history and fracture-energy closure over a bounded material domain.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P05-W4",
+          "source_work_package": "W4",
+          "description": "Geological processing paths, compaction, weathering, melt behavior and creep constitutive inputs for later continuum physics.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P05-W5",
+          "source_work_package": "W5",
+          "description": "Thermal/electrical transport, viscosity, diffusion and permeability with uncertainty and supported regimes.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P05-W6",
+          "source_work_package": "W6",
+          "description": "Progressive material manifest, history fuzz, bounded summaries, cache regeneration and material/deformation contracts.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Validated chemistry and phase/energy interfaces",
+        "W1 is root, W2 feeds W3-W5; W3/W4/W5 can overlap after interfaces; W6 integrates",
+        "Primitive fixture material records can support independent continuum unit tests without claiming real derived properties"
+      ],
+      "related_seams": [
+        "S2",
+        "S3",
+        "S11",
+        "S24"
+      ],
+      "acceptance": [
+        "Begin with a declared small material family; expand the source's 100-material manifest only as supported regimes and independent data become available.",
+        "History changes produce reproducible property changes and appropriately measured hysteresis; bounds and cache keys retain all declared sufficient statistics.",
+        "Summary reconstruction is compared to detailed/reference material calculations on selected observables with fixed tolerances.",
+        "S3: aerosol-on/off and concentration/temperature ramps test vapor nucleation kinetics and water/latent-energy accounting.",
+        "S11: assembly yields and rupture/persistence responses are tested against declared concentration-ramp reference cases.",
+        "Mechanical and transport predictions are tested on held-out processing conditions, not just the fitted anchor values.",
+        "Deformation and thermal exposure enter through logged events; caller code cannot directly overwrite material properties."
+      ],
+      "limits": [
+        "Materials are not the only lossy layer; the same closure discipline applies to later planet, population and institutional summaries.",
+        "A direction-only conductivity or doping trend is insufficient evidence for later semiconductor/circuit operation.",
+        "A few-hundred-particle reference is not automatically representative of a macroscopic constitutive property."
+      ],
+      "source_sections": [
+        "PHASE5.md: Architecture; W1-W6; Interface exposed to Phase 6; Verification strategy; Risks",
+        "spec/seams.md: S2-S3, S11, S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 6,
+      "title": "Continuum physics",
+      "delivery_stage": "R3",
+      "source_file": "PHASE6.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        5
+      ],
+      "work_packages": [
+        {
+          "id": "P06-W1",
+          "source_work_package": "W1",
+          "description": "Conserved-field layout, transport, stability/substepping and gravity; add rotating-frame support S1 and a versioned gravity-constant decision S4/S9.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P06-W2",
+          "source_work_package": "W2",
+          "description": "Conduction/advection/phase energy coupling and entropy/export accounting, including valid resumed coarse intervals.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P06-W3",
+          "source_work_package": "W3",
+          "description": "Contact, stress and fracture, extended by geological viscoelasticity S2 and later articulated rigid-body coupling S13.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P06-W4",
+          "source_work_package": "W4",
+          "description": "Radiation/line transport and typed spectral flux interfaces consumed by chemistry and perception.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P06-W5",
+          "source_work_package": "W5",
+          "description": "Pressure observations and explicitly scoped electromagnetic regimes; later circuit/near-field/radio support is S15 rather than an automatic consequence of magnetostatics.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P06-W6",
+          "source_work_package": "W6",
+          "description": "Component and coupled acceptance, conservation/stability fuzz, bounded jump comparisons and the boundary-event interface S8.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Material properties and logged-deformation interface",
+        "Atomic spectral and chemical phase/energy interfaces",
+        "W1/W2 can overlap; W3 needs kinematics, W4 uses thermal/radiative state, W5 couples relevant flow/EM terms; W6 integrates"
+      ],
+      "related_seams": [
+        "S1",
+        "S2",
+        "S4",
+        "S8",
+        "S9",
+        "S12",
+        "S13",
+        "S15",
+        "S24"
+      ],
+      "acceptance": [
+        "Analytic/reference transport, conduction, wave and two-body cases demonstrate conservation and refinement convergence in a declared regime.",
+        "CFL/adaptive-step and finite-state guards fail deliberately unstable fixtures rather than silently repairing them.",
+        "S1 rotation sign and geostrophic balance; S2 creep/relaxation and Rayleigh-crossing cases; S4 gravity units and orbit calibration each have upstream tests.",
+        "Heat, work, latent terms, radiation and exports reconcile over complete budgets; apparent closed-system entropy decreases must be accounted for or rejected.",
+        "Boundary changes are typed, logged events with deterministic ordering and provenance; direct lower-state edits fail an interface test.",
+        "Reduced-versus-detailed comparisons use per-observable tolerances and validity intervals unless mathematical equality for a particular kernel is established."
+      ],
+      "limits": [
+        "The original general hash-transparency claim for nonlinear coarse physics is too strong.",
+        "A massless field label, group photon transport or magnetostatic operator does not supply every EM/circuit regime.",
+        "Shape-only agreement is useful but cannot replace quantitative error bounds needed by a downstream application."
+      ],
+      "source_sections": [
+        "PHASE6.md: Architecture; W1-W6; Interface exposed to Phase 7; Verification strategy; Risks",
+        "spec/seams.md: S1-S4, S8-S9, S13, S15"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 7,
+      "title": "Planet and space",
+      "delivery_stage": "R3",
+      "source_file": "PHASE7.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        2,
+        5,
+        6
+      ],
+      "work_packages": [
+        {
+          "id": "P07-W1",
+          "source_work_package": "W1",
+          "description": "Orbiting-body/ring summaries, accretion events and lazy astronomy over the shared gravity model; source/version the seeded disk and expansion clock.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P07-W2",
+          "source_work_package": "W2",
+          "description": "Differentiation, mantle rheology and planetary magnetic summaries with declared closure regimes.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P07-W3",
+          "source_work_package": "W3",
+          "description": "Tectonic boundary events, recycling, uplift and weathering fluxes through lower-layer APIs.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P07-W4",
+          "source_work_package": "W4",
+          "description": "Resolved ocean/air/water-cycle feedbacks; later local tracer extension S20 belongs to this producer, not a downstream social workaround.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P07-W5",
+          "source_work_package": "W5",
+          "description": "Abiotic reservoir graph and species/aerosol fluxes with photochemistry S12; producer attribution S19 must survive the same transport interfaces.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P07-W6",
+          "source_work_package": "W6",
+          "description": "Versioned stellar/radiation boundary input generated by a supported lower model, including dose and spectral provenance.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P07-W7",
+          "source_work_package": "W7",
+          "description": "Planet/environment integration, layered-resolution reconciliation, logged initialization, long-time convergence and environment/flux interface acceptance.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Relevant Phase 2 stellar yield/radiation, Phase 5 material and Phase 6 physics interfaces",
+        "S1-S5/S8/S9 before the consumers that require them; D6/S6 before disk initialization; S7 implemented during planetary resolution work; S12 before W5",
+        "W1 then W2 then W3; W4 depends on physical rotation/nucleation and terrain/orbits; W5 consumes rain/weathering; W6 can overlap on a supported stellar fixture; W7 integrates"
+      ],
+      "related_seams": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S12",
+        "S19",
+        "S20",
+        "S24"
+      ],
+      "acceptance": [
+        "Begin with one bounded region/planet and explicit boundary forcing before attempting the proposed multi-Gyr demonstration.",
+        "Resolve S5 with a versioned timeline/expansion model and independent reference cases, not a post-hoc date multiplier.",
+        "S6/D6 integrated acceptance requires a logged offline Phase 2 stellar-yield run from this engine, with seed/build/source identity, units and conserved inventory; cache-off regeneration must reproduce the consumed composition. Synthetic composition fixtures support isolated development only and do not close S6 or the integrated Phase 7/Great Run gate. Changing that source requirement requires an explicit scope-changing ADR.",
+        "S7: random promotion/demotion and shock windows preserve declared mass/species/energy budgets and meet predeclared observable errors.",
+        "S12-backed photolysis on/off produces accountable reservoir differences; climate and water budgets close with explicit boundary exports.",
+        "Long-horizon results report uncertainty, conservation drift, timestep/resolution sensitivity and failed outcomes; the environment read API and flux-only write path are tested."
+      ],
+      "limits": [
+        "S6 and S7 are work within this phase, not reasons to demand all S1-S9 closed before any planetary unit work can start.",
+        "Snowball, runaway, lack of tectonics or absent life can be legitimate outcomes; do not automatically label an unwanted narrative a numerical bug.",
+        "A prior-generation seeded composition preserves provenance but is not evidence that all prior cosmic history emerged in the same run.",
+        "The proposed roughly 10,000 resolved cells and 4-Gyr wall-time targets are not measured capacities."
+      ],
+      "source_sections": [
+        "PHASE7.md: Prerequisites; Scale contract; Architecture; W1-W7; Interface exposed to Phase 8; Verification strategy",
+        "spec/seams.md: S1-S12, S19-S20"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 8,
+      "title": "Life and ecosystems",
+      "delivery_stage": "R4",
+      "source_file": "PHASE8.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        4,
+        7
+      ],
+      "work_packages": [
+        {
+          "id": "P08-W1",
+          "source_work_package": "W1",
+          "description": "Template/catalysis mechanism and read-only closure detector; explicit replication fidelity, variation and lineage records.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P08-W2",
+          "source_work_package": "W2",
+          "description": "Compartment assembly/persistence, population records with necessary correlations and deterministic individual sampling.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P08-W3",
+          "source_work_package": "W3",
+          "description": "Resource uptake and metabolism with explicit energy/work/heat/waste accounting and impossible-budget negative controls.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P08-W4",
+          "source_work_package": "W4",
+          "description": "Food webs, decomposition and mutualistic exchanges through the same planetary flux graph; no direct environment-state edits.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P08-W5",
+          "source_work_package": "W5",
+          "description": "Host-parasite and inhibitor/resistance experiments with conditional hypotheses and correlation-aware population state.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P08-W6",
+          "source_work_package": "W6",
+          "description": "Regulatory/collective organization, bodies and sensory transduction; supported light harvesting and desiccation responses.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P08-W7",
+          "source_work_package": "W7",
+          "description": "Integrated biological/environment experiments, population-to-individual validation, certified temporal reduction and the single-clock life/agent interface.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "S10 templating, S11 assembly and S12 photochannel interfaces, with the relevant Phase 2 radiation and Phase 4-6 energy/mechanics producers",
+        "W1 may start in an explicitly controlled chemistry fixture before complete Phase 7; W2 needs W1/S11; W3 needs compartments and actual environment input for integration; W4-W6 consume those contracts; W7 integrates",
+        "Integrated phase acceptance depends on a validated Phase 7 environment, not merely a prepared toy fixture"
+      ],
+      "related_seams": [
+        "S10",
+        "S11",
+        "S12",
+        "S14",
+        "S24"
+      ],
+      "acceptance": [
+        "Templating and catalysis controls establish a measurable mechanism; an autocatalytic closure detector must not inject species or modify the system it measures.",
+        "Show persistence, heritable variation and competition separately; explicitly seeded replicators are permitted only as declared experimental initialization, not evidence of abiogenesis.",
+        "Individual samples reproduce declared population and correlation statistics within predeclared sampling uncertainty; shock windows trigger detailed evolution or invalidate compression.",
+        "Biological fluxes reconcile with the same material/resource budgets used by the abiotic environment; impossible fixtures fail rather than receive hidden resources.",
+        "Host-parasite, cooperation and inhibitor outcomes are measured over controlled ensembles; stable, extinct and failed-emergence cases remain valid recorded results.",
+        "A supported light spectrum and biochemical coupling justify harvesting tests; no unsupported UV-B choice is silently treated as universal photosynthesis.",
+        "The life/agent interface uses the global clock and logged physical actions; D8 validity limits and any seeded fallback are recorded before claiming the corresponding capability."
+      ],
+      "limits": [
+        "Autocatalytic closure is not a complete operational definition of life.",
+        "No mutation-rate constant in code is not proof that all replication errors derive from radiation; error mechanisms and effective parameters must be declared.",
+        "Biological/body-plan emergence and a particular historical ordering are research outcomes, not guaranteed engineering consequences.",
+        "The 500-Myr compressed era remains an integration ambition; phase completion requires an explicit supported scope and cannot be rescued by scripting a desired event."
+      ],
+      "source_sections": [
+        "PHASE8.md: Prerequisites; Scale contract; Architecture; W1-W7; Interface exposed to Phase 9; Verification strategy; Risks",
+        "spec/seams.md: S10-S12, S14, S24"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 9,
+      "title": "Agency and civilization",
+      "delivery_stage": "R4",
+      "source_file": "PHASE9.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        6,
+        8
+      ],
+      "work_packages": [
+        {
+          "id": "P09-W1",
+          "source_work_package": "W1",
+          "description": "Implement agent identity, lineage-based birth/death, budgeted policy actions, and articulated-body contacts through the Phase 6 S13 interface.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P09-W2",
+          "source_work_package": "W2",
+          "description": "Implement value learning and bounded planning with explicit training inputs, costs, policy state, and deterministic random-stream identities.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P09-W3",
+          "source_work_package": "W3",
+          "description": "Implement physically carried skill transmission and persistent traces; record variant frequencies, source histories, fidelity and transmission delays.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P09-W4",
+          "source_work_package": "W4",
+          "description": "Connect combustion, heat transfer and food transformations to agent tending actions and energy-budget observations; keep discovery detectors separate from physics.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P09-W5",
+          "source_work_package": "W5",
+          "description": "Connect fracture geometry, composite assembly, wear and reduction chemistry to tool-use and experimentation scenarios.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P09-W6",
+          "source_work_package": "W6",
+          "description": "Connect agent preferences to selection events, persistent structures, waste fluxes, role specialization and direct exchange.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P09-W7",
+          "source_work_package": "W7",
+          "description": "Build controlled scenario harnesses, population/individual comparisons and the versioned agent/culture interface; record D9 compression assumptions.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Phase 8 validated bodies, lineage, resource budgets and sensory transduction",
+        "Phase 4 chemical transformations; Phase 5 material properties; Phase 6 contact/fracture and S13 articulated dynamics",
+        "Phase 7 environmental forcing and declared scenario geography",
+        "Global tick, stable entity/event identities, versioned stochastic streams, and a declared population-compression comparison protocol"
+      ],
+      "related_seams": [
+        "S13",
+        "S14",
+        "S24"
+      ],
+      "acceptance": [
+        "Foraging and depleted-resource controls close declared budgets and produce logged births/deaths without injected resources.",
+        "Held-out obstacle tasks test learning; policy compute, memory and body actions have explicit costs.",
+        "A variant cannot reach an isolated recipient without a recorded sensory or material transmission path; propagation respects channel latency.",
+        "Tool geometry and processing effects are checked against lower-layer reference cases before measuring adoption.",
+        "Compare detailed villages with reduced populations using predeclared observables, uncertainty and shock windows; preserve exact identity/lineage fields where the contract promises exactness.",
+        "Report discovery, non-discovery and alternative ordering across a declared ensemble; permit a separate declared fixture to test industrial affordances."
+      ],
+      "limits": [
+        "The claimed 10,000 years equals 100,000 generations is not generally valid; derive generations from each modeled lineage's life history.",
+        "Cooking-to-brain allocation, domestication and profession patterns are hypotheses, not mandatory historical outcomes to tune into existence.",
+        "S14 fixes wording only. A one-clock scheduling test must accompany the future agent implementation."
+      ],
+      "source_sections": [
+        "PHASE9.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 10"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 10,
+      "title": "Technology and knowledge",
+      "delivery_stage": "R5",
+      "source_file": "PHASE10.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        4,
+        6,
+        9
+      ],
+      "work_packages": [
+        {
+          "id": "P10-W1",
+          "source_work_package": "W1",
+          "description": "Implement controlled agent interventions, calibration records, immutable experiment inputs and a claims/replication ledger.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P10-W2",
+          "source_work_package": "W2",
+          "description": "Assemble bounded heat-engine and transport reference scenarios from validated material, contact and continuum mechanisms.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P10-W3",
+          "source_work_package": "W3",
+          "description": "Consume S15 time-dependent electrical regimes; implement grid/load/fault records and physical oscillator timing.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P10-W4",
+          "source_work_package": "W4",
+          "description": "Implement communication, echo and astronomical measurement fixtures using declared EM, geometry, thrust and cosmological boundaries.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P10-W5",
+          "source_work_package": "W5",
+          "description": "Implement auditable computation artifacts and nested-engine orchestration under S16, with parent/child identities, budgets, provenance and depth limits.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P10-W6",
+          "source_work_package": "W6",
+          "description": "Connect bounded biological intervention and template-editing experiments to validated chemical and population interfaces.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P10-W7",
+          "source_work_package": "W7",
+          "description": "Implement physical-link packet transport and claim diffusion comparisons; freeze the claims/artifact interfaces and record D10.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Phase 9 agent and culture interfaces; Phase 5 constitutive/material cases; Phase 6 mechanics and extended EM",
+        "Phase 7 source/sky/gravity models and declared expansion domain",
+        "Phase 8 biological models for W6",
+        "Versioned experiment capture or explicitly costed whole-prefix replay; no mutable live-state pointers in claims",
+        "S18 ownership relation must land in the upstream artifact interface before consumers require it"
+      ],
+      "related_seams": [
+        "S5",
+        "S13",
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S24"
+      ],
+      "acceptance": [
+        "Replay a recorded intervention from immutable inputs; separately assess independent experimental replication with an appropriate stochastic comparison.",
+        "Reference machine cases close energy and loss accounting and satisfy the domain's thermodynamic bounds before agents are asked to discover them.",
+        "Capacitor/inductor/transmission/propagation reference cases pass upstream; device classifiers consume results without defining hidden physical recipes.",
+        "Nested seed derivation is namespaced, logged and stable; altered child identity is detected; prohibited depth is refused and logged; parent and child budgets reconcile.",
+        "Network on/off comparisons preserve physical latency and matched resource budgets.",
+        "Test-side classifiers, fixture injections and endogenous discoveries are labeled distinctly in outputs."
+      ],
+      "limits": [
+        "The full acceptance paragraph requires named technologies while the verification section permits skipped technologies; separate capability fixtures from stochastic discovery experiments.",
+        "A host-side child engine is a software orchestration prototype until an explicit equivalence contract relates it to in-world physical computation.",
+        "Instrument ground truth belongs in validation; agents must not receive inaccessible oracle values.",
+        "Direction-only doping evidence does not establish reliable switching devices; unsupported classes need an upstream model revision or a disclosed alternate fixture."
+      ],
+      "source_sections": [
+        "PHASE10.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 11"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 11,
+      "title": "People and society",
+      "delivery_stage": "R5",
+      "source_file": "PHASE11.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        9,
+        10
+      ],
+      "work_packages": [
+        {
+          "id": "P11-W1",
+          "source_work_package": "W1",
+          "description": "Implement explicit organ/exposure response records and operational policy-calibration statistics without real-person diagnostic labels.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P11-W2",
+          "source_work_package": "W2",
+          "description": "Implement learned sanction predictions, enforcement costs and common-resource experiments through existing sensory/action channels.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P11-W3",
+          "source_work_package": "W3",
+          "description": "Implement training investments, role histories and educational coalition records; measure cohort outcomes and adjustment lags.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P11-W4",
+          "source_work_package": "W4",
+          "description": "Implement communication fidelity, intelligibility and declared graph-clustering measurements over geography and networks.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P11-W5",
+          "source_work_package": "W5",
+          "description": "Implement claim-complex transmission, costly signaling and coalition turnover as explicit, testable mechanisms.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P11-W6",
+          "source_work_package": "W6",
+          "description": "Implement artifact- and resource-constrained conflict/arbitration scenarios and record-integrity controls, with harm and cost accounting.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P11-W7",
+          "source_work_package": "W7",
+          "description": "Implement reduced social-state interfaces, detailed-region comparisons, scenario harnesses and D11 validity records.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Validated Phase 8 population/body interfaces and Phase 9 agency/culture",
+        "Phase 10 claims, artifacts and communication channels",
+        "S17 norms-as-environment boundary; no society-to-policy-weight write path",
+        "Layer-owned reduced-state contracts, exact membership identities and declared approximate graph observables"
+      ],
+      "related_seams": [
+        "S17",
+        "S24"
+      ],
+      "acceptance": [
+        "Sanctions influence an agent only through recorded observations and the agent's own policy update path; unauthorized policy writes fail boundary tests.",
+        "Matched resource-sharing controls report outcome distributions and enforcement expenditure; reachability tests are distinct from claims about how often outcomes occur.",
+        "Membership survives member turnover with explicit birth/death events; classifiers never merge individual identity with group identity.",
+        "Communication barriers and cohort interventions have registered observables, controls and uncertainty; alternative behavioral models are evaluated.",
+        "Reduced institutions preserve specified invariants and remain within predeclared distributional error on normal and shock fixtures."
+      ],
+      "limits": [
+        "Forced dual commons outcomes, fixed schooling advantages and prescribed conflict substitution are hypotheses to test, not universal software invariants.",
+        "A prediction-error or resilience statistic is not a validated reduction of human mental health, religion, ethnicity or culture.",
+        "Code vocabulary bans supplement architecture tests; they cannot establish that a social outcome was not implicitly authored."
+      ],
+      "source_sections": [
+        "PHASE11.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 12"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 12,
+      "title": "Money and politics",
+      "delivery_stage": "R5",
+      "source_file": "PHASE12.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        9,
+        11
+      ],
+      "work_packages": [
+        {
+          "id": "P12-W1",
+          "source_work_package": "W1",
+          "description": "Consume the upstream S18 ownership/transfer contract; implement obligation records, counterparties, terms and circulation measurements.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P12-W2",
+          "source_work_package": "W2",
+          "description": "Implement resource-backed claim and maturity records and controlled confidence/liquidity experiments.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P12-W3",
+          "source_work_package": "W3",
+          "description": "Implement convertibility and record-supply interventions plus resource-priced verification, forks and conflicting-claim handling.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P12-W4",
+          "source_work_package": "W4",
+          "description": "Implement extraction, enforcement, collective counting and sovereign obligation scenarios using existing physical and social channels.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P12-W5",
+          "source_work_package": "W5",
+          "description": "Implement declared control-topology, distribution, mobility and overlap measures across conditional environment panels.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P12-W6",
+          "source_work_package": "W6",
+          "description": "Implement claim-diffusion and audit-capacity experiments that report mechanism statistics and retain negative outcomes.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P12-W7",
+          "source_work_package": "W7",
+          "description": "Implement reduced record/prediction state, all accounting rigs, D12 limits and the public polity interface.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Phase 11 enforcement, communication and agent-state contracts",
+        "Phase 10 artifact/claim records, S18 ownership events and S16 verification provenance",
+        "Validated physical resource/production interfaces and an explicit nominal-versus-physical accounting model",
+        "Identities, obligations and pending transfers must have complete save/replay semantics"
+      ],
+      "related_seams": [
+        "S16",
+        "S17",
+        "S18",
+        "S24"
+      ],
+      "acceptance": [
+        "A bookkeeping transfer alone cannot create or destroy physical stock; ownership totals and counterparty references reconcile exactly under supported transfers.",
+        "Ownership survives compression/restoration to the declared exact representation; approximation of distribution summaries is separately budgeted.",
+        "Controlled default, confidence and liquidity cases report event ordering with matched physical conditions and uncertainty.",
+        "Conflicting verification rules and double-spend attempts have explicit, replayable outcomes; computational/energy cost is recorded.",
+        "Regime, inequality and information-diffusion comparisons expose initialization, policy rules and alternative models; rejected hypotheses remain reported evidence."
+      ],
+      "limits": [
+        "The required tenfold nominal change with unchanged future physical flux is too strong: accounting must not directly create matter, but agents may change real production in response.",
+        "Consent-versus-racket superiority, fixed wealth-tail bands and false-claim spread order are conditional research hypotheses, not unconditional acceptance laws.",
+        "A deterministic replay log is not automatically a cryptographic or economic verification system."
+      ],
+      "source_sections": [
+        "PHASE12.md: Prerequisites",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 13"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 13,
+      "title": "Infrastructure and externalities",
+      "delivery_stage": "R6",
+      "source_file": "PHASE13.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        6,
+        7,
+        8,
+        12
+      ],
+      "work_packages": [
+        {
+          "id": "P13-W1",
+          "source_work_package": "W1",
+          "description": "Implement owned structure records, terrain-related construction costs, degradation histories and maintenance obligations.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P13-W2",
+          "source_work_package": "W2",
+          "description": "Implement bounded routing, freight/spoilage, water and waste flow scenarios with explicit capacity and environmental inputs.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P13-W3",
+          "source_work_package": "W3",
+          "description": "Implement regional energy/material chain accounting, depletion records and recycling comparisons.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P13-W4",
+          "source_work_package": "W4",
+          "description": "Consume S19 producer attribution and S20 local concentrations; integrate exposure and only supported response functions.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P13-W5",
+          "source_work_package": "W5",
+          "description": "Implement controlled network failure and debris scenarios with explicit hazard, exposure and vulnerability components.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P13-W6",
+          "source_work_package": "W6",
+          "description": "Implement traceable consequence/response records and interventions whose effects propagate through modeled physical delays.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P13-W7",
+          "source_work_package": "W7",
+          "description": "Implement scenario harnesses, attribution/exposure compression comparisons, D13 limits and the infra interface.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Phase 12 ownership/obligations and Phase 11 modeled response interfaces",
+        "Phase 5 materials; Phase 6 mechanics; Phase 7 terrain, reservoirs, hazards and tracer coupling",
+        "S19 and S20 must be implemented upstream before P13-W4; S2 and S13 before their dependent structures or moving machinery",
+        "A supported response function identifier, units and domain must accompany every modeled effect claim"
+      ],
+      "related_seams": [
+        "S2",
+        "S7",
+        "S13",
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "acceptance": [
+        "Physical and attributed balances reconcile through transport, mixing, deposition, recycling and aggregation; unknown attribution remains explicit.",
+        "Exposure-only substances without a validated response curve produce unknown effects, not invented harm or assumed harmlessness.",
+        "Reference transport and terrain cases establish numerical behavior before integrated scenarios; matched maintenance/hazard tests isolate causal factors.",
+        "A consequence record resolves its source, composition, transport and response evidence; enforcement remains a modeled agent/institution action.",
+        "Intervention response retains measured physical transport lags and stays inside declared resolution and compression error budgets."
+      ],
+      "limits": [
+        "Require ensemble behavior and controls instead of two seeds being forced to choose opposite conventions or every intact network surviving a storm.",
+        "Passive tracer transport does not include reactive chemistry unless the coupling explicitly supplies it.",
+        "An attribution or citation chain is not proof of a real causal dose-response relation or legal responsibility."
+      ],
+      "source_sections": [
+        "PHASE13.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 14"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 14,
+      "title": "Perception memory and detail",
+      "delivery_stage": "R6",
+      "source_file": "PHASE14.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        9,
+        10,
+        11,
+        13
+      ],
+      "work_packages": [
+        {
+          "id": "P14-W1",
+          "source_work_package": "W1",
+          "description": "Implement gaze/instrument/archive observation maps and simulated frame allocation; preserve the existing probe as a regression fixture.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P14-W2",
+          "source_work_package": "W2",
+          "description": "Implement knowledge records with source, resolution, time, confidence and prior/observation classification plus memory/record persistence.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P14-W3",
+          "source_work_package": "W3",
+          "description": "Implement the resolution governor only after its observable parity and conservation comparison contract exists; include all governor cost.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P14-W4",
+          "source_work_package": "W4",
+          "description": "Implement physical-channel testimony and provenance-preserving reconciliation without privileged information transfer.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P14-W5",
+          "source_work_package": "W5",
+          "description": "Connect the observation-map provider to physical observation consumers under an explicit two-level semantics contract.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P14-W6",
+          "source_work_package": "W6",
+          "description": "Build occlusion, memory, archive, communication, hidden-event and detailed/reduced comparison fixtures.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P14-W7",
+          "source_work_package": "W7",
+          "description": "Record D14/D15 and freeze versioned observation, allocation and epistemic interfaces with the reviewed benchmark corpus.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Phase 9 agent budgets; Phase 10 instruments and networks; Phase 11 intelligibility; Phase 13 attributed physical records",
+        "S21 provider contract plus actual gaze mechanics; S22 simulated-time allocation events",
+        "Layer-owned reduction semantics and S7/S24 certificate behavior",
+        "A decision distinguishing exact retained fields, approximate observables and inferred/reconstructed detail"
+      ],
+      "related_seams": [
+        "S7",
+        "S16",
+        "S21",
+        "S22",
+        "S24"
+      ],
+      "acceptance": [
+        "Identical scripted and gaze-derived observation maps produce identical consumer behavior within the declared same-build fixture; this does not establish general observer independence.",
+        "Inject host-clock and scheduling jitter without changing simulated allocation traces, events or supported replay outputs.",
+        "Unsupported detail in an asserted observation is rejected; priors and estimates remain labeled and keep their provenance.",
+        "Compare detailed/reduced physical and epistemic observables against predeclared tolerances, including hidden causal influences, rare events and shocks.",
+        "Measure cost improvement with identical workloads, named hardware and governor overhead; the source's 40% ambition is a benchmark target, not a present result."
+      ],
+      "limits": [
+        "Lossy reduction cannot promise exact restoration of discarded beliefs or states; exactness applies only to retained fields or a validated reconstruction contract.",
+        "News cannot precede every physical arrival because its own signal is physical; compare explicitly named channels, such as communication arrival versus weather-front arrival.",
+        "Perceptual allocation does not validate the physical collapse model or establish that observation creates existence."
+      ],
+      "source_sections": [
+        "PHASE14.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 15"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 15,
+      "title": "Runtime and scalability",
+      "delivery_stage": "R7",
+      "source_file": "PHASE15.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        14
+      ],
+      "work_packages": [
+        {
+          "id": "P15-W1",
+          "source_work_package": "W1",
+          "description": "Migrate validated model state to index-based data-oriented stores with complete serialization and explicit migration compatibility.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P15-W2",
+          "source_work_package": "W2",
+          "description": "Implement a scheduler that consumes owning-layer interval certificates, refines on invalidation and refuses unsupported coarse states.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P15-W3",
+          "source_work_package": "W3",
+          "description": "Introduce CPU/GPU or partitioned execution only after deterministic event ordering and typed causal/aggregate channel contracts are tested.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P15-W4",
+          "source_work_package": "W4",
+          "description": "Implement build-aware replay and separately labeled exact and approximate comparisons over a declared environment/hardware matrix.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P15-W5",
+          "source_work_package": "W5",
+          "description": "Measure integrated throughput, memory, logging, transfers and observable error on named workloads/hardware with repeatability intervals.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P15-W6",
+          "source_work_package": "W6",
+          "description": "Run the versioned semantic conformance corpus against the optimized execution; investigate any contract failure before optimization acceptance.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P15-W7",
+          "source_work_package": "W7",
+          "description": "Record D16, supported replay configurations, resource/error budgets and runtime interfaces.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Implemented and validated owning-layer models; Phase 14 observation/reduction semantics for the full runtime",
+        "S23 build identities and equivalence labels; S24 certificates from materials, biology, technology, society and monetary records",
+        "S7/S9 versioning and S16 child-run compatibility",
+        "A complete snapshot inventory including allocator state, pending events, RNG addressing, pool order and scheduler/certificate state"
+      ],
+      "related_seams": [
+        "S7",
+        "S9",
+        "S16",
+        "S22",
+        "S23",
+        "S24"
+      ],
+      "acceptance": [
+        "Round-trip complete supported snapshots and continue to the reference outputs; a memory copy or absence of pointers alone is insufficient evidence.",
+        "Same-build exact comparisons run only within the declared tested numerical compatibility class; cross-build comparisons use explicit observable/error policies.",
+        "Under queue, transfer and partition stress, no causal events are lost and all permitted aggregate delays are bounded and recorded.",
+        "Certificate boundary, invalidation and exhaustion fixtures trigger the declared refine/rollback/refuse behavior; no unsigned coarse read executes.",
+        "Quantization tests cover units, range, overflow, rounding and accumulated propagated error; publish repeated end-to-end cost/fidelity results instead of kernel-only speed claims."
+      ],
+      "limits": [
+        "Fixed reduction order is necessary in some cases but does not guarantee cross-hardware bit identity.",
+        "Channel width is not an end-to-end physical error budget; propagation and correlations require analysis and experiments.",
+        "Keep benchmark versions immutable for comparison, but allow separately reviewed corrections when the benchmark itself is wrong.",
+        "The specified throughput multipliers, interactive whole world and overnight corpus remain unmeasured targets; do not make them near-term release promises."
+      ],
+      "source_sections": [
+        "PHASE15.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W7",
+        "Verification strategy",
+        "Interface exposed to Phase 16"
+      ],
+      "evidence": []
+    },
+    {
+      "phase": 16,
+      "title": "Integrated emergent loop",
+      "delivery_stage": "R8",
+      "source_file": "PHASE16.md",
+      "specification_state": "detailed_plan",
+      "implementation_state": "not_implemented",
+      "local_gate_state": "unverified",
+      "integration_gate_state": "unverified",
+      "full_phase_complete": false,
+      "entry_rule": "D0 plus approved local model/interface contracts; fixtures may support isolated development",
+      "integration_prerequisite_phases": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "work_packages": [
+        {
+          "id": "P16-W1",
+          "source_work_package": "W1",
+          "description": "Implement a read-only integration harness and versioned milestone queries over the S25 ontology with reviewed negative controls.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P16-W2",
+          "source_work_package": "W2",
+          "description": "Execute a declared ensemble of initialization/seed conditions and report milestone occurrence, ordering, causal diversity, failures and uncertainty.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P16-W3",
+          "source_work_package": "W3",
+          "description": "Exercise agent-triggered child runs, depth/resource guards, child-result provenance and subsequent parent decisions under S16.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P16-W4",
+          "source_work_package": "W4",
+          "description": "Provide supported historical-state access and continuation with explicit checkpoint/certificate reconstruction semantics and measured latency.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P16-W5",
+          "source_work_package": "W5",
+          "description": "Measure per-era compute, storage, refinement and resource budgets; record overruns and their owning model/contract.",
+          "state": "planned",
+          "evidence": []
+        },
+        {
+          "id": "P16-W6",
+          "source_work_package": "W6",
+          "description": "Publish auditable run bundles and a qualified completion report with operational D17 criteria and the remaining scientific domain limits.",
+          "state": "planned",
+          "evidence": []
+        }
+      ],
+      "dependencies": [
+        "Validated interfaces and relevant capability fixtures across Phases 0-15",
+        "S25 global event ontology; S23 tested compatibility matrix; S24 certificates; S16 nested provenance",
+        "Declared initial-condition mode including any D6 seeded/offline material source and any seeded replicators",
+        "A chosen operational definition of emergence, discovery and novelty; metrics must be reviewed before the evaluation ensemble is observed"
+      ],
+      "related_seams": [
+        "S6",
+        "S16",
+        "S23",
+        "S24",
+        "S25"
+      ],
+      "acceptance": [
+        "Each detector rejects appropriate missing, malformed, injected and reordered synthetic evidence; detectors cannot mutate world state.",
+        "Every run publishes its initialization provenance, supported milestone outcomes, failures and cost, rather than selecting only attractive histories.",
+        "A missing milestone is classified as implementation defect, invalid setup, resource exhaustion, numerical issue or research non-occurrence using explicit diagnostics.",
+        "Child runs are triggered by logged parent events, preserve budgets and provenance, and refuse forbidden nesting; parent influence is demonstrated without demanding an accidental wrong claim.",
+        "Measure p50/p95 state-open and continuation cost on a declared corpus; report sustained novelty only under a fixed novelty definition and time window.",
+        "Preserve the source Great Run ladder as a named demonstration benchmark: freeze its selected multi-seed cases, network-mesh/nested milestones and finite novelty window before execution; claim that benchmark complete only if its gates pass. Report the broader exploratory ensemble separately, including non-occurrence and alternate ordering."
+      ],
+      "limits": [
+        "Three diverse seeds, frozen detectors and a noun filter cannot prove universal unscripted emergence. Hidden outcomes can be encoded in rules, rewards or initialization.",
+        "Do not generalize a selected demonstration ladder to every seed or an indefinite invention guarantee. Preserve informative non-occurrence in research campaigns; a failed demonstration blocks that demonstration claim, not necessarily every underlying model.",
+        "Separate product-demo completeness from scientific validation. Passing a prepared-world capability test is not evidence that the whole preceding history emerged in the same run.",
+        "All source performance targets remain conditional on measured resource budgets; source documents contain no established cluster capacity or delivery dates."
+      ],
+      "source_sections": [
+        "PHASE16.md: Prerequisites",
+        "Scale contract",
+        "Architecture and Data rules",
+        "W1-W6",
+        "Verification strategy",
+        "Gate"
+      ],
+      "evidence": []
+    }
+  ],
+  "seams": [
+    {
+      "id": "S1",
+      "upstream": "Phase 6 W1 rotating-frame terms and angular-momentum accounting",
+      "work": "Add declared frame transforms/source terms to the continuum operator with unit and conservation checks.",
+      "downstreamGates": [
+        "Phase 7 W4 geostrophy and circulation"
+      ],
+      "test": "Reference rotating-frame balance and frame-change cases pass before coupled climate tests.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S2",
+      "upstream": "Phase 6 W3 with Phase 5 constitutive kinetics",
+      "work": "Implement a parameterized viscoelastic/creep law, validity range and stress-energy coupling.",
+      "downstreamGates": [
+        "Phase 7 W2 mantle convection",
+        "Phase 13 W1 slow infrastructure deformation"
+      ],
+      "test": "Stress-relaxation and limiting-regime reference curves plus budget checks precede integrated scenarios.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S3",
+      "upstream": "Phase 5 W2 vapor-transition kinetics",
+      "work": "Implement heterogeneous nucleation/growth with aerosol inputs and mass/latent-heat accounting.",
+      "downstreamGates": [
+        "Phase 7 W4 cloud and rain-out controls"
+      ],
+      "test": "Concentration/forcing ramps and aerosol-off controls match declared reference behavior and convergence.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S4",
+      "upstream": "Phase 0 constants via Phase 6 W1",
+      "work": "Choose gravitational units/coupling, version the physical model and document calibration domain.",
+      "downstreamGates": [
+        "Phase 7 W1 accretion, orbit and Hill-scale tests"
+      ],
+      "test": "Dimensional and orbital reference cases pass on the new build; old 0.1 replay remains scoped to its original model.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S5",
+      "upstream": "Phase 0/1 lattice and time-temperature model",
+      "work": "Choose and document an expansion model with its supported eras and versioned parameters.",
+      "downstreamGates": [
+        "Phase 7 W1 timeline anchors",
+        "Phase 9 epoch conversion",
+        "Phase 10 W4 sky inference"
+      ],
+      "test": "Independent age/temperature/expansion references in declared regimes; do not merely calibrate one endpoint.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S6",
+      "upstream": "Phase 2 yields and Phase 7 initialization decision D6",
+      "work": "Implement the D6 offline Phase 2 stellar-yield source with run seed, log, build and conserved inventory. Synthetic composition fixtures are permitted for isolated component development only.",
+      "downstreamGates": [
+        "Phase 7 disk composition",
+        "Phase 16 end-to-end provenance"
+      ],
+      "test": "Cache-off regeneration from the logged engine stellar run reproduces the imported inventory and provenance before integrated Phase 7 or Great Run acceptance. Synthetic fixtures leave S6 open; replacing this requirement needs an explicit scope-changing ADR.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S7",
+      "upstream": "Phase 7 W7 spatial-resolution contracts, reusable foundation schema",
+      "work": "Define restriction/lifting, conserved state, observables, error budgets and transition validity before large spatial LOD.",
+      "downstreamGates": [
+        "Phase 7 lazy regions",
+        "Phases 8-15 reduced representations"
+      ],
+      "test": "Round-trip exact retained fields and bounded observable errors across normal/shock/rare-event fixtures.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S8",
+      "upstream": "Phase 6 event/interface contract plus S25 registry",
+      "work": "Represent external boundary driving as registered events with producer, units, affected region and conservation accounting.",
+      "downstreamGates": [
+        "Phase 7 W3 plate/boundary driving"
+      ],
+      "test": "Boundary effects occur only through the logged path; replay includes the forcing and duplicate kind IDs fail.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S9",
+      "upstream": "spec versioning decision D7",
+      "work": "Separate physics, schema/RNG and runtime compatibility versions; define migration and re-baselining policy.",
+      "downstreamGates": [
+        "All behavioral changes",
+        "S4 gravity amendment",
+        "S23 runtime comparison"
+      ],
+      "test": "A behavior-changing constant/rate/order change cannot silently retain an incompatible baseline identity.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S10",
+      "upstream": "Phase 4 W3 channel semantics",
+      "work": "Add bounded template/complement and catalytic reaction classes with explicit rate and conservation semantics.",
+      "downstreamGates": [
+        "Phase 8 W1 heredity",
+        "Phase 10 W6 template editing"
+      ],
+      "test": "Template controls distinguish catalysis from uncatalyzed reactions and preserve molecular inventory.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S11",
+      "upstream": "Phase 4 W4 and Phase 5 W2",
+      "work": "Implement concentration-dependent amphiphile assembly and compartment growth/breakup as kinetics, not an instantaneous label.",
+      "downstreamGates": [
+        "Phase 8 W2 compartments"
+      ],
+      "test": "Formation, persistence and breakup controls across ramps with mass/energy and resolution checks.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S12",
+      "upstream": "Phase 4 W3 with Phase 6 W4 radiation input",
+      "work": "Register photon-driven reactions and couple supported spectral flux to chemical events without duplicating energy.",
+      "downstreamGates": [
+        "Phase 7 W5 photolysis",
+        "Phase 8 W6 photosynthetic pathways"
+      ],
+      "test": "Radiation-off/on and spectral controls verify rates and shared energy accounting.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S13",
+      "upstream": "Phase 6 rigid/contact operators using Phase 5 materials",
+      "work": "Add articulated bodies, joint forces and conservative body-grid contact exchange.",
+      "downstreamGates": [
+        "Phase 9 W1 movement",
+        "Phase 9 W5 tools",
+        "Phase 10 W2 machinery",
+        "Phase 13 moving assets"
+      ],
+      "test": "Reference joint/contact cases, momentum/energy transfer and work budgets pass before agent-driven scenarios.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S14",
+      "upstream": "Phase 8/9 clock interface",
+      "work": "Retain the corrected single global timeline; add executable conformance when agents are implemented.",
+      "downstreamGates": [
+        "Phase 9 W1 global-tick agents",
+        "Phase 14 allocation"
+      ],
+      "test": "Decision resolution does not introduce an independent clock; schedule jitter leaves causal time unchanged.",
+      "ledger_status": "FIXED_WORDING_ONLY",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S15",
+      "upstream": "Phase 6 W5 electromagnetic regimes",
+      "work": "Declare and implement the necessary time-dependent circuit, induction and propagation domains one at a time.",
+      "downstreamGates": [
+        "Phase 10 W3 electrical systems",
+        "Phase 10 W4 communication",
+        "Phase 10 W5 switching hardware"
+      ],
+      "test": "Upstream capacitor/inductor/transmission/wave benchmarks precede device adoption scenarios; no hidden consumer-side physics.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S16",
+      "upstream": "Spec D10 and Phase 1 event/replay mechanics",
+      "work": "Define child seed/run namespaces, log references, parent/child budget and result contracts, and recursion policy; prototype with tiny child fixtures.",
+      "downstreamGates": [
+        "Phase 10 W5 nested worlds",
+        "Phase 12 verification records",
+        "Phase 16 W3 closure"
+      ],
+      "test": "Stable child derivation, replay verification, malformed identity detection and logged depth refusal; world-computer equivalence remains a later explicit gate.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S17",
+      "upstream": "Phase 10/9 interface, future Phase 11 implementation",
+      "work": "Implement sanctions as observable environment events; forbid consumer modules from directly editing policy weights.",
+      "downstreamGates": [
+        "Phase 11 W2 norms",
+        "Phase 12 regulation"
+      ],
+      "test": "Architectural write-boundary tests and agent-policy traces demonstrate the corrected contract; wording alone is not closure evidence for mechanics.",
+      "ledger_status": "FIXED_WORDING_ONLY",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S18",
+      "upstream": "Phase 10 artifact/claim ledger, consumed by Phase 12 W1",
+      "work": "Implement stable holder/asset references, transfer causes, authorization semantics and compressed holdings in the owning ledger.",
+      "downstreamGates": [
+        "Phase 12 ownership/credit/tax",
+        "Phase 13 infrastructure/liability"
+      ],
+      "test": "Holdings and transfers reconcile exactly across allowed operations and compression; claim authorship is distinct from ownership.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S19",
+      "upstream": "Phase 7/8 flux-event contract",
+      "work": "Carry sparse producer attribution through transport and aggregation without changing physical flux; distinguish known background from unknown/unattributed contributions.",
+      "downstreamGates": [
+        "Phase 13 W4 exposure attribution",
+        "Phase 13 W6 consequences"
+      ],
+      "test": "Tagged mass/energy fractions reconcile through mixing/deposition and reduction; missing tags do not silently mean natural origin.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S20",
+      "upstream": "Phase 7 local tracer transport and resolution interface",
+      "work": "Add declared near-surface advection, diffusion and deposition with coherent exchange to coarse reservoirs and a concentration read API.",
+      "downstreamGates": [
+        "Phase 13 W4 local exposure",
+        "Phase 13 W6 transport-lag recovery"
+      ],
+      "test": "Reference plume direction, mass balance, deposition and grid convergence; passive versus reactive scope is explicit.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S21",
+      "upstream": "Phase 1 observation-map consumer; future Phase 14 provider",
+      "work": "Define the provider protocol early and keep Probe as a fixture; implement gaze/instrument/archive providers only when their owner models exist.",
+      "downstreamGates": [
+        "Phase 14 W1 map replacement",
+        "Phase 14 W5 observation reconciliation"
+      ],
+      "test": "Equal map inputs give equal consumer results in the supported same-build fixture; do not claim implemented perception from the corrected document.",
+      "ledger_status": "FIXED_WORDING_ONLY",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S22",
+      "upstream": "Foundational replay/scheduler contract, Phase 14 allocation implementation",
+      "work": "Separate host timing from simulated-time budget decisions; log deterministic allocation identities and inputs.",
+      "downstreamGates": [
+        "Phase 14 W1/W6 frame allocation",
+        "Phase 15 scheduler replay"
+      ],
+      "test": "Inject host-clock/load jitter while preserving world and allocation traces; host performance meters must not feed causal decisions.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S23",
+      "upstream": "Run manifest/replay schema and runtime comparison policy",
+      "work": "Record numerical/runtime/build identity now for Python; later define tested hardware classes and cross-build observable comparisons.",
+      "downstreamGates": [
+        "Phase 15 W4 replay",
+        "Phase 16 portability claims"
+      ],
+      "test": "Mismatch handling distinguishes exact supported replay, approximate comparison and unsupported configurations; a version label alone cannot assert hardware equivalence.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S24",
+      "upstream": "Certificate schema plus each owning layer: Phases 5,8,10,11,12",
+      "work": "Define interval bounds, retained state, assumptions, observable errors and invalidation/refinement behavior; each layer supplies its own validated implementation.",
+      "downstreamGates": [
+        "Phase 14 governor",
+        "Phase 15 W2 scheduler",
+        "Phase 16 historical reconstruction"
+      ],
+      "test": "Unsigned/incompatible summaries fail closed; adversarial interval crossings exercise refine/rollback/refuse semantics without inventing lost history.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    },
+    {
+      "id": "S25",
+      "upstream": "Global event/schema registry and phase interface tooling",
+      "work": "Register current event identities and extension rules early; generate/validate per-phase payload and producer/consumer metadata as implementations arrive.",
+      "downstreamGates": [
+        "S8 boundary events",
+        "All cross-phase tooling",
+        "Phase 16 W1 milestone queries"
+      ],
+      "test": "Collision and unknown-kind tests pass; detectors query only declared supported schemas; planned registry entries do not imply runtime implementation.",
+      "ledger_status": "OPEN",
+      "implementation_status": "not_verified",
+      "evidence": []
+    }
+  ],
+  "early_contracts": [
+    {
+      "seams": [
+        "S9",
+        "S23"
+      ],
+      "now": "Define a run-manifest schema separating physics_build, source revision, log/schema version, RNG scheme, runtime/numerical environment, configuration and artifact hashes. Implement it first for the current Python model.",
+      "defer": "Compiled/device compatibility, cross-platform exactness, and whole-world checkpoint support until the corresponding mechanisms and comparison corpus exist.",
+      "gate": "Legacy 0.1 records remain interpretable; new records reject mismatched exact comparisons explicitly. Cross-build approximation is a separately named operation with specified observables."
+    },
+    {
+      "seams": [
+        "S22",
+        "S14"
+      ],
+      "now": "Declare global simulation time and causal ordering independent of host clocks. Introduce an injectable test clock and deterministic scheduling/allocation event schema on a minimal fixture.",
+      "defer": "Full perception, cognition and frame-budget mechanics until their owner phases exist.",
+      "gate": "Changing host timing may change wall-time measurements but not current model results or fixture causal traces."
+    },
+    {
+      "seams": [
+        "S24",
+        "S7"
+      ],
+      "now": "Define the certificate fields and fail-closed behavior: owner/model version, interval, preconditions, retained state, observable/error bounds, boundary events and invalidation handling. Pilot only on the existing restricted jump domain.",
+      "defer": "Biological, institutional and monetary closures until those layers can supply and validate them.",
+      "gate": "Unsigned or incompatible summaries cannot be scheduled. Accumulated jump hazard must be bounded over the interval/channels, not mistaken for zero because each per-step probability is small."
+    },
+    {
+      "seams": [
+        "S25",
+        "S8",
+        "S16"
+      ],
+      "now": "Create a versioned namespace/registry for existing event kinds and payload contracts, with stable causal/entity/run IDs and collision/schema checks. Reserve future extension rules rather than pretend future kinds are implemented.",
+      "defer": "Populate each future phase's kinds when its producer/consumer contract is implemented; add milestone queries only against supported kinds.",
+      "gate": "Duplicate identities, unknown active kinds and malformed payloads fail explicitly. Child-run namespaces cannot overlap parent event/random identities."
+    }
+  ],
+  "starter_decisions": [
+    {
+      "id": "ADR-D0-01",
+      "decision": "Version and compatibility boundaries",
+      "needed_before": [
+        "D0-02",
+        "D0-04",
+        "D0-05",
+        "D0-08",
+        "D0-09"
+      ],
+      "recommended_position": "Freeze 0.1 by exact source/environment/artifact digests. Reject unsupported historical execution in the new driver and direct replay to the archived source checkout; do not require permanent duplicate 0.1 kernels inside the new engine. Separate metadata-only schema changes from behavior changes."
+    },
+    {
+      "id": "ADR-D0-02",
+      "decision": "Logical random addresses and generator/encoding scheme",
+      "needed_before": [
+        "D0-04"
+      ],
+      "recommended_position": "Use explicit stable process/species/channel identity and an attempt/draw offset, rather than a global call-order counter. Specify supported field widths, overflow rejection, collision assumptions and deterministic encoding. Distinct logical addresses and a documented generator are necessary; unequal output samples do not prove independence."
+    },
+    {
+      "id": "ADR-D0-03",
+      "decision": "Reference kinetic time, propensities and controlled domain",
+      "needed_before": [
+        "D0-06",
+        "D0-08",
+        "D0-09"
+      ],
+      "recommended_position": "Start with fixed-temperature, closed, finite-population kernel controls and an independently implemented reference sampler or exact finite-state generator. Declare whether rate time is physical seconds or an explicitly named model-time unit. Keep cosmological expansion as a separate prescribed boundary until weak, nuclear and atomic rates share a justified time mapping. Define identical-reactant counting and equilibrium partition factors before tuning."
+    },
+    {
+      "id": "ADR-D0-04",
+      "decision": "Atomic population state and supported temperature domain",
+      "needed_before": [
+        "D0-09"
+      ],
+      "recommended_position": "Represent charge-state population counts rather than one spread-filled captured-electron scalar when testing multilevel reversibility. Begin with the one-charge case as the reference control; add supported multi-charge cases with explicit transition energies/statistical factors. A capture optimization must not disable reverse ionization of existing bound populations."
+    },
+    {
+      "id": "ADR-D0-05",
+      "decision": "Jump equivalence and approximation budget",
+      "needed_before": [
+        "D0-11"
+      ],
+      "recommended_position": "Exact mode skips only intervals with proved zero omitted hazard and unchanged causal state. A separately labeled approximate mode requires a conservative integrated hazard/error budget, invalidation rules and reference comparisons. Unknown or unsupported bounds disable the jump. Choose tolerances from the declared observable requirement and reference uncertainty before inspecting candidate results."
+    }
+  ],
+  "later_decisions": [
+    {
+      "topic": "Compatibility and build identity",
+      "why": "RNG and kinetic repairs change histories; old 0.1 logs cannot silently be checked with new semantics.",
+      "before": "First behavior-changing PR",
+      "candidate": "Separate physics, RNG/event/state schema and runtime identity; preserve an archived 0.1 runner or refuse explicitly and point to its revision. Do not promise full legacy support without tests."
+    },
+    {
+      "topic": "Rates and bath conventions",
+      "why": "Removing early returns alone cannot establish detailed balance or physical time evolution.",
+      "before": "Equilibrium kernel implementation",
+      "candidate": "Use a small explicit reference transition model, declare units and all bath/energy terms, then test a scalable sampler against it."
+    },
+    {
+      "topic": "Quantum scope and Phase 1 gate",
+      "why": "The source conflates a field-only engine with a nuclear acceptance run and does not specify a sufficient general joint-state representation.",
+      "before": "Phase 1 W4/W5",
+      "candidate": "Separate field-only numerical observables from micro-seed integration; choose the supported quantum approximation and reference cases before coding correlations."
+    },
+    {
+      "topic": "Expansion, gravity and seeded composition",
+      "why": "S4/S5/S6/S9 affect later clock and inventory semantics.",
+      "before": "Their Phase 6/7 consumers",
+      "candidate": "Document units, model versions, initial-condition provenance and calibration data; do not insert a retrospective timeline factor or unnamed elemental inventory."
+    },
+    {
+      "topic": "Meaning of phase completion",
+      "why": "The source sometimes equates wanted historical outcomes with correct algorithms.",
+      "before": "Any full phase acceptance",
+      "candidate": "Separate implemented mechanism, verified numerical properties, validated physical domain and demonstrated emergence. Negative research outcomes are recorded and may require rescoping or an explicit initialized alternative."
+    },
+    {
+      "topic": "Reproducibility classes",
+      "decision": "Adopt separately named same-environment exact replay, complete checkpoint restoration, exact compatible-runtime replay, and bounded cross-build comparison. Every test and report names one class."
+    },
+    {
+      "topic": "Exact versus lossy state",
+      "decision": "List exact retained fields and approximate observables for every representation. Select eager invalidation or recoverable rollback before a scheduler can cross a certified interval."
+    },
+    {
+      "topic": "Initialization provenance",
+      "decision": "Declare whether a scenario continues a prior generated history, imports recorded offline output, or uses a synthetic fixture. Seeded matter/replicators are not silently promoted to end-to-end emergence."
+    },
+    {
+      "topic": "Research outcomes versus software gates",
+      "decision": "Hard-fail structural/accounting/replay violations. Report hypothesis failures and non-occurrence separately; they block the corresponding scientific claim rather than automatically proving a coding defect."
+    },
+    {
+      "topic": "Milestone interpretation",
+      "decision": "Pre-register predicates, negative controls, ensemble design, uncertainty and failure taxonomy. Numeric benchmark thresholds require justification; original week-by-week estimates and blank performance targets are not commitments."
+    },
+    {
+      "topic": "Replication versus replay",
+      "decision": "Exact replay verifies a saved realization. Independent replication compares a stated effect under controlled independent experiments and uncertainty; claims must not conflate them."
+    },
+    {
+      "topic": "Fixture and engine separation",
+      "decision": "Capability fixtures may initialize bounded systems openly. World-generating runs must record all such initialization and interventions. String bans are secondary lints, not proofs of emergence."
+    }
+  ],
+  "milestone_exit": [
+    "A preserved 0.1 baseline remains reproducible in its supported environment.",
+    "The candidate has explicit manifest/event/RNG/state/time/accounting contracts and passes their deterministic tests.",
+    "Bounded nuclear and atomic controls demonstrate the specified reversible finite-system kinetics from both sides, under a registered reference protocol.",
+    "Jump behavior is either conservatively disabled or justified under an explicit exact/approximate certificate.",
+    "An honest validation dossier defines accepted behavior and unresolved science before any expansion to more world layers.",
+    "Phase 0/1 research ambitions not exercised by these controls remain open; no interference, entanglement, full cosmology, chemistry, biological or societal capability is implied."
+  ],
+  "verification_policy": {
+    "claim_classes": [
+      "software_verification",
+      "same_environment_exact_replay",
+      "cross_build_equivalence",
+      "checkpoint_restoration",
+      "independent_model_validation",
+      "emergence_experiment"
+    ],
+    "fixture_policy": "Fixture-backed local development is allowed when initialization/provenance is explicit. Integration gates require the implemented producer contracts.",
+    "numeric_policy": "Commit units, domain, calibration/held-out split, reference method, uncertainty, sample/power and tolerances before observing candidate evaluation results.",
+    "completion_policy": "Verified records require concrete evidence. A full-phase label requires its local and applicable integration gates; one is not a substitute for the other."
+  }
+}

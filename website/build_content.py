@@ -71,6 +71,14 @@ products=json.loads((ROOT/'website/content/products.json').read_text(encoding='u
 write_json(DATA/'products.json',products)
 write_json(DOWNLOADS/'SimWorld_Product_Portfolio.json',products)
 
+# Planning records stay separate from the dated scientific publication. Their
+# current source archive includes the checker and every referenced source input.
+development=json.loads((ROOT/'spec/development_backlog.json').read_text(encoding='utf-8'))
+development_status=json.loads((ROOT/'spec/status.json').read_text(encoding='utf-8'))
+write_json(DOWNLOADS/'SimWorld_Development_Backlog.json',development)
+(DOWNLOADS/'SimWorld_Development_Specification.md').write_bytes(
+    public_bytes('DEVELOPMENT_SPEC.md',(ROOT/'DEVELOPMENT_SPEC.md').read_bytes()))
+
 phase_rows=[
  (0,'World rules','Foundations','Define the primitive records, effective fields, initial state, time and observation contracts.',
   ['Sampled quant records and field metadata','Deterministic events and state hashes','Restricted quiet-cell jumps'],
@@ -148,13 +156,15 @@ else:
     coverage_note+=' All seventeen phases have detailed plans; implementation status is separate.'
 
 docs=[]
-doc_paths=[ROOT/'ROADMAP.md',ROOT/'BUILD0.md']+[ROOT/f'PHASE{i}.md' for i in range(17) if (ROOT/f'PHASE{i}.md').exists()]+sorted((ROOT/'spec').glob('*.md'))
+doc_paths=[ROOT/'DEVELOPMENT_SPEC.md',ROOT/'ROADMAP_DIFF.md',ROOT/'ROADMAP.md',ROOT/'BUILD0.md']+[ROOT/f'PHASE{i}.md' for i in range(17) if (ROOT/f'PHASE{i}.md').exists()]+sorted((ROOT/'spec').glob('*.md'))
 for p in doc_paths:
     rel=p.relative_to(ROOT)
     dest=DOCS/rel;dest.parent.mkdir(parents=True,exist_ok=True)
     payload=public_bytes(rel.name,p.read_bytes());dest.write_bytes(payload)
     title=payload.decode().splitlines()[0].lstrip('# ').strip()
-    category='Roadmap' if p.name=='ROADMAP.md' else 'Build specification' if p.name=='BUILD0.md' else 'Phase plan' if p.name.startswith('PHASE') else 'Specifications'
+    category={'DEVELOPMENT_SPEC.md':'Development specification','ROADMAP_DIFF.md':'Roadmap audit',
+              'ROADMAP.md':'Roadmap','BUILD0.md':'Build specification'}.get(p.name,
+              'Phase plan' if p.name.startswith('PHASE') else 'Specifications')
     docs.append({'id':rel.as_posix(),'title':title,'category':category,'url':'/docs/'+rel.as_posix(),
                  'bytes':len(payload),'sha256':sha(payload)})
 
@@ -170,13 +180,16 @@ assert pdf.stat().st_size==PAPER['pdfBytes'], 'PDF size and publication metadata
 with zipfile.ZipFile(research_archive) as archive:
     evidence={name:archive.read(name) for name in archive.namelist() if name.startswith('research/')}
 
-patterns=['README.md','CONTRIBUTING.md','docs/*.md','ROADMAP.md','BUILD0.md','PHASE*.md','requirements.txt','sim/*.py','spec/*.md',
+patterns=['README.md','CONTRIBUTING.md','docs/*.md','DEVELOPMENT_SPEC.md','ROADMAP_DIFF.md','ROADMAP.md','BUILD0.md','PHASE*.md','requirements.txt','sim/*.py','spec/*.md','spec/*.json','scripts/check_development_spec.py',
+          '.github/workflows/*.yml','website/dist/downloads/SimWorld_Research_Materials_Public.zip',
+          'website/dist/downloads/SimWorld_Audit_Diagnostics.json',
           'tests/*.py','tests/*.toml','tests/oracle/*.json','tests/oracle/*.py',
           'spikes/*/*.py','spikes/*/*.json','spikes/*/*.csv']
 current_files=sorted({p for pat in patterns for p in ROOT.glob(pat) if p.is_file()})
 current={p.relative_to(ROOT).as_posix():public_bytes(p.name,p.read_bytes()) for p in current_files}
-current_manifest={'snapshot_date':'2026-10-29','physics_build':'0.1',
-   'scope':'Current allowlisted engine source and research plans; public identifiers redacted',
+current_manifest={'snapshot_date':development['date'],'physics_build':'0.1',
+   'scope':'Current allowlisted engine source, executable development specification and research plans; public identifiers redacted',
+   'planning_version':development['planning_version'],
    'repository':REPOSITORY_URL,'detailed_phases':detailed_phases,
    'files':[{'path':name,'bytes':len(raw),'sha256':sha(raw)} for name,raw in current.items()]}
 source_package={'simworld/'+name:raw for name,raw in current.items()}
@@ -184,6 +197,9 @@ source_package['simworld/public_source_manifest.json']=(json.dumps(current_manif
 source_package['simworld/PUBLIC_README.txt']=('SimWorld engine source and documentation snapshot.\n'
       +coverage_note+' '
       'The implemented engine remains the reduced physics_build 0.1 baseline.\n'
+      'For new development, read DEVELOPMENT_SPEC.md and run '
+      'python scripts/check_development_spec.py --ready. The first ticket is D0-01.\n'
+      'The referenced historical audit archive and CI workflow are included as planning inputs.\n'
       'Use Python 3.11.9; install requirements.txt, run python -m pytest -q, then '
       'python -m sim.demo --seed 42 --ticks 3400 --cells 8 --probe-cells 2,3 --out run_demo.\n'
       'The complete repository, including website tooling, is '+REPOSITORY_URL+'.\n'
@@ -201,8 +217,10 @@ download_meta=[
  ('whitepaper','Research white paper',f"Version {PAPER['version']} · {PAPER['pages']} pages. Detailed profiles of all 17 phases, latest project status, implementation evidence and research limits.",pdf.name,'PDF'),
  ('research','Research materials',f"Version {PAPER['version']} manuscript, all 17 phase profiles, current source snapshot and CI evidence, plus the separately preserved original audit.",'SimWorld_Research_Materials_Public.zip','ZIP'),
  ('portfolio','Possible product portfolio','Twelve proposed products, with intended users, first scopes, dependencies and validation gates. These are concepts, not shipping products.','SimWorld_Product_Portfolio.json','JSON'),
- ('source','Current engine source','Python engine, tests, prototypes, contributor documentation and all currently available phase plans.','SimWorld_Current_Source.zip','ZIP'),
- ('documentation','Complete documentation','Roadmap, first-build contract, all available phase plans and specification records.','SimWorld_Documentation.zip','ZIP'),
+ ('development','Development specification','The reconciled roadmap: 17 phases, 112 work packages, 12 starter tickets and 25 cross-phase seams. Begin with D0-01; use the current source ZIP for the complete linked bundle.','SimWorld_Development_Specification.md','MD'),
+ ('backlog','Structured development backlog','Machine-readable tickets, dependencies, phase gates and acceptance criteria for development planning. These records do not claim new capabilities are implemented.','SimWorld_Development_Backlog.json','JSON'),
+ ('source','Current source and development bundle','Python engine, tests, prototypes, development specification, structured backlog and status, validator, source audit and all 17 phase plans.','SimWorld_Current_Source.zip','ZIP'),
+ ('documentation','Complete documentation','Development specification, roadmap audit, first-build contract, all 17 phase plans and specification records.','SimWorld_Documentation.zip','ZIP'),
  ('run','Verified run data','Full-precision summary of the reproduced seed-42, eight-cell, 3,400-tick realization.','SimWorld_Verified_Run.json','JSON'),
  ('tests','Full test report','JUnit results for the 65-test audit suite. Host identifiers removed.','SimWorld_Test_Report.xml','XML'),
  ('diagnostics','Audit diagnostics','Reproduction results and targeted checks of reverse pathways, neutral-state behavior and RNG stream reuse.','SimWorld_Audit_Diagnostics.json','JSON')]
@@ -227,6 +245,11 @@ project={
  'snapshotDate':AUDIT_DATE,'physicsBuild':'0.1','status':'Research prototype',
  'repositoryURL':REPOSITORY_URL,'websiteURL':SITE_URL,
  'portfolio':{'url':'portfolio.html','conceptCount':len(products['products']),'version':products['version']},
+ 'development':{'version':development['planning_version'],'date':development['date'],
+   'document':'/docs/DEVELOPMENT_SPEC.md','readyTickets':development_status['ready_now'],
+   'starterTicketCount':len(development['starter_tickets']),
+   'workPackageCount':sum(len(p['work_packages']) for p in development['phases']),
+   'seamCount':len(development['seams'])},
  'statusDescription':'The current build is a reduced stochastic physics model. The wider world remains a research program.',
  'paper':{**PAPER,'url':'/downloads/'+pdf.name+'?v='+PAPER['version']},
  'metrics':{'testsPassed':65,'testSeconds':123.64,'replayHashes':34,'seed':42,'cells':8,'ticks':3400,
