@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SimWorld run manifest",
+  "description": "Execution identity recorded alongside every run (D0-02). sim/manifest.py is the executable validator; this document is its authoritative field list. Semantic fields may change the trajectory or its interpretation; informational fields must not enter RNG coordinates or canonical state hashes.",
+  "x_run_manifest_schema": "run-manifest/0.1",
+  "x_supported_manifest_schema_versions": ["run-manifest/0.1"],
+  "x_current_build_identity": {
+    "schemas": {"log": "0.2", "rng": "0.1", "state": "0.1", "events": "0.1"},
+    "note": "Log 0.2 adds log_schema and manifest_digest header fields over 0.1-legacy; equations, RNG addressing and state hashing are unchanged. A recorded run whose schema set differs from the current build is rejected with archived-source instructions; no guessed migration is performed."
+  },
+  "x_semantic_fields": ["schema_version", "physics_build", "schemas", "config", "identity"],
+  "x_informational_fields": ["informational"],
+  "type": "object",
+  "required": ["schema_version", "physics_build", "schemas", "config", "identity", "informational"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "physics_build": {"type": "string"},
+    "schemas": {
+      "type": "object",
+      "required": ["log", "rng", "state", "events", "manifest"]
+    },
+    "config": {
+      "type": "object",
+      "required": ["seed", "ticks", "cells", "hash_every", "probe_cells", "jump"],
+      "properties": {
+        "seed": {"type": "integer"},
+        "ticks": {"type": "integer", "minimum": 1},
+        "cells": {"type": "integer", "minimum": 1},
+        "hash_every": {"type": "integer", "minimum": 1},
+        "probe_cells": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+        "jump": {"type": "boolean"}
+      }
+    },
+    "identity": {
+      "type": "object",
+      "required": ["constants_digest", "source", "environment"],
+      "properties": {
+        "source": {
+          "type": "object",
+          "required": ["available"],
+          "properties": {"available": {"type": "boolean"}}
+        },
+        "environment": {
+          "type": "object",
+          "required": ["python", "numpy", "numeric_policy"],
+          "properties": {"numeric_policy": {"type": "object"}}
+        }
+      }
+    },
+    "informational": {
+      "type": "object",
+      "required": ["created_utc", "platform"]
+    }
+  }
+}

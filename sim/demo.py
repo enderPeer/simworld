@@ -22,6 +22,7 @@ from . import collapse
 from . import condense
 from . import constants as C
 from . import jump as jump_mod
+from . import manifest as manifest_mod
 from . import network, weak
 from .fields import MASS, N_SPECIES
 from .lattice import Lattice
@@ -284,8 +285,13 @@ def run_recorded(seed, ticks, cells, out_dir, probe_cells=(), jump=True):
         "probe_cells": sorted(int(c) for c in probe_cells),
         "jump": bool(jump),
     }
+    run_manifest = manifest_mod.build(manifest_mod.build_config(
+        seed, ticks, cells, HASH_EVERY, meta["probe_cells"], jump))
+    manifest_mod.write_manifest(out / "manifest.json", run_manifest)
     ctx = EventContext(seed, mode="record", path=out / "run.jsonl.gz",
-                       physics_build=C.PHYSICS_BUILD, meta=meta)
+                       physics_build=C.PHYSICS_BUILD, meta=meta,
+                       log_schema=manifest_mod.LOG_SCHEMA,
+                       manifest_digest=manifest_mod.semantic_digest(run_manifest))
     chain, world = run(seed, ticks, cells, ctx,
                        probe=Probe(meta["probe_cells"]), jump=jump)
     ctx.finish(chain.final())

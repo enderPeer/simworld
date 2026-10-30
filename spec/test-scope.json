@@ -14,7 +14,8 @@
     "model_validation": 4
   },
   "scope_exempt_files": [
-    "tests/test_baseline_manifest.py"
+    "tests/test_baseline_manifest.py",
+    "tests/test_run_manifest.py"
   ],
   "notes": {
     "tests/test_log.py": "Codec and verification mechanics survive model changes; encoding itself is log schema 0.1-legacy.",
@@ -25,7 +26,8 @@
     "tests/test_rng.py": "Scheme primitives are invariants; trajectory golden vectors belong to 0.1 addressing and are regenerated as new goldens by D0-04.",
     "tests/test_m2_jump.py": "jump equivalence reference is superseded by D0-11 certificates.",
     "tests/test_replay.py": "Replay mechanics are invariants but bit-identity claims are same-build/same-environment only.",
-    "tests/test_baseline_manifest.py": "New D0-01 suite; exempt because it validates the scope file itself."
+    "tests/test_baseline_manifest.py": "New D0-01 suite; exempt because it validates the scope file itself.",
+    "tests/test_run_manifest.py": "New D0-02 candidate controls (run manifests, preflight, legacy rejection policy); exempt as post-freeze candidate work under new names."
   },
   "tests": {
     "tests/test_log.py::test_record_read_roundtrip": "shared_invariant",

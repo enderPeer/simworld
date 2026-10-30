@@ -14,6 +14,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = ROOT / "spec" / "baselines" / "physics-0.1.json"
+CANDIDATE_PATH = ROOT / "spec" / "baselines" / "candidate.json"
 SCOPE_PATH = ROOT / "spec" / "test-scope.json"
 STATUS_PATH = ROOT / "spec" / "status.json"
 BACKLOG_PATH = ROOT / "spec" / "development_backlog.json"
@@ -114,16 +115,22 @@ def test_artifact_hashes_validate_without_rerun():
 
 def test_engine_trees_match_frozen_baseline():
     manifest = load_json(MANIFEST_PATH)
+    commit = manifest["source"]["baseline_commit"]
     try:
-        baseline_tree = git_tree("HEAD", "sim")
+        frozen_sim_tree = git_tree(commit, "sim")
     except FileNotFoundError:
         pytest.skip("git not available")
     for subpath, frozen in manifest["source"]["engine_trees_at_baseline"].items():
-        assert git_tree("HEAD", subpath) == frozen, (
-            f"{subpath}/ drifted from frozen 0.1 baseline; per ADR-D0-01 a behavior "
-            "change requires a new candidate identity, not a silent baseline edit"
-        )
-    assert baseline_tree == manifest["source"]["engine_trees_at_baseline"]["sim"]
+        assert git_tree(commit, subpath) == frozen, (
+            f"the frozen baseline commit itself must remain immutable ({subpath})")
+    head_sim_tree = git_tree("HEAD", "sim")
+    if head_sim_tree != manifest["source"]["engine_trees_at_baseline"]["sim"]:
+        candidate = load_json(CANDIDATE_PATH)
+        assert candidate["sim_tree"] == head_sim_tree, (
+            "HEAD drifted from the frozen 0.1 baseline without a registered "
+            "candidate identity (ADR-D0-01)")
+        assert candidate["physics_build"] == manifest["physics_build"], (
+            "a candidate may not claim a new physics label before D0-12 acceptance")
 
 
 def test_negative_tamper_is_rejected():

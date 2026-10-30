@@ -36,15 +36,21 @@ def event_digest(q, payload):
 
 
 class LogWriter:
-    def __init__(self, path, seed, physics_build, meta=None):
+    def __init__(self, path, seed, physics_build, meta=None, log_schema=None,
+                 manifest_digest=None):
         self.path = str(path)
         self._fh = gzip.open(self.path, "wt", encoding="utf-8", compresslevel=6)
-        self._write({
+        header = {
             "k": "header",
             "seed": int(seed),
             "physics_build": physics_build,
             "meta": meta or {},
-        })
+        }
+        if log_schema is not None:
+            header["log_schema"] = log_schema
+        if manifest_digest is not None:
+            header["manifest_digest"] = manifest_digest
+        self._write(header)
 
     def _write(self, obj):
         self._fh.write(json.dumps(obj, separators=(",", ":")) + "\n")
@@ -81,7 +87,7 @@ class EventContext:
     """Modes: 'record' (needs path), 'verify' (needs verify_path + expectations), 'off'."""
 
     def __init__(self, seed, mode="record", path=None, verify_path=None,
-                 physics_build=None, meta=None):
+                 physics_build=None, meta=None, log_schema=None, manifest_digest=None):
         if mode not in ("record", "verify", "off"):
             raise LogError(f"unknown mode {mode!r}")
         self.seed = int(seed)
@@ -92,7 +98,8 @@ class EventContext:
         if mode == "record":
             if path is None:
                 raise LogError("record mode needs path")
-            self._writer = LogWriter(path, seed, physics_build, meta)
+            self._writer = LogWriter(path, seed, physics_build, meta, log_schema,
+                                     manifest_digest)
         elif mode == "verify":
             if verify_path is None:
                 raise LogError("verify mode needs verify_path")
@@ -105,6 +112,13 @@ class EventContext:
             if physics_build is not None and header.get("physics_build") != physics_build:
                 raise LogError(
                     f"physics_build mismatch: {header.get('physics_build')} != {physics_build}")
+            if log_schema is not None and header.get("log_schema") != log_schema:
+                raise LogError(
+                    f"log_schema mismatch: log {header.get('log_schema')!r} != expected {log_schema!r}")
+            if manifest_digest is not None and header.get("manifest_digest") != manifest_digest:
+                raise LogError(
+                    "log is not bound to the run manifest: header manifest_digest "
+                    f"{header.get('manifest_digest')!r} != manifest {manifest_digest!r}")
             if meta is not None and header.get("meta") != meta:
                 raise LogError(f"log header meta mismatch: {header.get('meta')!r} != {meta!r}")
             self._end = body[-1] if body and body[-1].get("k") == "end" else None

@@ -5,17 +5,17 @@ validated by `python scripts/check_development_spec.py`. This board mirrors the
 ready queue for humans and links a card per active task. Do not mark a phase or
 ticket done here; update the structured records together with a card's evidence.
 
-## Now
+## Recently completed
 
 | Card | Ticket | State |
 | --- | --- | --- |
-| [D0-01 Baseline freeze and change control](D0-01-baseline-freeze.md) | D0-01 | verified (checker + 72/72 tests 2026-10-30) |
+| [D0-02 Run manifests and compatibility preflight](D0-02-run-manifests.md) | D0-02 | verified (85/85 tests 2026-10-30, candidate registered) |
+| [D0-01 Baseline freeze and change control](D0-01-baseline-freeze.md) | D0-01 | verified (commit `d27ed0d`) |
 
-## Next (unlocked by D0-01, parallelizable)
+## Next (ready)
 
 | Ticket | Title | State |
 | --- | --- | --- |
-| D0-02 | Explicit run manifests and compatibility preflight | ready |
 | D0-03 | Register current event kinds and stable event identities | ready |
 | D0-06 | Kinetic time units and closed-box reference harness | ready |
 

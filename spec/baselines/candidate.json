@@ -1,0 +1,11 @@
+{
+  "schema": "candidate-identity/0.1",
+  "registered": "2026-10-30",
+  "ticket": "D0-02",
+  "physics_build": "0.1",
+  "log_schema": "0.2",
+  "baseline_commit": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
+  "baseline_sim_tree": "b2d994c2b45560700d0a24600456e33394d06b4e",
+  "sim_tree": "0bb968d7ba02937735bb4f3e3200fc0569d2c130",
+  "note": "ADR-D0-01 candidate registration for the first drift from the frozen 0.1 source: run manifests, log schema 0.2 header binding and replay preflight are metadata-only. Equations, RNG addressing and canonical state hashing are unchanged, so the 0.1 characterization and band suites still pass against this candidate. A behavior change would move those suites to the archived 0.1 environment; a new physics label requires D0-12 acceptance."
+}
