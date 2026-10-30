@@ -5,7 +5,9 @@
   "source_baseline": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
   "purpose": "Execution specification for future work; no new simulation capability is implemented by these records.",
   "ready_now": [
-    "D0-01"
+    "D0-02",
+    "D0-03",
+    "D0-06"
   ],
   "first_milestone": "D0",
   "milestones": [
@@ -163,15 +165,22 @@
         "ROADMAP_DIFF.md: Recommended roadmap revisions",
         "spec/seams.md: S9, S23"
       ],
-      "state": "ready",
+      "state": "verified",
       "milestone": "D0",
-      "evidence": [],
+      "evidence": [
+        "spec/adr/ADR-D0-01-versioning.md",
+        "spec/baselines/physics-0.1.json",
+        "spec/test-scope.json",
+        "tests/test_baseline_manifest.py",
+        "tasks/D0-01-baseline-freeze.md"
+      ],
       "commands_are_planned": true,
       "test_scope_policy": "Candidate commands require the D0-01 shared/legacy/reference test inventory. Historical characterizations execute in the archived 0.1 source environment, not unmodified against changed kernels."
     },
     {
       "id": "D0-02",
       "title": "Add explicit run manifests and compatibility preflight",
+
       "priority": "P0",
       "depends_on": [
         "D0-01"
@@ -783,7 +792,9 @@
         "BUILD0.md: Environment; Physics build 0.1; Milestones; Not in this slice",
         "ROADMAP_DIFF.md: Status ambiguity; Replay and reproducibility diff"
       ],
-      "evidence": []
+      "evidence": [
+        "spec/baselines/physics-0.1.json"
+      ]
     },
     {
       "phase": 1,

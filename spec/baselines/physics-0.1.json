@@ -1,0 +1,132 @@
+{
+  "schema_version": "baseline-manifest/0.1",
+  "physics_build": "0.1",
+  "status": "accepted_historical_micro_slice",
+  "recorded": {
+    "date": "2026-10-30",
+    "ticket": "D0-01",
+    "adr": "spec/adr/ADR-D0-01-versioning.md"
+  },
+  "source": {
+    "baseline_commit": "2a74160e5934fe76b8e14726d78ba6e2c3c7d40f",
+    "baseline_commit_date": "2026-10-29T12:14:27+01:00",
+    "engine_trees_at_baseline": {
+      "sim": "b2d994c2b45560700d0a24600456e33394d06b4e",
+      "tests": "883ed4cf6d6173bcc2bae58ff77e29747d5d6564",
+      "spikes": "96c3c6170e733f90ddea7f2165c1f7cf566b375d"
+    },
+    "note": "tests/ and spikes/ are recorded because they define the accepted acceptance evidence; behavior identity is carried by sim/. tests/test_baseline_manifest.py checks that HEAD trees match, so any engine drift fails deterministically and requires a new candidate identity."
+  },
+  "environment": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "acceptance_ci": "GitHub Actions run 40863848747 for the recorded source baseline",
+    "local_reproduction": "python -m pytest -q -p no:cacheprovider -> 65 passed on Windows-10, Python 3.11.9, NumPy 2.4.6, 2026-10-30",
+    "claim_limit": "Same-build, same-environment reproduction only; no cross-build bit-identity claim (see ADR-D0-01 and S23)."
+  },
+  "schemas": {
+    "model": "physics_build 0.1",
+    "log": "0.1-legacy: gzipped jsonl, truncated kind hash, generic payload digest",
+    "rng": "0.1-legacy: FNV-1a/64 + splitmix64, context prefix (cell<<24)+(sub<<48), known prefix-reuse defect",
+    "state": "0.1-legacy: canonical_hash over sorted record columns and selected arrays, float64 ids, native endian; excludes pool order, id allocation, driver flags",
+    "event_registry": "none (introduced by D0-03)",
+    "run_manifest": "none prior to D0-01 (this file is the baseline manifest, not a run manifest)"
+  },
+  "model_claim_scope": "BUILD0 micro-slice: prescribed cooling, finite thermal populations, effective weak conversion and nucleon formation, bounded nuclear network, aggregate capture, logging, same-build replay, restricted quiet-cell jumps. Calibrated effective model, not derived physics. See spec/status.json for the current status record distinguishing accepted slice, known defects, proposed contracts and unvalidated changes.",
+  "known_defects": [
+    {
+      "id": "rng-prefix-reuse",
+      "summary": "EventContext.draws restarts at (cell<<24)+(sub<<48); different species/requests reuse prefixes at the same tick/kind/cell/sub",
+      "owner_ticket": "D0-04",
+      "evidence": "website/dist/downloads/SimWorld_Audit_Diagnostics.json:rng_reuse_diagnostic"
+    },
+    {
+      "id": "nuclear-reverse-edge-absent",
+      "summary": "network._rates skips pairs with absent forward reactant, so product-only states have no reverse dissociation edge",
+      "owner_ticket": "D0-07",
+      "evidence": "website/dist/downloads/SimWorld_Audit_Diagnostics.json:nuclear_reverse_diagnostic"
+    },
+    {
+      "id": "atomic-absorbing-boundary",
+      "summary": "Fully captured species and T>T_GATE states have no reverse ionization path; 100-neutral diagnostic records zero events",
+      "owner_ticket": "D0-09",
+      "evidence": "website/dist/downloads/SimWorld_Audit_Diagnostics.json:atomic_absorbing_diagnostic"
+    },
+    {
+      "id": "quiet-jump-heuristic",
+      "summary": "jump_quiet compares per-tick weights against 1e-8 with JUMP_SPAN 1000; accumulated omitted hazard is unbounded",
+      "owner_ticket": "D0-11",
+      "evidence": "ROADMAP_DIFF.md: Highest-risk roadmap choices"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "website/dist/downloads/SimWorld_Verified_Run.json",
+      "role": "preserved 0.1 acceptance run summary (seed 42, 8 cells, 3400 ticks, probe cells 2,3; final_hash fe8e094a9753b27c89fc0dffd1905f8de4be45263158d5712618ddd5f6ded1a0)",
+      "sha256": "46458970AFD5980B5F265346D7A0A235351467784DDBEC3D7BC1F98D67020C6B",
+      "bytes": 1012
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Audit_Diagnostics.json",
+      "role": "independent audit diagnostics backing the known_defects entries",
+      "sha256": "4D9C8340A1ECDDC07035BC0CC6186FD146EA32D94128E8FE40CF8F518E598BBB",
+      "bytes": 4476
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Test_Report.xml",
+      "role": "65-test report for the recorded 0.1 acceptance",
+      "sha256": "27FBBD17D6A31B17E97075CE27D0457D87550ACF192857A57AE6A1A40DD2664A",
+      "bytes": 6556
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Current_Source.zip",
+      "role": "archived 0.1 source snapshot for isolated historical execution",
+      "sha256": "523F55194CAAA91979DCA1CE297D2BAC096BFCB25E195D4C838915B7BED69A60",
+      "bytes": 1377697
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Research_Materials_Public.zip",
+      "role": "publication bundle (not 0.1 execution evidence)",
+      "sha256": "93BC2DB405CC4513D6A8621C8232106E792AABDF115969A21C78AF859AD91A6F",
+      "bytes": 1081718
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Research_White_Paper.pdf",
+      "role": "publication (not 0.1 execution evidence)",
+      "sha256": "F96AB8C5DB763010628D47795BE1A3102183B17ABB35987CEBEADCEA36CF788A",
+      "bytes": 287517
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Documentation.zip",
+      "role": "documentation snapshot (not 0.1 execution evidence)",
+      "sha256": "FC4F64A6A0C2707FE0A39435F73C57A3E937AE90D371DA7ADE67773693997A01",
+      "bytes": 195871
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Product_Portfolio.json",
+      "role": "product concepts record (not shipped applications)",
+      "sha256": "A3170D573F1246B791D69F0E32DD51192ECC0907A5504A9694379C12784D349F",
+      "bytes": 18145
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Development_Specification.md",
+      "role": "planning record v1.0 distribution copy",
+      "sha256": "ABC393BF224D84302765BD1AABD77BFD5198A245F36A0A4868F3D7D645DE37BD",
+      "bytes": 134588
+    },
+    {
+      "path": "website/dist/downloads/SimWorld_Development_Backlog.json",
+      "role": "planning record backlog distribution copy",
+      "sha256": "D82F665117D9E23F7C1624DB50A6B3CD2EEC39D80D0DE0306055E13E613915F5",
+      "bytes": 146963
+    }
+  ],
+  "reproduction": {
+    "commands": [
+      "python -m pytest -q -p no:cacheprovider",
+      "python -m sim.demo --seed 42 --ticks 3400 --cells 8 --probe-cells 2,3 --out runs/development-baseline",
+      "python -m sim.replay runs/development-baseline"
+    ],
+    "policy": "Hash validation of the preserved evidence requires no re-run of the universe. Historical 0.1 execution belongs to the archived source environment at the baseline commit; the current tree matches it until the first behavior change (ADR-D0-01)."
+  }
+}
